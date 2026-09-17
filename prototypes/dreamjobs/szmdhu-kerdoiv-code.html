@@ -395,48 +395,39 @@
       </div>
     </div>
     <div class="code-wrap">
-      <pre><code id="redesigned">&lt;!doctype html&gt;
+      <pre><code id="redesigned">&lt;!DOCTYPE html&gt;
 &lt;html lang="hu"&gt;
 &lt;head&gt;
-&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-&lt;link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;title&gt;Szerethető Munkahelyek Díj – kérdőív&lt;/title&gt;
 &lt;style&gt;
-  html, body, button, input, select, textarea {{
-    font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif !important;
-  }}
-&lt;/style&gt;
-&lt;meta charset="utf-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-&lt;title&gt;Szerethető Munkahelyek Díj – Kérdőív&lt;/title&gt;
-&lt;style&gt;
-
-:root{--smw-red:#be4d63;--smw-red-dark:#a83c53;--smw-text:#303238;--smw-muted:#6d727b;--smw-line:#e5e7eb;--smw-soft:#f5f6f8}
+:root{--smw-red:#c94d5d;--smw-red-dark:#a83c53;--smw-text:#303238;--smw-muted:#6d727b;--smw-line:#e5e7eb;--smw-soft:#f5f6f8}
 .smw-dashboard-card{position:relative;overflow:hidden}
 .smw-dashboard-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--smw-red),#d77889);z-index:2}
 .smw-card-header{align-items:center!important;padding-bottom:0!important}
 .smw-card-kicker{margin:3px 0 5px;color:var(--smw-red);font-size:10px;line-height:1;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .smw-card-title{margin-bottom:0!important}
-.smw-card-icon{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:15px;color:var(--smw-red);background:linear-gradient(145deg,#fff1f5,#f9e8ed);box-shadow:inset 0 0 0 1px rgba(190,77,99,.09)}
+.smw-card-icon{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:15px;color:var(--smw-red);background:linear-gradient(145deg,#f9edef,#f9e8ed);box-shadow:inset 0 0 0 1px rgba(201,77,93,.09)}
 .smw-card-content{padding-top:14px!important}
-.smw-cta-box{position:relative;overflow:hidden;padding:18px;border:1px solid rgba(190,77,99,.12);border-radius:15px;background:radial-gradient(circle at 100% 0%,rgba(190,77,99,.10),transparent 35%),linear-gradient(135deg,#fff8fa 0%,#fafcfd 100%)}
-.smw-cta-box:after{content:"";position:absolute;right:-38px;bottom:-62px;width:145px;height:145px;border:19px solid rgba(190,77,99,.045);border-radius:50%;pointer-events:none}
+.smw-cta-box{position:relative;overflow:hidden;padding:18px;border:1px solid rgba(201,77,93,.12);border-radius:15px;background:radial-gradient(circle at 100% 0%,rgba(201,77,93,.10),transparent 35%),linear-gradient(135deg,#fdf7f8 0%,#fafcfd 100%)}
+.smw-cta-box:after{content:"";position:absolute;right:-38px;bottom:-62px;width:145px;height:145px;border:19px solid rgba(201,77,93,.045);border-radius:50%;pointer-events:none}
 .smw-cta-badge{position:relative;z-index:1;display:inline-flex;align-items:center;min-height:24px;margin-bottom:12px;padding:5px 10px;border-radius:999px;background:#f5e8ec;color:var(--smw-red);font-size:11px;line-height:1;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .smw-cta-text{position:relative;z-index:1;margin:0 0 16px!important;color:#545962;font-size:16px!important;line-height:1.55!important}
-.smw-open-btn{position:relative;z-index:1;width:100%;min-height:52px;border:0;border-radius:10px;padding:13px 16px;background:linear-gradient(180deg,#c4556b,var(--smw-red));color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 9px 20px rgba(190,77,99,.18);transition:transform .16s ease,box-shadow .16s ease,background .16s ease}
-.smw-open-btn:hover{background:linear-gradient(180deg,#b9475e,var(--smw-red-dark));transform:translateY(-1px);box-shadow:0 13px 25px rgba(190,77,99,.24)}
+.smw-open-btn{position:relative;z-index:1;width:100%;min-height:52px;border:0;border-radius:10px;padding:13px 16px;background:linear-gradient(180deg,#c4556b,var(--smw-red));color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 9px 20px rgba(201,77,93,.18);transition:transform .16s ease,box-shadow .16s ease,background .16s ease}
+.smw-open-btn:hover{background:linear-gradient(180deg,#b9475e,var(--smw-red-dark));transform:translateY(-1px);box-shadow:0 13px 25px rgba(201,77,93,.24)}
 .smw-open-arrow{font-size:20px;transition:transform .16s ease}.smw-open-btn:hover .smw-open-arrow{transform:translateX(3px)}
 
 .smw-modal-backdrop{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(24,26,31,.62);backdrop-filter:blur(3px)}
 .smw-modal-backdrop.is-open{display:flex}
 .smw-modal{width:min(1040px,calc(100vw - 36px));max-height:calc(100vh - 36px);display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:#fff;box-shadow:0 28px 75px rgba(0,0,0,.26);font-family:inherit;color:var(--smw-text)}
 .smw-modal *{box-sizing:border-box}
-.smw-modal-header{position:relative;min-height:108px;padding:18px 100px 16px 30px;border-top:5px solid var(--smw-red);border-bottom:1px solid var(--smw-line);background:radial-gradient(circle at 100% 0%,rgba(190,77,99,.08),transparent 32%),linear-gradient(135deg,#fff 0%,#fffafb 100%)}
-.smw-modal-kicker{margin:0 0 5px;color:var(--smw-red);font-size:11px;line-height:1;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.smw-modal-header{position:relative;min-height:108px;padding:18px 100px 16px 30px;border-top:5px solid #c94d5d;border-bottom:1px solid var(--smw-line);background:radial-gradient(circle at 100% 0%,rgba(201,77,93,.08),transparent 32%),linear-gradient(135deg,#fff 0%,#fffafb 100%)}
+.smw-modal-kicker{margin:0 0 5px;color:#c94d5d;font-size:11px;line-height:1;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .smw-modal-title{margin:0!important;color:var(--smw-text);font-size:25px!important;line-height:1.16!important;font-weight:700!important;letter-spacing:-.02em}
 .smw-modal-subtitle{max-width:none;margin:6px 0 0!important;color:var(--smw-muted);font-size:14px!important;line-height:1.45!important;white-space:nowrap}
-.smw-modal-heart{position:absolute;right:56px;top:22px;width:54px;height:54px;display:grid;place-items:center;border-radius:16px;color:var(--smw-red);background:linear-gradient(145deg,#fff1f5,#fae9ee);box-shadow:inset 0 0 0 1px rgba(190,77,99,.09)}
-.smw-modal-deco{position:absolute;right:-96px;bottom:-120px;width:230px;height:230px;border:31px solid rgba(190,77,99,.045);border-radius:50%;pointer-events:none}
+.smw-modal-heart{position:absolute;right:56px;top:22px;width:54px;height:54px;display:grid;place-items:center;border-radius:16px;color:#c94d5d;background:linear-gradient(145deg,#f9edef,#f6e2e5);box-shadow:inset 0 0 0 1px rgba(201,77,93,.09)}
+.smw-modal-deco{position:absolute;right:-96px;bottom:-120px;width:230px;height:230px;border:31px solid rgba(201,77,93,.045);border-radius:50%;pointer-events:none}
 .smw-modal-close{position:absolute;right:14px;top:13px;width:36px;height:36px;border:0;border-radius:50%;background:#f3f4f6;color:#555;font:inherit;font-size:21px;font-weight:700;cursor:pointer;display:grid;place-items:center;z-index:2}
 .smw-modal-close:hover{background:#e9ebee}
 .smw-modal-body{overflow-y:auto;background:#fff;scrollbar-width:thin;scrollbar-color:#999 transparent}
@@ -449,54 +440,775 @@
 .smw-field input[type=text],.smw-field input[type=email],.smw-field input[type=tel],.smw-field select,.smw-field textarea{width:100%;min-height:50px;margin:0;padding:13px 14px;border:1px solid #dfe2e7;border-radius:11px;background:#fff;color:var(--smw-text);font:inherit;font-size:15px;line-height:1.4;outline:none;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease,background .18s ease}
 .smw-field textarea{min-height:145px;resize:vertical}
 .smw-field input:hover,.smw-field select:hover,.smw-field textarea:hover{border-color:#bfc5cd;background:#fcfdff}
-.smw-field input:focus,.smw-field select:focus,.smw-field textarea:focus{border-color:var(--smw-red);background:#fff;box-shadow:0 0 0 4px rgba(190,77,99,.10),0 8px 18px rgba(190,77,99,.06);transform:translateY(-1px)}
+.smw-field input:focus,.smw-field select:focus,.smw-field textarea:focus{border-color:#c94d5d;background:#fff;box-shadow:0 0 0 4px rgba(201,77,93,.10),0 8px 18px rgba(201,77,93,.06);transform:translateY(-1px)}
 .smw-field input::placeholder,.smw-field textarea::placeholder{color:#a4a8af;opacity:1}
-.smw-help{width:100%;margin-top:10px;padding:14px 16px;border-radius:10px;background:#f4f5f7;color:#6c7179;font-size:14px;line-height:1.62}
+.smw-help{width:100%;margin:0 0 18px;padding:14px 16px;border-radius:10px;background:#f9edef;color:#6c7179;font-size:14px;line-height:1.62}
 .smw-help p{margin:0}.smw-help p+p{margin-top:7px}.smw-help strong{display:block;color:#42464c;font-weight:700}.smw-help-details{color:#777c84;font-size:13.5px;line-height:1.58}
 .smw-award-help{margin:0 0 16px}
 .smw-award-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .smw-check-card{display:flex!important;align-items:center;gap:11px;margin:0!important;padding:14px 15px;border:1px solid var(--smw-line);border-radius:11px;background:#fff;color:var(--smw-text)!important;font-size:15px!important;font-weight:700!important;cursor:pointer;transition:border-color .18s ease,background .18s ease,box-shadow .18s ease,transform .18s ease}
-.smw-check-card:hover{border-color:rgba(190,77,99,.52);background:#fff8fa;box-shadow:0 7px 17px rgba(190,77,99,.07);transform:translateY(-1px)}
-.smw-check-card:has(input:checked){border-color:var(--smw-red);background:#fff3f6;box-shadow:0 0 0 3px rgba(190,77,99,.07)}
+.smw-check-card:hover{border-color:rgba(201,77,93,.52);background:#fdf7f8;box-shadow:0 7px 17px rgba(201,77,93,.07);transform:translateY(-1px)}
+.smw-check-card:has(input:checked){border-color:var(--smw-red);background:#f9edef;box-shadow:0 0 0 3px rgba(201,77,93,.07)}
 .smw-check-card input{width:18px;height:18px;margin:0;accent-color:var(--smw-red);flex:0 0 auto}
 .smw-validation{display:none;margin-top:10px;color:var(--smw-red);font-size:13px;font-weight:700}.smw-validation.is-visible{display:block}
 .smw-privacy{display:flex!important;align-items:flex-start;gap:11px;margin:0!important;padding:15px 16px;border-radius:11px;background:#f4f5f7;color:#4f545c!important;font-size:14px!important;line-height:1.55!important;cursor:pointer}.smw-privacy input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--smw-red);flex:0 0 auto}.smw-privacy a{color:var(--smw-red);font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .smw-modal-footer{flex:0 0 auto;padding:18px 24px 20px;border-top:1px solid var(--smw-line);display:flex;align-items:center;justify-content:center;gap:12px;background:#fafafa}
-.smw-cancel-btn,.smw-submit-btn,.smw-success-close{min-width:175px;border-radius:10px;padding:13px 22px;font:inherit;font-size:15px;font-weight:700;cursor:pointer}.smw-cancel-btn{border:1px solid #d9dce1;background:#fff;color:#555}.smw-cancel-btn:hover{background:#f5f6f7}.smw-submit-btn,.smw-success-close{border:0;background:var(--smw-red);color:#fff;box-shadow:0 8px 18px rgba(190,77,99,.18)}.smw-submit-btn:hover,.smw-success-close:hover{background:var(--smw-red-dark)}.smw-submit-btn:disabled{background:#c9ccd1;box-shadow:none;cursor:not-allowed}
+.smw-cancel-btn,.smw-submit-btn,.smw-success-close{min-width:175px;border-radius:10px;padding:13px 22px;font:inherit;font-size:15px;font-weight:700;cursor:pointer}.smw-cancel-btn{border:1px solid #d9dce1;background:#fff;color:#555}.smw-cancel-btn:hover{background:#f5f6f7}.smw-submit-btn,.smw-success-close{border:0;background:var(--smw-red);color:#fff;box-shadow:0 8px 18px rgba(201,77,93,.18)}.smw-submit-btn:hover,.smw-success-close:hover{background:var(--smw-red-dark)}.smw-submit-btn:disabled{background:#c9ccd1;box-shadow:none;cursor:not-allowed}
 .smw-response{display:none!important}
 .smw-submit-frame{display:none!important;width:0!important;height:0!important;border:0!important}
-.smw-success{display:none;min-height:440px;padding:54px 34px 46px;text-align:center;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at 50% 0%,rgba(190,77,99,.08),transparent 34%),#fff}
+.smw-success{display:none;min-height:440px;padding:54px 34px 46px;text-align:center;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at 50% 0%,rgba(201,77,93,.08),transparent 34%),#fff}
 .smw-form.is-success .smw-modal-header,.smw-form.is-success .smw-modal-body,.smw-form.is-success .smw-modal-footer{display:none!important}.smw-form.is-success .smw-success{display:flex}
-.smw-success-icon{width:80px;height:80px;margin-bottom:18px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#d45e75,var(--smw-red));box-shadow:0 14px 30px rgba(190,77,99,.22)}
+.smw-success-icon{width:80px;height:80px;margin-bottom:18px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#c94d5d,var(--smw-red));box-shadow:0 14px 30px rgba(201,77,93,.22)}
 .smw-success-kicker{margin-bottom:8px;color:var(--smw-red);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.smw-success h3{margin:0!important;color:var(--smw-text);font-size:29px!important;font-weight:700!important}.smw-success p{max-width:570px;margin:13px auto 0!important;color:#686d75;font-size:16px!important;line-height:1.62!important}.smw-success-close{margin-top:26px}
 body.smw-modal-open{overflow:hidden!important}
 @media(max-width:700px){.smw-modal-backdrop{padding:9px}.smw-modal{width:100%;max-height:calc(100vh - 18px);border-radius:14px}.smw-modal-header{min-height:112px;padding:18px 70px 15px 18px}.smw-modal-title{font-size:21px!important}.smw-modal-subtitle{font-size:12px!important;white-space:normal}.smw-modal-heart{right:14px;top:42px;width:44px;height:44px;border-radius:14px}.smw-section{padding:24px 18px}.smw-grid-2,.smw-award-grid{grid-template-columns:1fr}.smw-modal-footer{padding:14px 16px;gap:9px}.smw-cancel-btn,.smw-submit-btn{min-width:0;flex:1;padding:12px 14px}.smw-success{min-height:370px;padding:40px 20px}.smw-success h3{font-size:24px!important}}
 
 
-html, body {
-  margin: 0;
-  width: 100%;
-  min-height: 100%;
-  background: #f4f5f7;
-  font-family: "Source Sans Pro", Arial, sans-serif;
-}
-body {
-  overflow: hidden;
-}
-.smw-modal-backdrop {
-  display: flex !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  background: #f4f5f7 !important;
-  backdrop-filter: none !important;
-}
+.smw-field &gt; .smw-help{margin-top:0!important;margin-bottom:8px!important}
+.smw-field &gt; label + .smw-help,.smw-field &gt; .smw-field-label + .smw-help{margin-top:0!important}
+.smw-field &gt; .smw-help + input,.smw-field &gt; .smw-help + textarea,.smw-field &gt; .smw-help + select{margin-top:0!important}
 
+
+  :root {
+    --smw-red:#c94d5d;
+  }
+
+  /* Main questionnaire/open CTA buttons */
+  .smw-open-btn,
+  .smw-submit,
+  #Submit_75022-1bwhojhefc0ykatw5ceq0dn39wt2dp {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  .smw-open-btn:hover,
+  .smw-submit:hover,
+  #Submit_75022-1bwhojhefc0ykatw5ceq0dn39wt2dp:hover {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  /* Red headings, badges, icons and required markers in the questionnaire UI */
+  .smw-eyebrow,
+  .smw-badge,
+  .smw-required,
+  .smw-card-kicker,
+  .smw-modal-kicker {
+    color: #c94d5d !important;
+  }
+
+  /* Decorative red top lines / accents */
+  .smw-card::before,
+  .smw-modal::before,
+  .smw-modal-header::before {
+    background: #c94d5d !important;
+  }
+
+  /* Inputs and selects: exact DreamJobs red on focus */
+  .smw-modal input:focus,
+  .smw-modal textarea:focus,
+  .smw-modal select:focus {
+    border-color: #c94d5d !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(201, 77, 93, 0.14) !important;
+  }
+
+  /* Native checkbox accent */
+  .smw-modal input[type="checkbox"] {
+    accent-color: #c94d5d !important;
+  }
+
+  /* Category cards when selected/focused */
+  .smw-category-option:hover,
+  .smw-category-option:focus-within,
+  .smw-category-option:has(input:checked) {
+    border-color: #c94d5d !important;
+  }
+
+  /* Links inside the questionnaire that use the accent color */
+  .smw-modal a:not(.prototype-disabled-link) {
+    color: #c94d5d !important;
+  }
+
+
+  .smw-help {
+    background: #f9edef !important;
+    border-color: #f2dadd !important;
+  }
+
+
+  /* Szerethető Munkahelyek kártya – minden vörös elem egységesen #c94d5d */
+  .smw-card::before {
+    background: #c94d5d !important;
+  }
+
+  .smw-card .smw-card-kicker,
+  .smw-card .smw-eyebrow,
+  .smw-card .smw-badge {
+    color: #c94d5d !important;
+  }
+
+  .smw-card .smw-open-btn {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  .smw-card .smw-open-btn:hover,
+  .smw-card .smw-open-btn:focus {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  .smw-card .smw-heart,
+  .smw-card .smw-heart-icon {
+    color: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  .smw-card svg,
+  .smw-card svg path {
+    stroke: #c94d5d !important;
+  }
+
+
+  /* Pontos fő szín */
+  .smw-card::before {
+    background: #c94d5d !important;
+    background-image: none !important;
+  }
+
+  .smw-card .smw-card-kicker,
+  .smw-card .smw-eyebrow,
+  .smw-card .smw-badge {
+    color: #c94d5d !important;
+  }
+
+  /* Nevezés badge világos, márkaszínhez igazított háttérrel */
+  .smw-card .smw-badge {
+    background: #faecee !important;
+    border-color: #f3d8dc !important;
+  }
+
+  /* Belső nevezési panel: #c94d5d-ből képzett light gradient */
+  .smw-card .smw-card-inner,
+  .smw-card .smw-cta-panel,
+  .smw-card .smw-card-cta,
+  .smw-card .smw-entry-box {
+    background: linear-gradient(
+      135deg,
+      #fffafb 0%,
+      #fdf3f5 48%,
+      #fae9ec 100%
+    ) !important;
+    border-color: #f2d4d9 !important;
+  }
+
+  /* Kérdőív kitöltése gomb */
+  .smw-card .smw-open-btn,
+  .smw-card .smw-open-btn:hover,
+  .smw-card .smw-open-btn:focus {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  /* A korábbi rajzolt szív elrejtése, hogy egységes, normál szív legyen */
+  .smw-card .smw-heart svg,
+  .smw-card .smw-heart-icon svg {
+    display: none !important;
+  }
+
+  /* Normál szív ikon */
+  .smw-card .smw-heart,
+  .smw-card .smw-heart-icon {
+    color: transparent !important;
+    position: relative !important;
+  }
+
+  .smw-card .smw-heart::after,
+  .smw-card .smw-heart-icon::after {
+    content: "♡" !important;
+    color: #c94d5d !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 52px !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+
+  .smw-card {
+    position: relative !important;
+    overflow: hidden !important;
+    border-top-color: #c94d5d !important;
+  }
+
+  .smw-card::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 6px !important;
+    background: #c94d5d !important;
+    background-image: none !important;
+    border: 0 !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+  }
+
+
+  :root {
+    --smw-red:#c94d5d !important;
+    --smw-red-dark: #c94d5d !important;
+  }
+
+  /* TÉNYLEGES felső csík */
+  .smw-dashboard-card::before {
+    background: #c94d5d !important;
+    background-image: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Felső kis felirat */
+  .smw-dashboard-card .smw-card-kicker {
+    color: #c94d5d !important;
+  }
+
+  /* Szív ikon */
+  .smw-dashboard-card .smw-card-icon {
+    color: #c94d5d !important;
+    background: #faedef !important;
+    box-shadow: inset 0 0 0 1px #f2d7db !important;
+  }
+
+  .smw-dashboard-card .smw-card-icon svg {
+    display: block !important;
+  }
+
+  .smw-dashboard-card .smw-card-icon svg path {
+    stroke: #c94d5d !important;
+    fill: none !important;
+  }
+
+  /* Nevezés box világos, #c94d5d alapú gradientje */
+  .smw-dashboard-card .smw-cta-box {
+    border-color: #f0d2d7 !important;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(201,77,93,.11), transparent 36%),
+      linear-gradient(135deg, #fffafb 0%, #fdf3f5 52%, #fae9ec 100%) !important;
+  }
+
+  .smw-dashboard-card .smw-cta-box::after {
+    border-color: rgba(201,77,93,.055) !important;
+  }
+
+  /* NEVEZÉS badge */
+  .smw-dashboard-card .smw-cta-badge {
+    color: #c94d5d !important;
+    background: #f9e9ec !important;
+  }
+
+  /* Kérdőív kitöltése gomb */
+  .smw-dashboard-card .smw-open-btn,
+  .smw-dashboard-card .smw-open-btn:hover,
+  .smw-dashboard-card .smw-open-btn:focus {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+
+  .smw-dashboard-card::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .smw-dashboard-card {
+    border-top-color: inherit !important;
+  }
+
+
+  .smw-dashboard-card {
+    border: 1px solid #d9dde2 !important;
+  }
+
+  .smw-dashboard-card::before {
+    display: none !important;
+    content: none !important;
+  }
+
+
+  .smw-modal-heart {
+    color: #c94d5d !important;
+  }
+  .smw-modal-heart svg path {
+    stroke: #c94d5d !important;
+    fill: none !important;
+  }
+
+
+  :root {
+    --smw-red:#c94d5d !important;
+    --smw-red-dark: #c94d5d !important;
+  }
+
+  .smw-required,
+  .smw-modal-kicker,
+  .smw-validation,
+  .smw-privacy a {
+    color: #c94d5d !important;
+  }
+
+  .smw-modal-header {
+    border-top-color: #c94d5d !important;
+  }
+
+  .smw-modal-heart svg path {
+    stroke: #c94d5d !important;
+  }
+
+  .smw-field input:focus,
+  .smw-field select:focus,
+  .smw-field textarea:focus {
+    border-color: #c94d5d !important;
+    box-shadow: 0 0 0 4px rgba(201,77,93,.12),
+                0 8px 18px rgba(201,77,93,.06) !important;
+  }
+
+  .smw-check-card input,
+  .smw-privacy input {
+    accent-color: #c94d5d !important;
+  }
+
+  .smw-check-card:hover {
+    border-color: #c94d5d !important;
+  }
+
+  .smw-check-card:has(input:checked) {
+    border-color: #c94d5d !important;
+    background: #f9edef !important;
+    box-shadow: 0 0 0 3px rgba(201,77,93,.07) !important;
+  }
+
+  .smw-help {
+    background: #f9edef !important;
+    border-color: #f1d5d9 !important;
+  }
+
+  .smw-submit-btn,
+  .smw-success-close {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  .smw-submit-btn:hover:not(:disabled),
+  .smw-success-close:hover {
+    background: #c94d5d !important;
+  }
+
+
+  .smw-submit-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+
+  .smw-modal {
+    --smw-red:#c94d5d !important;
+    --smw-red-dark: #c94d5d !important;
+  }
+
+  .smw-modal-header {
+    border-top: 5px solid #c94d5d !important;
+  }
+
+  .smw-modal-kicker,
+  .smw-required,
+  .smw-validation,
+  .smw-privacy a,
+  .smw-success-kicker {
+    color: #c94d5d !important;
+  }
+
+  .smw-modal-heart {
+    color: #c94d5d !important;
+    background: #f9edef !important;
+    box-shadow: inset 0 0 0 1px rgba(201,77,93,.16) !important;
+  }
+
+  .smw-modal-heart svg path {
+    stroke: #c94d5d !important;
+  }
+
+  .smw-modal-deco {
+    border-color: rgba(201,77,93,.05) !important;
+  }
+
+  .smw-field input:focus,
+  .smw-field select:focus,
+  .smw-field textarea:focus {
+    border-color: #c94d5d !important;
+    box-shadow: 0 0 0 4px rgba(201,77,93,.12) !important;
+  }
+
+  .smw-check-card input,
+  .smw-privacy input {
+    accent-color: #c94d5d !important;
+  }
+
+  .smw-check-card:hover {
+    border-color: #c94d5d !important;
+    background: #fdf7f8 !important;
+    box-shadow: 0 7px 17px rgba(201,77,93,.07) !important;
+  }
+
+  .smw-check-card:has(input:checked) {
+    border-color: #c94d5d !important;
+    background: #f9edef !important;
+    box-shadow: 0 0 0 3px rgba(201,77,93,.07) !important;
+  }
+
+  .smw-help {
+    background: #f9edef !important;
+    border-color: #f1d5d9 !important;
+  }
+
+  /* Alsó gombsor: normális, kompakt arányok */
+  .smw-modal-footer {
+    gap: 14px !important;
+    padding: 16px 24px 18px !important;
+  }
+
+  .smw-cancel-btn,
+  .smw-submit-btn {
+    width: 220px !important;
+    min-width: 220px !important;
+    height: 52px !important;
+    padding: 0 24px !important;
+    border-radius: 10px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .smw-submit-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    background-color: #c94d5d !important;
+    background-image: none !important;
+    border: 1px solid #c94d5d !important;
+    color: #fff !important;
+    box-shadow: 0 8px 18px rgba(201,77,93,.18) !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  .smw-submit-btn:hover:not(:disabled),
+  .smw-submit-btn:focus:not(:disabled) {
+    background-color: #c94d5d !important;
+    border-color: #c94d5d !important;
+    transform: translateY(-1px);
+  }
+
+  .smw-submit-btn .smw-submit-arrow {
+    font-size: 19px !important;
+    line-height: 1 !important;
+  }
+
+  .smw-success-icon,
+  .smw-success-close {
+    background: #c94d5d !important;
+    background-image: none !important;
+  }
+
+  @media (max-width:700px) {
+    .smw-cancel-btn,
+    .smw-submit-btn {
+      width: auto !important;
+      min-width: 0 !important;
+      flex: 1 1 0 !important;
+    }
+  }
+
+
+  .smw-cta-badge,
+  .smw-badge {
+    display: none !important;
+  }
+
+  .smw-cta-box {
+    padding-top: 28px !important;
+  }
+
+  .smw-cta-text {
+    margin-top: 0 !important;
+  }
+
+
+  /* Egységes DreamJobs vörös */
+  .smw-modal {
+    --smw-red:#c94d5d !important;
+    --smw-red-dark: #c94d5d !important;
+  }
+
+  /* Modal fejléc */
+  .smw-modal-header {
+    border-top-color: #c94d5d !important;
+  }
+  .smw-modal-kicker,
+  .smw-required {
+    color: #c94d5d !important;
+  }
+
+  /* Ugyanaz a szabályos szív, mint a dashboard boxban */
+  .smw-modal-heart svg {
+    display: block !important;
+  }
+  .smw-modal-heart svg path {
+    stroke: #c94d5d !important;
+    fill: none !important;
+  }
+  .smw-modal-heart {
+    background: #faedef !important;
+    border: 1px solid #f0d2d7 !important;
+    color: #c94d5d !important;
+  }
+
+  /* Díjkategóriák – bepipálva is pontosan #c94d5d */
+  .smw-check-card input[type="checkbox"] {
+    accent-color: #c94d5d !important;
+  }
+  .smw-check-card:has(input[type="checkbox"]:checked) {
+    border-color: #c94d5d !important;
+    background: #f9edef !important;
+    box-shadow: 0 0 0 3px rgba(201,77,93,.07) !important;
+  }
+  .smw-check-card:has(input[type="checkbox"]:checked) input[type="checkbox"] {
+    accent-color: #c94d5d !important;
+  }
+  .smw-check-card:hover {
+    border-color: #c94d5d !important;
+  }
+
+  /* Adatkezelés – ugyanaz a világos márkaszínű panel */
+  .smw-privacy {
+    background: #f9edef !important;
+    border: 1px solid #f1d5d9 !important;
+    border-radius: 14px !important;
+  }
+  .smw-privacy input[type="checkbox"] {
+    accent-color: #c94d5d !important;
+  }
+  .smw-privacy a {
+    color: #c94d5d !important;
+    text-decoration-color: #c94d5d !important;
+  }
+
+  /* Mező fókusz */
+  .smw-field input:focus,
+  .smw-field select:focus,
+  .smw-field textarea:focus {
+    border-color: #c94d5d !important;
+    box-shadow: 0 0 0 4px rgba(201,77,93,.12) !important;
+  }
+
+  /* Küldés gomb */
+  .smw-submit-btn {
+    background: #c94d5d !important;
+    border-color: #c94d5d !important;
+    background-image: none !important;
+  }
+
+  /* Rövidebb, kompaktabb nyíl */
+  .smw-submit-arrow {
+    font-size: 17px !important;
+    margin-left: 7px !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+  }
+
+
+  /* CUSTOM checkbox: nem a böngésző accent-color renderelését használjuk,
+     így a bepipált négyzet tényleges kitöltése pontosan #c94d5d. */
+  .smw-check-card input[type="checkbox"],
+  .smw-privacy input[type="checkbox"] {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    margin: 0 !important;
+    border: 1.5px solid #7b7f83 !important;
+    border-radius: 3px !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    position: relative !important;
+    cursor: pointer !important;
+  }
+
+  .smw-check-card input[type="checkbox"]:checked,
+  .smw-privacy input[type="checkbox"]:checked {
+    background: #c94d5d !important;
+    background-color: #c94d5d !important;
+    border-color: #c94d5d !important;
+  }
+
+  .smw-check-card input[type="checkbox"]:checked::after,
+  .smw-privacy input[type="checkbox"]:checked::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 6px !important;
+    top: 2px !important;
+    width: 5px !important;
+    height: 10px !important;
+    border: solid #fff !important;
+    border-width: 0 2px 2px 0 !important;
+    transform: rotate(45deg) !important;
+  }
+
+  .smw-check-card:has(input:checked) {
+    border-color: #c94d5d !important;
+    background: #f9edef !important;
+    box-shadow: 0 0 0 3px rgba(201,77,93,.07) !important;
+  }
+
+  .smw-check-card:hover {
+    border-color: #c94d5d !important;
+  }
+
+  /* Modal szív: pontosan ugyanaz a méret, háttér és ikon, mint a dashboard boxban */
+  .smw-modal-heart {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 15px !important;
+    background: linear-gradient(145deg,#f9edef,#f9e8ed) !important;
+    border: 0 !important;
+    box-shadow: inset 0 0 0 1px rgba(201,77,93,.09) !important;
+    color: #c94d5d !important;
+  }
+
+  .smw-modal-heart svg {
+    width: 28px !important;
+    height: 28px !important;
+    display: block !important;
+  }
+
+  .smw-modal-heart svg path {
+    stroke: #c94d5d !important;
+    fill: none !important;
+    stroke-width: 1.9 !important;
+  }
+
+  /* Minden modal accent */
+  .smw-modal-header { border-top-color: #c94d5d !important; }
+  .smw-modal-kicker,
+  .smw-required,
+  .smw-privacy a { color: #c94d5d !important; }
+
+  .smw-field input:focus,
+  .smw-field textarea:focus,
+  .smw-field select:focus {
+    border-color: #c94d5d !important;
+    box-shadow: 0 0 0 4px rgba(201,77,93,.12) !important;
+  }
+
+  /* Adatkezelés egységes panel */
+  .smw-privacy {
+    background: #f9edef !important;
+    border: 1px solid #f1d5d9 !important;
+    border-radius: 12px !important;
+  }
+
+  /* Küldés gomb és kompakt nyíl */
+  .smw-submit-btn {
+    background: #c94d5d !important;
+    background-color: #c94d5d !important;
+    background-image: none !important;
+    border-color: #c94d5d !important;
+  }
+
+  .smw-submit-arrow {
+    margin-left: 6px !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+  }
+
+
+.smw-help{background:#f9edef!important;margin-top:0!important;margin-bottom:18px!important}
+.smw-field input:focus,.smw-field select:focus,.smw-field textarea:focus{border-color:#c94d5d!important;box-shadow:0 0 0 4px rgba(201,77,93,.10),0 8px 18px rgba(201,77,93,.06)!important}
+.smw-modal-header{border-top-color:#c94d5d!important}
+.smw-modal-kicker,.smw-required,.smw-modal-heart{color:#c94d5d!important}
+.smw-modal-heart svg path{stroke:#c94d5d!important}
+&lt;/style&gt;
+
+&lt;style&gt;
+html,body{margin:0;min-height:100%;font-family:"Source Sans 3","Source Sans Pro",Arial,sans-serif;background:#f7f7f8}
+#smwModal{display:flex!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.smw-modal-overlay{display:flex!important}
+&lt;/style&gt;
+&lt;script&gt;
+window.addEventListener('DOMContentLoaded',function(){
+  const modal=document.getElementById('smwModal');
+  if(modal){modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');}
+});
+&lt;/script&gt;
+
+
+&lt;style id="preview-layout-fix"&gt;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&amp;display=swap');
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  font-family:"Source Sans 3","Source Sans Pro",Arial,sans-serif !important;
+}
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+}
+.smw-modal-overlay{
+  align-items:center !important;
+  justify-content:center !important;
+}
+.smw-modal,
+.smw-modal *{
+  font-family:"Source Sans 3","Source Sans Pro",Arial,sans-serif !important;
+}
+&lt;/style&gt;
+
+&lt;style id="smw-button-text-size"&gt;
+.smw-modal-footer button,
+.smw-btn,
+.smw-cancel,
+.smw-submit {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+}
+&lt;/style&gt;
+
+&lt;style id="smw-button-text-size-balanced"&gt;
+.smw-modal-footer button,
+.smw-btn,
+.smw-cancel,
+.smw-submit {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+}
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;div class="smw-modal-backdrop" id="smwModal" aria-hidden="true"&gt;
- &lt;form formhash="75022-1bwhojhefc0ykatw5ceq0dn39wt2dp" action="https://r3.minicrm.hu/Api/Signup" method="post" target="smwMiniCRMFrame" class="smw-modal smw-form" id="smwQuestionnaireForm" role="dialog" aria-modal="true" aria-labelledby="smwModalTitle"&gt;
+&lt;form formhash="75022-1bwhojhefc0ykatw5ceq0dn39wt2dp" action="https://r3.minicrm.hu/Api/Signup" method="post" target="smwMiniCRMFrame" class="smw-modal smw-form" id="smwQuestionnaireForm" role="dialog" aria-modal="true" aria-labelledby="smwModalTitle"&gt;
   &lt;input type="hidden" name="MiniCRM_FormHash" value="75022-1bwhojhefc0ykatw5ceq0dn39wt2dp"&gt;
   &lt;input type="hidden" name="FormHash" value="75022-1bwhojhefc0ykatw5ceq0dn39wt2dp"&gt;
 
@@ -504,9 +1216,11 @@ body {
    &lt;div class="smw-modal-kicker"&gt;Szerethető Munkahelyek Díj&lt;/div&gt;
    &lt;h2 class="smw-modal-title" id="smwModalTitle"&gt;Kérdőív kitöltése&lt;/h2&gt;
    &lt;p class="smw-modal-subtitle"&gt;Mutassátok meg, mitől szerethető a munkahelyetek, és töltsétek ki a nevezéshez szükséges adatokat.&lt;/p&gt;
-   &lt;div class="smw-modal-heart" aria-hidden="true"&gt;
-    &lt;svg viewBox="0 0 24 24" width="25" height="25" fill="none"&gt;&lt;path d="M12 21s-7-4.35-7-10.25C5 7.57 7.46 5 10.5 5c1.49 0 2.84.7 3.5 1.8C14.66 5.7 16.01 5 17.5 5 20.54 5 23 7.57 23 10.75 23 16.65 16 21 16 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="translate(-2 0)"/&gt;&lt;/svg&gt;
-   &lt;/div&gt;
+   &lt;div class="smw-modal-heart" aria-hidden="true"&gt;&lt;svg viewBox="0 0 24 24" width="28" height="28" fill="none" aria-hidden="true" style="opacity:1;filter:none;mix-blend-mode:normal"&gt;
+&lt;path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"
+stroke="#c94d5d" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"
+style="stroke:#c94d5d!important;fill:none!important;opacity:1!important;filter:none!important"/&gt;
+&lt;/svg&gt;&lt;/div&gt;
    &lt;div class="smw-modal-deco" aria-hidden="true"&gt;&lt;/div&gt;
    &lt;button type="button" class="smw-modal-close" id="smwCloseModal" aria-label="Bezárás"&gt;×&lt;/button&gt;
   &lt;/div&gt;
@@ -524,8 +1238,8 @@ body {
       &lt;input data-field="VatNumber" data-table="Contact" data-type="Business" name="Contact[4250][VatNumber]" id="Contact_VatNumber_4250" language="HU" type="text" placeholder="Pl. 12345678-2-41" required&gt;
      &lt;/div&gt;
      &lt;div class="smw-field"&gt;
-      &lt;label for="Contact_LastName_4251"&gt;Kapcsolattartó vezetékneve &lt;span class="smw-required"&gt;*&lt;/span&gt;&lt;/label&gt;
-      &lt;input data-field="LastName" data-table="Contact" data-type="Person" name="Contact[4251][LastName]" id="Contact_LastName_4251" language="HU" type="text" placeholder="Vezetéknév" required &gt;
+      &lt;label for="Contact_LastName_4251" class="Required"&gt;Kapcsolattartó vezetékneve &lt;span class="smw-required"&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input data-field="LastName" data-table="Contact" data-type="Person" name="Contact[4251][LastName]" id="Contact_LastName_4251" language="HU" type="text" placeholder="Vezetéknév" required aria-required="true"&gt;
      &lt;/div&gt;
      &lt;div class="smw-field"&gt;
       &lt;label for="Contact_FirstName_4251"&gt;Kapcsolattartó keresztneve &lt;span class="smw-required"&gt;*&lt;/span&gt;&lt;/label&gt;
@@ -552,12 +1266,12 @@ body {
     &lt;/div&gt;
     &lt;div class="smw-field"&gt;
      &lt;label for="Project_MunkahelyBemutatasa_4249"&gt;Mutassátok be a munkahelyeteket! &lt;span class="smw-required"&gt;*&lt;/span&gt;&lt;/label&gt;
-     &lt;textarea data-field="MunkahelyBemutatasa" data-table="Project" data-type name="Project[4249][MunkahelyBemutatasa]" id="Project_MunkahelyBemutatasa_4249" language="HU" placeholder="Mutassátok be röviden, milyen nálatok dolgozni, mitől szerethető a munkahelyetek, és milyen kezdeményezésekre vagytok a legbüszkébbek..." required&gt;&lt;/textarea&gt;
      &lt;div class="smw-help"&gt;
       &lt;p&gt;&lt;strong&gt;Írjátok le, milyen nálatok dolgozni, mitől szerethető a munkahelyetek, és milyen kezdeményezésekkel támogatjátok a munkatársaitokat.&lt;/strong&gt;&lt;/p&gt;
       &lt;p class="smw-help-details"&gt;(Milyen a vállalati kultúrátok? Hogyan építetek közösséget? Hogyan támogatjátok a fejlődést, a jóllétet és a munka–magánélet egyensúlyát? Milyen a vezetői kultúra és a belső kommunikáció? Milyen juttatásokat biztosítotok? Hogyan jelenik meg nálatok a sokszínűség, a társadalmi felelősségvállalás és az innováció? Milyen HR- vagy employer branding megoldásokra vagytok büszkék? Mi különböztet meg benneteket más munkahelyektől?)&lt;/p&gt;
       &lt;p&gt;Lehetőség szerint konkrét példákat és működő kezdeményezéseket is mutassatok be.&lt;/p&gt;
      &lt;/div&gt;
+     &lt;textarea data-field="MunkahelyBemutatasa" data-table="Project" data-type name="Project[4249][MunkahelyBemutatasa]" id="Project_MunkahelyBemutatasa_4249" language="HU" placeholder="Mutassátok be röviden, milyen nálatok dolgozni, mitől szerethető a munkahelyetek, és milyen kezdeményezésekre vagytok a legbüszkébbek..." required&gt;&lt;/textarea&gt;
     &lt;/div&gt;
    &lt;/section&gt;
 
@@ -585,13 +1299,13 @@ body {
     &lt;h3 class="smw-section-title"&gt;HR-szakember jelölése&lt;/h3&gt;
     &lt;div class="smw-field"&gt;
      &lt;label for="Project_JeloltHrszakemberNeve_4249"&gt;Jelölt HR-szakember neve &lt;span class="smw-required"&gt;*&lt;/span&gt;&lt;/label&gt;
-     &lt;input data-field="JeloltHrszakemberNeve" data-table="Project" data-type name="Project[4249][JeloltHrszakemberNeve]" id="Project_JeloltHrszakemberNeve_4249" language="HU" type="text" placeholder="HR-szakember neve" required&gt;
      &lt;div class="smw-help"&gt;&lt;p&gt;&lt;strong&gt;Nevezzetek meg egy HR-szakembert a szervezetetekből, aki munkájával meghatározó módon járul hozzá a vállalati kultúra, a csapatok és a munkatársak fejlődéséhez.&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
+     &lt;input data-field="JeloltHrszakemberNeve" data-table="Project" data-type name="Project[4249][JeloltHrszakemberNeve]" id="Project_JeloltHrszakemberNeve_4249" language="HU" type="text" placeholder="HR-szakember neve" required&gt;
     &lt;/div&gt;
     &lt;div class="smw-field"&gt;
      &lt;label for="Project_HrszakemberBemutatasaEsAJelolesIndoklasa_4249"&gt;HR-szakember bemutatása és a jelölés indoklása &lt;span class="smw-required"&gt;*&lt;/span&gt;&lt;/label&gt;
-     &lt;textarea data-field="HrszakemberBemutatasaEsAJelolesIndoklasa" data-table="Project" data-type name="Project[4249][HrszakemberBemutatasaEsAJelolesIndoklasa]" id="Project_HrszakemberBemutatasaEsAJelolesIndoklasa_4249" language="HU" placeholder="Mutassátok be röviden a jelöltet, és írjátok le, miért őt jelölitek, milyen eredmények vagy kezdeményezések köthetők hozzá..." required&gt;&lt;/textarea&gt;
      &lt;div class="smw-help"&gt;&lt;p&gt;&lt;strong&gt;Kérjük, röviden mutassátok be a jelöltet és indokoljátok a nevezést.&lt;/strong&gt;&lt;/p&gt;&lt;p class="smw-help-details"&gt;(Miért őt jelölitek? Milyen kezdeményezések, eredmények vagy változások köthetők hozzá? Hogyan hat a munkája a kollégák mindennapjaira és a szervezeti kultúrára?)&lt;/p&gt;&lt;/div&gt;
+     &lt;textarea data-field="HrszakemberBemutatasaEsAJelolesIndoklasa" data-table="Project" data-type name="Project[4249][HrszakemberBemutatasaEsAJelolesIndoklasa]" id="Project_HrszakemberBemutatasaEsAJelolesIndoklasa_4249" language="HU" placeholder="Mutassátok be röviden a jelöltet, és írjátok le, miért őt jelölitek, milyen eredmények vagy kezdeményezések köthetők hozzá..." required&gt;&lt;/textarea&gt;
     &lt;/div&gt;
    &lt;/section&gt;
 
@@ -606,7 +1320,7 @@ body {
   &lt;div id="Response_75022-1bwhojhefc0ykatw5ceq0dn39wt2dp" class="smw-response"&gt;&lt;/div&gt;
   &lt;div class="smw-modal-footer"&gt;
    &lt;button type="button" class="smw-cancel-btn" id="smwCancelQuestionnaire"&gt;Mégse&lt;/button&gt;
-   &lt;button type="submit" class="smw-submit-btn" id="smwSubmitQuestionnaire" disabled&gt;Kérdőív elküldése&lt;/button&gt;
+   &lt;button type="submit" class="smw-submit-btn" id="smwSubmitQuestionnaire" disabled&gt;&lt;span&gt;Kérdőív elküldése&lt;/span&gt;&lt;span class="smw-submit-arrow" aria-hidden="true"&gt;›&lt;/span&gt;&lt;/button&gt;
   &lt;/div&gt;
 
   &lt;div class="smw-success" id="smwSuccess" aria-live="polite"&gt;
@@ -619,8 +1333,7 @@ body {
  &lt;/form&gt;
  &lt;iframe name="smwMiniCRMFrame" id="smwMiniCRMFrame" class="smw-submit-frame" title="MiniCRM beküldés" aria-hidden="true"&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-&lt;script&gt;
-
+&lt;script id="smwPrototypeScript"&gt;
 (function(){
  const modal=document.getElementById('smwModal');
  const form=document.getElementById('smwQuestionnaireForm');
@@ -636,46 +1349,20 @@ body {
  const frame=document.getElementById('smwMiniCRMFrame');
  let submitting=false;
  function hasAward(){return awardBoxes.some(x=&gt;x.checked)}
- function updateSubmit(){if(submitBtn&amp;&amp;privacy) submitBtn.disabled=!(privacy.checked&amp;&amp;hasAward())}
- function openModal(){form.classList.remove('is-success');submitting=false;submitBtn.textContent='Kérdőív elküldése';updateSubmit();modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('smw-modal-open')}
- function closeModal(){
-  submitting=false;
-  if(form){
-    form.classList.remove('is-success');
-    form.reset();
-  }
-  if(awardValidation) awardValidation.classList.remove('is-visible');
-  if(submitBtn){
-    submitBtn.textContent='Kérdőív elküldése';
-  }
-  updateSubmit();
-  if(modal){
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden','false');
-  }
-}
+ function updateSubmit(){submitBtn.disabled=!(privacy.checked&amp;&amp;hasAward())}
+ function openModal(){form.classList.remove('is-success');submitting=false;submitBtn.innerHTML='&lt;span&gt;Kérdőív elküldése&lt;/span&gt;&lt;span class="smw-submit-arrow" aria-hidden="true"&gt;›&lt;/span&gt;';updateSubmit();modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('smw-modal-open')}
+ function closeModal(){submitting=false;modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('smw-modal-open')}
  function ensureHashes(){[['MiniCRM_FormHash','75022-1bwhojhefc0ykatw5ceq0dn39wt2dp'],['FormHash','75022-1bwhojhefc0ykatw5ceq0dn39wt2dp']].forEach(([n,v])=&gt;{let i=form.querySelector('input[name="'+n+'"]');if(!i){i=document.createElement('input');i.type='hidden';i.name=n;form.prepend(i)}i.value=v})}
- if(openBtn) openBtn.addEventListener('click',openModal);if(closeBtn) closeBtn.addEventListener('click',closeModal);if(cancelBtn) cancelBtn.addEventListener('click',closeModal);if(closeSuccess) closeSuccess.addEventListener('click',closeModal);
+ if(openBtn)openBtn.addEventListener('click',openModal);closeBtn.addEventListener('click',closeModal);cancelBtn.addEventListener('click',closeModal);closeSuccess.addEventListener('click',closeModal);
  modal.addEventListener('click',e=&gt;{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=&gt;{if(e.key==='Escape'&amp;&amp;modal.classList.contains('is-open'))closeModal()});
  privacy.addEventListener('change',updateSubmit);awardBoxes.forEach(x=&gt;x.addEventListener('change',()=&gt;{if(hasAward())awardValidation.classList.remove('is-visible');updateSubmit()}));
  form.addEventListener('submit',e=&gt;{ensureHashes();if(!hasAward()){e.preventDefault();awardValidation.classList.add('is-visible');awardGrid.scrollIntoView({behavior:'smooth',block:'center'});return}if(!privacy.checked){e.preventDefault();privacy.focus();return}submitting=true;submitBtn.disabled=true;submitBtn.textContent='Küldés...'});
  frame.addEventListener('load',()=&gt;{if(!submitting)return;submitting=false;setTimeout(()=&gt;{form.classList.add('is-success');form.scrollTop=0},120)});
  updateSubmit();
 })();
-
-
-window.addEventListener("DOMContentLoaded", function () {
-  const modal = document.getElementById("smwModal");
-  if (modal) {
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-  }
-});
-
 &lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+&lt;/html&gt;</code></pre>
     </div>
   </section>
 </main>
@@ -729,6 +1416,62 @@ window.addEventListener("DOMContentLoaded", function () {
     .preview-window { border-radius:0; border:0; }
     .preview-btn span, .copy span { display:none; }
   }
+
+/* Egységes DreamJobs vörös */
+:root { --smw-red: #c94d5d !important; }
+.smw-modal::before,
+.smw-card::before,
+.smw-header::before,
+.smw-accent,
+.smw-required,
+.smw-eyebrow,
+.smw-field label .required,
+.smw-field label .smw-required {
+  color: #c94d5d !important;
+  border-color: #c94d5d !important;
+}
+.smw-modal::before,
+.smw-card::before,
+.smw-header::before {
+  background: #c94d5d !important;
+}
+.smw-field input:focus,
+.smw-field select:focus,
+.smw-field textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #c94d5d !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(201,77,93,.14) !important;
+}
+
+/* Leírásdobozok háttérszíne */
+.smw-help,
+.field-description,
+.field-help {
+  background: #f9edef !important;
+}
+
+/* Modal fejléc: minden vörös elem egységesen #c94d5d */
+.smw-modal::before,
+.smw-header::before,
+.smw-eyebrow,
+.smw-header .smw-eyebrow,
+.smw-heart,
+.smw-heart svg,
+.smw-heart svg path,
+.smw-header-icon,
+.smw-header-icon svg,
+.smw-header-icon svg path {
+  color: #c94d5d !important;
+  border-color: #c94d5d !important;
+  stroke: #c94d5d !important;
+}
+.smw-modal::before,
+.smw-header::before {
+  background: #c94d5d !important;
+}
 </style>
 
 <script>
