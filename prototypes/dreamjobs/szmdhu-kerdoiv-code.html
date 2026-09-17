@@ -1361,6 +1361,47 @@ style="stroke:#c94d5d!important;fill:none!important;opacity:1!important;filter:n
  updateSubmit();
 })();
 &lt;/script&gt;
+
+&lt;script id="smw-preview-submit-fix"&gt;
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  const submit = form.querySelector(
+    '#Submit_75022-1bwhojhefc0ykatw5ceq0dn39wt2dp, .smw-submit, button[type="submit"], input[type="submit"]'
+  );
+  if (!submit) return;
+
+  const categories = Array.from(form.querySelectorAll(
+    'input[name="Project[4249][Dijkategoriak][]"]'
+  ));
+  const gdpr = form.querySelector(
+    '#Dummy_GDPR_Contribution__0, input[name="Dummy[][GDPR_Contribution][]"]'
+  );
+
+  function isFilled(el) {
+    if (el.disabled || el.type === 'hidden') return true;
+    if (el.type === 'checkbox' || el.type === 'radio') return el.checked;
+    return String(el.value || '').trim() !== '';
+  }
+
+  function updateSubmitState() {
+    const required = Array.from(form.querySelectorAll('[required]'));
+    const requiredOk = required.every(isFilled);
+    const categoriesOk = categories.length === 0 || categories.some(el =&gt; el.checked);
+    const gdprOk = !gdpr || gdpr.checked;
+    const valid = requiredOk &amp;&amp; categoriesOk &amp;&amp; gdprOk;
+
+    submit.disabled = !valid;
+    submit.classList.toggle('is-disabled', !valid);
+    submit.setAttribute('aria-disabled', String(!valid));
+  }
+
+  form.addEventListener('input', updateSubmitState);
+  form.addEventListener('change', updateSubmitState);
+  updateSubmitState();
+});
+&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
     </div>
