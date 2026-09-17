@@ -36,6 +36,13 @@
     font-size:11px; color:#8b949e; border:1px solid #30363d;
     border-radius:999px; padding:3px 8px;
   }
+  .actions { display:flex; align-items:center; gap:8px; }
+  .preview-btn {
+    border:1px solid #30363d; background:#238636; color:#fff;
+    border-radius:6px; padding:7px 10px; cursor:pointer; font-size:12px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .preview-btn:hover { background:#2ea043; }
   .copy {
     border:1px solid #30363d; background:#21262d; color:#e6edf3;
     border-radius:6px; padding:7px 10px; cursor:pointer; font-size:12px;
@@ -72,7 +79,10 @@
         <span class="panel-title">Eredeti MiniCRM kód</span>
         <span class="badge">ORIGINAL</span>
       </div>
-      <button class="copy" type="button" data-copy="original">⧉ <span>Copy</span></button>
+      <div class="actions">
+        <button class="preview-btn" type="button" data-preview="original">▶ <span>Preview</span></button>
+        <button class="copy" type="button" data-copy="original">⧉ <span>Copy</span></button>
+      </div>
     </div>
     <div class="code-wrap">
       <pre><code id="original">&lt;script async src=&quot;https://r3.minicrm.hu/api/minicrm.js?t=1789554544&quot;&gt;
@@ -290,7 +300,10 @@
         <span class="panel-title">Újradizájnolt DreamJobs kód</span>
         <span class="badge">REDESIGNED</span>
       </div>
-      <button class="copy" type="button" data-copy="redesigned">⧉ <span>Copy</span></button>
+      <div class="actions">
+        <button class="preview-btn" type="button" data-preview="redesigned">▶ <span>Preview</span></button>
+        <button class="copy" type="button" data-copy="redesigned">⧉ <span>Copy</span></button>
+      </div>
     </div>
     <div class="code-wrap">
       <pre><code id="redesigned">&lt;!doctype html&gt;
@@ -566,6 +579,57 @@ window.addEventListener(&quot;DOMContentLoaded&quot;, function () {
   </section>
 </main>
 
+
+<div class="preview-overlay" id="previewOverlay" aria-hidden="true">
+  <div class="preview-window">
+    <div class="preview-toolbar">
+      <div class="preview-title-wrap">
+        <span class="preview-dot"></span>
+        <strong id="previewTitle">Preview</strong>
+      </div>
+      <div class="preview-toolbar-actions">
+        <button type="button" id="previewRefresh" class="toolbar-btn">↻ Frissítés</button>
+        <button type="button" id="previewClose" class="toolbar-btn close-preview">✕ Bezárás</button>
+      </div>
+    </div>
+    <iframe id="previewFrame" title="Kód előnézete" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+  </div>
+</div>
+
+<style>
+  .preview-overlay {
+    position:fixed; inset:0; z-index:9999; padding:24px;
+    background:rgba(1,4,9,.82); backdrop-filter:blur(8px);
+    display:none;
+  }
+  .preview-overlay.open { display:flex; }
+  .preview-window {
+    width:100%; height:100%; background:#fff; border:1px solid #30363d;
+    border-radius:12px; overflow:hidden; display:flex; flex-direction:column;
+    box-shadow:0 24px 80px rgba(0,0,0,.5);
+  }
+  .preview-toolbar {
+    height:54px; flex:0 0 54px; padding:0 14px 0 18px;
+    display:flex; align-items:center; justify-content:space-between;
+    background:#161b22; color:#e6edf3; border-bottom:1px solid #30363d;
+  }
+  .preview-title-wrap, .preview-toolbar-actions {
+    display:flex; align-items:center; gap:10px;
+  }
+  .preview-dot { width:10px; height:10px; border-radius:50%; background:#3fb950; }
+  .toolbar-btn {
+    border:1px solid #30363d; background:#21262d; color:#e6edf3;
+    border-radius:6px; padding:7px 11px; cursor:pointer; font-size:12px;
+  }
+  .toolbar-btn:hover { background:#30363d; }
+  #previewFrame { width:100%; flex:1; border:0; background:#fff; }
+  @media(max-width:700px) {
+    .preview-overlay { padding:0; }
+    .preview-window { border-radius:0; border:0; }
+    .preview-btn span, .copy span { display:none; }
+  }
+</style>
+
 <script>
 document.querySelectorAll("[data-copy]").forEach(button => {
   button.addEventListener("click", async () => {
@@ -592,6 +656,58 @@ document.querySelectorAll("[data-copy]").forEach(button => {
     }, 1400);
   });
 });
+
+const previewOverlay = document.getElementById("previewOverlay");
+const previewFrame = document.getElementById("previewFrame");
+const previewTitle = document.getElementById("previewTitle");
+const previewClose = document.getElementById("previewClose");
+const previewRefresh = document.getElementById("previewRefresh");
+let activePreviewId = null;
+
+function renderPreview(id) {
+  const code = document.getElementById(id).textContent;
+  previewFrame.srcdoc = code;
+}
+
+document.querySelectorAll("[data-preview]").forEach(button => {
+  button.addEventListener("click", () => {
+    activePreviewId = button.dataset.preview;
+    previewTitle.textContent =
+      activePreviewId === "original"
+        ? "Eredeti MiniCRM form – Preview"
+        : "Újradizájnolt DreamJobs form – Preview";
+
+    renderPreview(activePreviewId);
+    previewOverlay.classList.add("open");
+    previewOverlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+function closePreview() {
+  previewOverlay.classList.remove("open");
+  previewOverlay.setAttribute("aria-hidden", "true");
+  previewFrame.srcdoc = "";
+  activePreviewId = null;
+  document.body.style.overflow = "";
+}
+
+previewClose.addEventListener("click", closePreview);
+
+previewRefresh.addEventListener("click", () => {
+  if (activePreviewId) renderPreview(activePreviewId);
+});
+
+previewOverlay.addEventListener("click", event => {
+  if (event.target === previewOverlay) closePreview();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && previewOverlay.classList.contains("open")) {
+    closePreview();
+  }
+});
+
 </script>
 </body>
 </html>
