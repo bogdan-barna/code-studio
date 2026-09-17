@@ -638,7 +638,22 @@ body {
  function hasAward(){return awardBoxes.some(x=&gt;x.checked)}
  function updateSubmit(){if(submitBtn&amp;&amp;privacy) submitBtn.disabled=!(privacy.checked&amp;&amp;hasAward())}
  function openModal(){form.classList.remove('is-success');submitting=false;submitBtn.textContent='Kérdőív elküldése';updateSubmit();modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('smw-modal-open')}
- function closeModal(){submitting=false;modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('smw-modal-open')}
+ function closeModal(){
+  submitting=false;
+  if(form){
+    form.classList.remove('is-success');
+    form.reset();
+  }
+  if(awardValidation) awardValidation.classList.remove('is-visible');
+  if(submitBtn){
+    submitBtn.textContent='Kérdőív elküldése';
+  }
+  updateSubmit();
+  if(modal){
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+  }
+}
  function ensureHashes(){[['MiniCRM_FormHash','75022-1bwhojhefc0ykatw5ceq0dn39wt2dp'],['FormHash','75022-1bwhojhefc0ykatw5ceq0dn39wt2dp']].forEach(([n,v])=&gt;{let i=form.querySelector('input[name="'+n+'"]');if(!i){i=document.createElement('input');i.type='hidden';i.name=n;form.prepend(i)}i.value=v})}
  if(openBtn) openBtn.addEventListener('click',openModal);if(closeBtn) closeBtn.addEventListener('click',closeModal);if(cancelBtn) cancelBtn.addEventListener('click',closeModal);if(closeSuccess) closeSuccess.addEventListener('click',closeModal);
  modal.addEventListener('click',e=&gt;{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=&gt;{if(e.key==='Escape'&amp;&amp;modal.classList.contains('is-open'))closeModal()});
@@ -655,17 +670,6 @@ window.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
   }
-
-  const closeButton = document.querySelector(".smw-modal-close");
-  const cancelButton = document.querySelector(".smw-cancel-btn");
-
-  [closeButton, cancelButton].forEach(function (button) {
-    if (!button) return;
-    button.addEventListener("click", function (event) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-    }, true);
-  });
 });
 
 &lt;/script&gt;
