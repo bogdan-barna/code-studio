@@ -1402,6 +1402,76 @@ document.addEventListener('DOMContentLoaded', function () {
   updateSubmitState();
 });
 &lt;/script&gt;
+
+
+
+&lt;style id="smw-success-screen-final-style"&gt;
+#smwSuccessFinal{
+  display:none;
+  width:100%;
+  box-sizing:border-box;
+  text-align:center;
+  padding:64px 32px 72px;
+  font-family:"Source Sans 3","Source Sans Pro",Arial,sans-serif;
+}
+#smwSuccessFinal.is-visible{display:block}
+#smwSuccessFinal .success-icon{
+  width:68px;height:68px;margin:0 auto 20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:#f9edef;color:#c94d5d;font-size:32px;font-weight:700;
+}
+#smwSuccessFinal h2{margin:0 0 12px;font-size:30px;line-height:1.2;color:#202229}
+#smwSuccessFinal p{margin:0 auto 28px;max-width:620px;font-size:18px;line-height:1.55;color:#5d626b}
+#smwSuccessFinal button{
+  min-width:190px;padding:14px 26px;border:0;border-radius:10px;
+  background:#c94d5d;color:#fff;font:700 17px "Source Sans 3","Source Sans Pro",Arial,sans-serif;
+  cursor:pointer;
+}
+&lt;/style&gt;
+
+&lt;script id="smw-success-screen-final"&gt;
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  const success = document.createElement('section');
+  success.id = 'smwSuccessFinal';
+  success.innerHTML =
+    '&lt;div class="success-icon"&gt;✓&lt;/div&gt;' +
+    '&lt;h2&gt;Köszönjük a kérdőív kitöltését!&lt;/h2&gt;' +
+    '&lt;p&gt;A nevezést sikeresen elküldtétek. Köszönjük, hogy bemutattátok, mitől szerethető a munkahelyetek.&lt;/p&gt;' +
+    '&lt;button type="button" id="smwSuccessCloseFinal"&gt;Bezárás&lt;/button&gt;';
+
+  form.insertAdjacentElement('afterend', success);
+
+  form.addEventListener('submit', function (event) {
+    if (!form.checkValidity()) return;
+
+    const categories = form.querySelectorAll('input[name="Project[4249][Dijkategoriak][]"]:checked');
+    const gdpr = form.querySelector('#Dummy_GDPR_Contribution__0, input[name="Dummy[][GDPR_Contribution][]"]');
+
+    if (!categories.length || (gdpr &amp;&amp; !gdpr.checked)) return;
+
+    /* Preview: don't navigate away; show the success state immediately. */
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    form.style.display = 'none';
+    success.classList.add('is-visible');
+
+    const modalBody = form.closest('.smw-modal-body');
+    if (modalBody) modalBody.scrollTop = 0;
+  }, true);
+
+  success.querySelector('#smwSuccessCloseFinal').addEventListener('click', function () {
+    success.classList.remove('is-visible');
+    form.reset();
+    form.style.display = '';
+    form.dispatchEvent(new Event('input', {bubbles:true}));
+    form.dispatchEvent(new Event('change', {bubbles:true}));
+  });
+});
+&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
     </div>
