@@ -117,6 +117,42 @@
   }
 </style>
 
+
+<style id="codebox-custom-scrollbars">
+  /* CodePen/GitHub-szerű, visszafogott scrollbarok csak a kódablakokon */
+  .code-wrap {
+    scrollbar-width: thin;
+    scrollbar-color: #484f58 #0d1117;
+  }
+
+  .code-wrap::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .code-wrap::-webkit-scrollbar-track {
+    background: #0d1117;
+  }
+
+  .code-wrap::-webkit-scrollbar-thumb {
+    background: #484f58;
+    border: 2px solid #0d1117;
+    border-radius: 999px;
+  }
+
+  .code-wrap::-webkit-scrollbar-thumb:hover {
+    background: #6e7681;
+  }
+
+  .code-wrap::-webkit-scrollbar-thumb:active {
+    background: #8b949e;
+  }
+
+  .code-wrap::-webkit-scrollbar-corner {
+    background: #0d1117;
+  }
+</style>
+
 </head>
 <body>
 <header class="topbar">
