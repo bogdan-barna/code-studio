@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MiniCRM kérdőív – kód összehasonlítás</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin:0; min-height:100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background:#0d1117;
+    color:#e6edf3;
+  }
+  .topbar {
+    height:58px; display:flex; align-items:center; padding:0 24px;
+    border-bottom:1px solid #30363d; background:#161b22;
+  }
+  .topbar h1 { margin:0; font-size:16px; font-weight:600; }
+  .topbar span { margin-left:10px; color:#8b949e; font-size:13px; }
+  .grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:#30363d; min-height:calc(100vh - 58px);
+  }
+  .panel { min-width:0; background:#0d1117; display:flex; flex-direction:column; }
+  .panel-head {
+    height:52px; flex:0 0 52px; display:flex; align-items:center;
+    justify-content:space-between; padding:0 16px 0 18px;
+    background:#161b22; border-bottom:1px solid #30363d;
+  }
+  .title-wrap { display:flex; align-items:center; gap:10px; min-width:0; }
+  .dot { width:10px; height:10px; border-radius:50%; background:#58a6ff; }
+  .panel:nth-child(2) .dot { background:#f85149; }
+  .panel-title { font-size:14px; font-weight:600; white-space:nowrap; }
+  .badge {
+    font-size:11px; color:#8b949e; border:1px solid #30363d;
+    border-radius:999px; padding:3px 8px;
+  }
+  .copy {
+    border:1px solid #30363d; background:#21262d; color:#e6edf3;
+    border-radius:6px; padding:7px 10px; cursor:pointer; font-size:12px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .copy:hover { background:#30363d; border-color:#8b949e; }
+  .copy.copied { color:#3fb950; border-color:#238636; }
+  .code-wrap { position:relative; flex:1; min-height:0; overflow:auto; }
+  pre {
+    margin:0; min-height:100%; padding:20px 22px 40px;
+    font-family:"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size:12.5px; line-height:1.6; tab-size:2;
+    white-space:pre; color:#c9d1d9;
+  }
+  code { font:inherit; }
+  @media(max-width:900px) {
+    .grid { grid-template-columns:1fr; }
+    .panel { min-height:70vh; }
+    .topbar span { display:none; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <h1>Szerethető Munkahelyek Díj – MiniCRM form</h1>
+  <span>Eredeti és újradizájnolt kód</span>
+</header>
+
+<main class="grid">
+  <section class="panel">
+    <div class="panel-head">
+      <div class="title-wrap">
+        <span class="dot"></span>
+        <span class="panel-title">Eredeti MiniCRM kód</span>
+        <span class="badge">ORIGINAL</span>
+      </div>
+      <button class="copy" type="button" data-copy="original">⧉ <span>Copy</span></button>
+    </div>
+    <div class="code-wrap">
+      <pre><code id="original">&lt;script async src=&quot;https://r3.minicrm.hu/api/minicrm.js?t=1789554544&quot;&gt;
+&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://r3.minicrm.hu/api/minicrm.css&quot; /&gt;
+&lt;style&gt;
+&lt;/style&gt;
+&lt;form formhash=&quot;75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&quot; action=&quot;https://r3.minicrm.hu/Api/Signup&quot; method=&quot;post&quot; class=&quot;TurnKeyCRM&quot; id=&quot;Web&quot;&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;
+            Személy
+        &lt;/legend&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Contact_Name_4250&quot; class=&quot;Required&quot;&gt;
+                Név
+            &lt;/label&gt;
+            &lt;input data-field=&quot;Name&quot; data-table=&quot;Contact&quot; data-type=&quot;Business&quot; name=&quot;Contact[4250][Name]&quot; id=&quot;Contact_Name_4250&quot; language=&quot;HU&quot; value type=&quot;text&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Contact_VatNumber_4250&quot; class=&quot;Required&quot;&gt;
+                Adószám
+            &lt;/label&gt;
+            &lt;input data-field=&quot;VatNumber&quot; data-table=&quot;Contact&quot; data-type=&quot;Business&quot; name=&quot;Contact[4250][VatNumber]&quot; id=&quot;Contact_VatNumber_4250&quot; language=&quot;HU&quot; value type=&quot;text&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Contact_LastName_4251&quot;&gt;
+                Vezetéknév
+            &lt;/label&gt;
+            &lt;input data-field=&quot;LastName&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][LastName]&quot; id=&quot;Contact_LastName_4251&quot; language=&quot;HU&quot; value type=&quot;text&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Contact_FirstName_4251&quot; class=&quot;Required&quot;&gt;
+                Keresztnév
+            &lt;/label&gt;
+            &lt;input data-field=&quot;FirstName&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][FirstName]&quot; id=&quot;Contact_FirstName_4251&quot; language=&quot;HU&quot; value type=&quot;text&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Contact_Email_4251&quot; class=&quot;Required&quot;&gt;
+                Email
+            &lt;/label&gt;
+            &lt;input data-field=&quot;Email&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][Email]&quot; id=&quot;Contact_Email_4251&quot; language=&quot;HU&quot; value type=&quot;text&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Contact_Phone_4251&quot; class=&quot;Required&quot;&gt;
+                Telefonszám
+            &lt;/label&gt;
+            &lt;input data-field=&quot;Phone&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][Phone]&quot; id=&quot;Contact_Phone_4251&quot; language=&quot;HU&quot; value type=&quot;text&quot; /&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;
+            Szerethető Munkahelyek Díj Kérdőív
+        &lt;/legend&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Project_Cegmeret4_4249&quot; class=&quot;Required&quot;&gt;
+                Cégméret
+            &lt;/label&gt;
+            &lt;select data-field=&quot;Cegmeret4&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][Cegmeret4]&quot; id=&quot;Project_Cegmeret4_4249&quot; language=&quot;HU&quot; value&gt;
+                &lt;option selected value&gt;
+                &lt;/option&gt;
+                &lt;option value=&quot;12100&quot;&gt;
+                    KKV
+                &lt;/option&gt;
+                &lt;option value=&quot;12101&quot;&gt;
+                    Nagyvállalat
+                &lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Project_MunkahelyBemutatasa_4249&quot; class=&quot;Required&quot;&gt;
+                Munkahely bemutatása
+            &lt;/label&gt;
+            &lt;textarea data-field=&quot;MunkahelyBemutatasa&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][MunkahelyBemutatasa]&quot; id=&quot;Project_MunkahelyBemutatasa_4249&quot; language=&quot;HU&quot; value&gt;
+            &lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Project_Dijkategoriak_4249&quot; class=&quot;Required&quot;&gt;
+                Díjkategóriák
+            &lt;/label&gt;
+            &lt;div data-field=&quot;Dijkategoriak&quot; data-table=&quot;Project&quot; data-type id=&quot;Project_Dijkategoriak_4249&quot; language=&quot;HU&quot; value&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12104&quot; type=&quot;checkbox&quot; value=&quot;1&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Vezetői Kultúra
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12105&quot; type=&quot;checkbox&quot; value=&quot;2&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Legjobb Onboarding
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12106&quot; type=&quot;checkbox&quot; value=&quot;4&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Tanulás és Fejlődés
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12107&quot; type=&quot;checkbox&quot; value=&quot;8&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Rugalmas Munkavégzés
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12108&quot; type=&quot;checkbox&quot; value=&quot;16&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Családbarát Munkahely
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12109&quot; type=&quot;checkbox&quot; value=&quot;32&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Női Karrierút
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12110&quot; type=&quot;checkbox&quot; value=&quot;64&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        AI Innováció HR-ben
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12111&quot; type=&quot;checkbox&quot; value=&quot;128&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Munkahelyi Wellbeing
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12112&quot; type=&quot;checkbox&quot; value=&quot;256&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Állatbarát Munkahely
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12113&quot; type=&quot;checkbox&quot; value=&quot;512&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Kreatív Csapatépítő Program
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12114&quot; type=&quot;checkbox&quot; value=&quot;1024&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Gen Z Pályakezdő Program
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Project_Dijkategoriak_4249_12115&quot; type=&quot;checkbox&quot; value=&quot;2048&quot; name=&quot;Project[4249][Dijkategoriak][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Az Év Vidéki Munkahelye
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Project_JeloltHrszakemberNeve_4249&quot; class=&quot;Required&quot;&gt;
+                Jelölt HR-szakember neve
+            &lt;/label&gt;
+            &lt;input data-field=&quot;JeloltHrszakemberNeve&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][JeloltHrszakemberNeve]&quot; id=&quot;Project_JeloltHrszakemberNeve_4249&quot; language=&quot;HU&quot; value type=&quot;text&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Project_HrszakemberBemutatasaEsAJelolesIndoklasa_4249&quot; class=&quot;Required&quot;&gt;
+                HR-szakember bemutatása és a jelölés indoklása
+            &lt;/label&gt;
+            &lt;textarea data-field=&quot;HrszakemberBemutatasaEsAJelolesIndoklasa&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][HrszakemberBemutatasaEsAJelolesIndoklasa]&quot; id=&quot;Project_HrszakemberBemutatasaEsAJelolesIndoklasa_4249&quot; language=&quot;HU&quot; value&gt;
+            &lt;/textarea&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;
+            GDPR
+        &lt;/legend&gt;
+        &lt;div class=&quot;InputBlock&quot;&gt;
+            &lt;label for=&quot;Dummy_GDPR_Contribution_&quot; class=&quot;Required&quot;&gt;
+                Adatkezelési hozzájárulás
+            &lt;/label&gt;
+            &lt;div data-field=&quot;GDPR_Contribution&quot; data-table=&quot;Dummy&quot; data-type id=&quot;Dummy_GDPR_Contribution_&quot; language=&quot;HU&quot; value&gt;
+                &lt;label class=&quot;SetLabel&quot;&gt;
+                    &lt;input id=&quot;Dummy_GDPR_Contribution__0&quot; type=&quot;checkbox&quot; value=&quot;1&quot; name=&quot;Dummy[][GDPR_Contribution][]&quot; /&gt;
+                    &lt;span class=&quot;OverflowEllipsis CheckBoxLabel&quot;&gt;
+                        Hozzájárulok, hogy a(z) GRUMAN CONSULTING SRL
+                        &lt;a href=&quot;https://www.minicrm.hu/gdpr/&quot; target=&quot;_blank&quot;&gt;
+                            CRM rendszerében
+                        &lt;/a&gt;
+                        kezelje az adataimat.
+                    &lt;/span&gt;
+                &lt;/label&gt;
+                &lt;br /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    &lt;div id=&quot;Response_75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&quot; style=&quot;display: none;&quot; class=&quot;Response&quot;&gt;
+    &lt;/div&gt;
+    &lt;input id=&quot;Submit_75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&quot; type=&quot;Submit&quot; value=&quot;Elküld&quot; /&gt;
+&lt;/form&gt;</code></pre>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div class="title-wrap">
+        <span class="dot"></span>
+        <span class="panel-title">Újradizájnolt DreamJobs kód</span>
+        <span class="badge">REDESIGNED</span>
+      </div>
+      <button class="copy" type="button" data-copy="redesigned">⧉ <span>Copy</span></button>
+    </div>
+    <div class="code-wrap">
+      <pre><code id="redesigned">&lt;!doctype html&gt;
+&lt;html lang=&quot;hu&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;Szerethető Munkahelyek Díj – Kérdőív&lt;/title&gt;
+&lt;style&gt;
+
+:root{--smw-red:#be4d63;--smw-red-dark:#a83c53;--smw-text:#303238;--smw-muted:#6d727b;--smw-line:#e5e7eb;--smw-soft:#f5f6f8}
+.smw-dashboard-card{position:relative;overflow:hidden}
+.smw-dashboard-card:before{content:&quot;&quot;;position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--smw-red),#d77889);z-index:2}
+.smw-card-header{align-items:center!important;padding-bottom:0!important}
+.smw-card-kicker{margin:3px 0 5px;color:var(--smw-red);font-size:10px;line-height:1;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.smw-card-title{margin-bottom:0!important}
+.smw-card-icon{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:15px;color:var(--smw-red);background:linear-gradient(145deg,#fff1f5,#f9e8ed);box-shadow:inset 0 0 0 1px rgba(190,77,99,.09)}
+.smw-card-content{padding-top:14px!important}
+.smw-cta-box{position:relative;overflow:hidden;padding:18px;border:1px solid rgba(190,77,99,.12);border-radius:15px;background:radial-gradient(circle at 100% 0%,rgba(190,77,99,.10),transparent 35%),linear-gradient(135deg,#fff8fa 0%,#fafcfd 100%)}
+.smw-cta-box:after{content:&quot;&quot;;position:absolute;right:-38px;bottom:-62px;width:145px;height:145px;border:19px solid rgba(190,77,99,.045);border-radius:50%;pointer-events:none}
+.smw-cta-badge{position:relative;z-index:1;display:inline-flex;align-items:center;min-height:24px;margin-bottom:12px;padding:5px 10px;border-radius:999px;background:#f5e8ec;color:var(--smw-red);font-size:11px;line-height:1;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.smw-cta-text{position:relative;z-index:1;margin:0 0 16px!important;color:#545962;font-size:16px!important;line-height:1.55!important}
+.smw-open-btn{position:relative;z-index:1;width:100%;min-height:52px;border:0;border-radius:10px;padding:13px 16px;background:linear-gradient(180deg,#c4556b,var(--smw-red));color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 9px 20px rgba(190,77,99,.18);transition:transform .16s ease,box-shadow .16s ease,background .16s ease}
+.smw-open-btn:hover{background:linear-gradient(180deg,#b9475e,var(--smw-red-dark));transform:translateY(-1px);box-shadow:0 13px 25px rgba(190,77,99,.24)}
+.smw-open-arrow{font-size:20px;transition:transform .16s ease}.smw-open-btn:hover .smw-open-arrow{transform:translateX(3px)}
+
+.smw-modal-backdrop{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(24,26,31,.62);backdrop-filter:blur(3px)}
+.smw-modal-backdrop.is-open{display:flex}
+.smw-modal{width:min(1040px,calc(100vw - 36px));max-height:calc(100vh - 36px);display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:#fff;box-shadow:0 28px 75px rgba(0,0,0,.26);font-family:inherit;color:var(--smw-text)}
+.smw-modal *{box-sizing:border-box}
+.smw-modal-header{position:relative;min-height:108px;padding:18px 100px 16px 30px;border-top:5px solid var(--smw-red);border-bottom:1px solid var(--smw-line);background:radial-gradient(circle at 100% 0%,rgba(190,77,99,.08),transparent 32%),linear-gradient(135deg,#fff 0%,#fffafb 100%)}
+.smw-modal-kicker{margin:0 0 5px;color:var(--smw-red);font-size:11px;line-height:1;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.smw-modal-title{margin:0!important;color:var(--smw-text);font-size:25px!important;line-height:1.16!important;font-weight:700!important;letter-spacing:-.02em}
+.smw-modal-subtitle{max-width:none;margin:6px 0 0!important;color:var(--smw-muted);font-size:14px!important;line-height:1.45!important;white-space:nowrap}
+.smw-modal-heart{position:absolute;right:56px;top:22px;width:54px;height:54px;display:grid;place-items:center;border-radius:16px;color:var(--smw-red);background:linear-gradient(145deg,#fff1f5,#fae9ee);box-shadow:inset 0 0 0 1px rgba(190,77,99,.09)}
+.smw-modal-deco{position:absolute;right:-96px;bottom:-120px;width:230px;height:230px;border:31px solid rgba(190,77,99,.045);border-radius:50%;pointer-events:none}
+.smw-modal-close{position:absolute;right:14px;top:13px;width:36px;height:36px;border:0;border-radius:50%;background:#f3f4f6;color:#555;font:inherit;font-size:21px;font-weight:700;cursor:pointer;display:grid;place-items:center;z-index:2}
+.smw-modal-close:hover{background:#e9ebee}
+.smw-modal-body{overflow-y:auto;background:#fff;scrollbar-width:thin;scrollbar-color:#999 transparent}
+.smw-section{padding:28px 30px;border-bottom:1px solid var(--smw-line)}
+.smw-section-title{margin:0 0 20px!important;font-size:23px!important;line-height:1.25!important;color:var(--smw-text);font-weight:700!important}
+.smw-grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.smw-field{margin:0 0 22px}.smw-field:last-child{margin-bottom:0}
+.smw-field label,.smw-field-label{display:block;margin:0 0 8px;color:var(--smw-text);font-size:15px;line-height:1.4;font-weight:700}
+.smw-required{color:var(--smw-red)}
+.smw-field input[type=text],.smw-field input[type=email],.smw-field input[type=tel],.smw-field select,.smw-field textarea{width:100%;min-height:50px;margin:0;padding:13px 14px;border:1px solid #dfe2e7;border-radius:11px;background:#fff;color:var(--smw-text);font:inherit;font-size:15px;line-height:1.4;outline:none;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease,background .18s ease}
+.smw-field textarea{min-height:145px;resize:vertical}
+.smw-field input:hover,.smw-field select:hover,.smw-field textarea:hover{border-color:#bfc5cd;background:#fcfdff}
+.smw-field input:focus,.smw-field select:focus,.smw-field textarea:focus{border-color:var(--smw-red);background:#fff;box-shadow:0 0 0 4px rgba(190,77,99,.10),0 8px 18px rgba(190,77,99,.06);transform:translateY(-1px)}
+.smw-field input::placeholder,.smw-field textarea::placeholder{color:#a4a8af;opacity:1}
+.smw-help{width:100%;margin-top:10px;padding:14px 16px;border-radius:10px;background:#f4f5f7;color:#6c7179;font-size:14px;line-height:1.62}
+.smw-help p{margin:0}.smw-help p+p{margin-top:7px}.smw-help strong{display:block;color:#42464c;font-weight:700}.smw-help-details{color:#777c84;font-size:13.5px;line-height:1.58}
+.smw-award-help{margin:0 0 16px}
+.smw-award-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.smw-check-card{display:flex!important;align-items:center;gap:11px;margin:0!important;padding:14px 15px;border:1px solid var(--smw-line);border-radius:11px;background:#fff;color:var(--smw-text)!important;font-size:15px!important;font-weight:700!important;cursor:pointer;transition:border-color .18s ease,background .18s ease,box-shadow .18s ease,transform .18s ease}
+.smw-check-card:hover{border-color:rgba(190,77,99,.52);background:#fff8fa;box-shadow:0 7px 17px rgba(190,77,99,.07);transform:translateY(-1px)}
+.smw-check-card:has(input:checked){border-color:var(--smw-red);background:#fff3f6;box-shadow:0 0 0 3px rgba(190,77,99,.07)}
+.smw-check-card input{width:18px;height:18px;margin:0;accent-color:var(--smw-red);flex:0 0 auto}
+.smw-validation{display:none;margin-top:10px;color:var(--smw-red);font-size:13px;font-weight:700}.smw-validation.is-visible{display:block}
+.smw-privacy{display:flex!important;align-items:flex-start;gap:11px;margin:0!important;padding:15px 16px;border-radius:11px;background:#f4f5f7;color:#4f545c!important;font-size:14px!important;line-height:1.55!important;cursor:pointer}.smw-privacy input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--smw-red);flex:0 0 auto}.smw-privacy a{color:var(--smw-red);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.smw-modal-footer{flex:0 0 auto;padding:18px 24px 20px;border-top:1px solid var(--smw-line);display:flex;align-items:center;justify-content:center;gap:12px;background:#fafafa}
+.smw-cancel-btn,.smw-submit-btn,.smw-success-close{min-width:175px;border-radius:10px;padding:13px 22px;font:inherit;font-size:15px;font-weight:700;cursor:pointer}.smw-cancel-btn{border:1px solid #d9dce1;background:#fff;color:#555}.smw-cancel-btn:hover{background:#f5f6f7}.smw-submit-btn,.smw-success-close{border:0;background:var(--smw-red);color:#fff;box-shadow:0 8px 18px rgba(190,77,99,.18)}.smw-submit-btn:hover,.smw-success-close:hover{background:var(--smw-red-dark)}.smw-submit-btn:disabled{background:#c9ccd1;box-shadow:none;cursor:not-allowed}
+.smw-response{display:none!important}
+.smw-submit-frame{display:none!important;width:0!important;height:0!important;border:0!important}
+.smw-success{display:none;min-height:440px;padding:54px 34px 46px;text-align:center;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at 50% 0%,rgba(190,77,99,.08),transparent 34%),#fff}
+.smw-form.is-success .smw-modal-header,.smw-form.is-success .smw-modal-body,.smw-form.is-success .smw-modal-footer{display:none!important}.smw-form.is-success .smw-success{display:flex}
+.smw-success-icon{width:80px;height:80px;margin-bottom:18px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#d45e75,var(--smw-red));box-shadow:0 14px 30px rgba(190,77,99,.22)}
+.smw-success-kicker{margin-bottom:8px;color:var(--smw-red);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.smw-success h3{margin:0!important;color:var(--smw-text);font-size:29px!important;font-weight:700!important}.smw-success p{max-width:570px;margin:13px auto 0!important;color:#686d75;font-size:16px!important;line-height:1.62!important}.smw-success-close{margin-top:26px}
+body.smw-modal-open{overflow:hidden!important}
+@media(max-width:700px){.smw-modal-backdrop{padding:9px}.smw-modal{width:100%;max-height:calc(100vh - 18px);border-radius:14px}.smw-modal-header{min-height:112px;padding:18px 70px 15px 18px}.smw-modal-title{font-size:21px!important}.smw-modal-subtitle{font-size:12px!important;white-space:normal}.smw-modal-heart{right:14px;top:42px;width:44px;height:44px;border-radius:14px}.smw-section{padding:24px 18px}.smw-grid-2,.smw-award-grid{grid-template-columns:1fr}.smw-modal-footer{padding:14px 16px;gap:9px}.smw-cancel-btn,.smw-submit-btn{min-width:0;flex:1;padding:12px 14px}.smw-success{min-height:370px;padding:40px 20px}.smw-success h3{font-size:24px!important}}
+
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #f4f5f7;
+  font-family: &quot;Source Sans Pro&quot;, Arial, sans-serif;
+}
+body {
+  overflow: hidden;
+}
+.smw-modal-backdrop {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  background: #f4f5f7 !important;
+  backdrop-filter: none !important;
+}
+
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;smw-modal-backdrop&quot; id=&quot;smwModal&quot; aria-hidden=&quot;true&quot;&gt;
+ &lt;form formhash=&quot;75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&quot; action=&quot;https://r3.minicrm.hu/Api/Signup&quot; method=&quot;post&quot; target=&quot;smwMiniCRMFrame&quot; class=&quot;smw-modal smw-form&quot; id=&quot;smwQuestionnaireForm&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;smwModalTitle&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;MiniCRM_FormHash&quot; value=&quot;75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;FormHash&quot; value=&quot;75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&quot;&gt;
+
+  &lt;div class=&quot;smw-modal-header&quot;&gt;
+   &lt;div class=&quot;smw-modal-kicker&quot;&gt;Szerethető Munkahelyek Díj&lt;/div&gt;
+   &lt;h2 class=&quot;smw-modal-title&quot; id=&quot;smwModalTitle&quot;&gt;Kérdőív kitöltése&lt;/h2&gt;
+   &lt;p class=&quot;smw-modal-subtitle&quot;&gt;Mutassátok meg, mitől szerethető a munkahelyetek, és töltsétek ki a nevezéshez szükséges adatokat.&lt;/p&gt;
+   &lt;div class=&quot;smw-modal-heart&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;25&quot; height=&quot;25&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 21s-7-4.35-7-10.25C5 7.57 7.46 5 10.5 5c1.49 0 2.84.7 3.5 1.8C14.66 5.7 16.01 5 17.5 5 20.54 5 23 7.57 23 10.75 23 16.65 16 21 16 21&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; transform=&quot;translate(-2 0)&quot;/&gt;&lt;/svg&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;smw-modal-deco&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+   &lt;button type=&quot;button&quot; class=&quot;smw-modal-close&quot; id=&quot;smwCloseModal&quot; aria-label=&quot;Bezárás&quot;&gt;×&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;smw-modal-body&quot;&gt;
+   &lt;section class=&quot;smw-section&quot;&gt;
+    &lt;h3 class=&quot;smw-section-title&quot;&gt;Kapcsolattartási adatok&lt;/h3&gt;
+    &lt;div class=&quot;smw-grid-2&quot;&gt;
+     &lt;div class=&quot;smw-field&quot;&gt;
+      &lt;label for=&quot;Contact_Name_4250&quot;&gt;Cég neve &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input data-field=&quot;Name&quot; data-table=&quot;Contact&quot; data-type=&quot;Business&quot; name=&quot;Contact[4250][Name]&quot; id=&quot;Contact_Name_4250&quot; language=&quot;HU&quot; type=&quot;text&quot; value=&quot;Code Studio&quot; placeholder=&quot;Pl. Code Studio Kft.&quot; required&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;smw-field&quot;&gt;
+      &lt;label for=&quot;Contact_VatNumber_4250&quot;&gt;Adószám &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input data-field=&quot;VatNumber&quot; data-table=&quot;Contact&quot; data-type=&quot;Business&quot; name=&quot;Contact[4250][VatNumber]&quot; id=&quot;Contact_VatNumber_4250&quot; language=&quot;HU&quot; type=&quot;text&quot; placeholder=&quot;Pl. 12345678-2-41&quot; required&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;smw-field&quot;&gt;
+      &lt;label for=&quot;Contact_LastName_4251&quot;&gt;Kapcsolattartó vezetékneve&lt;/label&gt;
+      &lt;input data-field=&quot;LastName&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][LastName]&quot; id=&quot;Contact_LastName_4251&quot; language=&quot;HU&quot; type=&quot;text&quot; placeholder=&quot;Vezetéknév&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;smw-field&quot;&gt;
+      &lt;label for=&quot;Contact_FirstName_4251&quot;&gt;Kapcsolattartó keresztneve &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input data-field=&quot;FirstName&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][FirstName]&quot; id=&quot;Contact_FirstName_4251&quot; language=&quot;HU&quot; type=&quot;text&quot; placeholder=&quot;Keresztnév&quot; required&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;smw-field&quot;&gt;
+      &lt;label for=&quot;Contact_Email_4251&quot;&gt;Kapcsolattartó e-mail címe &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input data-field=&quot;Email&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][Email]&quot; id=&quot;Contact_Email_4251&quot; language=&quot;HU&quot; type=&quot;email&quot; inputmode=&quot;email&quot; autocomplete=&quot;email&quot; placeholder=&quot;kapcsolattarto@ceg.hu&quot; required&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;smw-field&quot;&gt;
+      &lt;label for=&quot;Contact_Phone_4251&quot;&gt;Kapcsolattartó telefonszáma &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+      &lt;input data-field=&quot;Phone&quot; data-table=&quot;Contact&quot; data-type=&quot;Person&quot; name=&quot;Contact[4251][Phone]&quot; id=&quot;Contact_Phone_4251&quot; language=&quot;HU&quot; type=&quot;tel&quot; inputmode=&quot;tel&quot; autocomplete=&quot;tel&quot; placeholder=&quot;+36 30 123 4567&quot; required&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/section&gt;
+
+   &lt;section class=&quot;smw-section&quot;&gt;
+    &lt;h3 class=&quot;smw-section-title&quot;&gt;A munkahelyetek bemutatása&lt;/h3&gt;
+    &lt;div class=&quot;smw-field&quot;&gt;
+     &lt;label for=&quot;Project_Cegmeret4_4249&quot;&gt;Melyik kategóriába tartozik a cégetek? &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+     &lt;select data-field=&quot;Cegmeret4&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][Cegmeret4]&quot; id=&quot;Project_Cegmeret4_4249&quot; language=&quot;HU&quot; required&gt;
+      &lt;option value=&quot;&quot; selected&gt;Válasszatok kategóriát&lt;/option&gt;&lt;option value=&quot;12100&quot;&gt;KKV&lt;/option&gt;&lt;option value=&quot;12101&quot;&gt;Nagyvállalat&lt;/option&gt;
+     &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;smw-field&quot;&gt;
+     &lt;label for=&quot;Project_MunkahelyBemutatasa_4249&quot;&gt;Mutassátok be a munkahelyeteket! &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+     &lt;textarea data-field=&quot;MunkahelyBemutatasa&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][MunkahelyBemutatasa]&quot; id=&quot;Project_MunkahelyBemutatasa_4249&quot; language=&quot;HU&quot; placeholder=&quot;Mutassátok be röviden, milyen nálatok dolgozni, mitől szerethető a munkahelyetek, és milyen kezdeményezésekre vagytok a legbüszkébbek...&quot; required&gt;&lt;/textarea&gt;
+     &lt;div class=&quot;smw-help&quot;&gt;
+      &lt;p&gt;&lt;strong&gt;Írjátok le, milyen nálatok dolgozni, mitől szerethető a munkahelyetek, és milyen kezdeményezésekkel támogatjátok a munkatársaitokat.&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class=&quot;smw-help-details&quot;&gt;(Milyen a vállalati kultúrátok? Hogyan építetek közösséget? Hogyan támogatjátok a fejlődést, a jóllétet és a munka–magánélet egyensúlyát? Milyen a vezetői kultúra és a belső kommunikáció? Milyen juttatásokat biztosítotok? Hogyan jelenik meg nálatok a sokszínűség, a társadalmi felelősségvállalás és az innováció? Milyen HR- vagy employer branding megoldásokra vagytok büszkék? Mi különböztet meg benneteket más munkahelyektől?)&lt;/p&gt;
+      &lt;p&gt;Lehetőség szerint konkrét példákat és működő kezdeményezéseket is mutassatok be.&lt;/p&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/section&gt;
+
+   &lt;section class=&quot;smw-section&quot;&gt;
+    &lt;h3 class=&quot;smw-section-title&quot;&gt;Díjkategóriák &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/h3&gt;
+    &lt;div class=&quot;smw-help smw-award-help&quot;&gt;&lt;p&gt;&lt;strong&gt;Jelöljétek meg azokat a kategóriákat, amelyekben úgy érzitek, hogy a vállalatotok kiemelkedően teljesít, és érdemes lenne elnyernetek az adott díjat. Több kategória is választható.&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=&quot;smw-award-grid&quot; data-field=&quot;Dijkategoriak&quot; data-table=&quot;Project&quot; data-type id=&quot;Project_Dijkategoriak_4249&quot; language=&quot;HU&quot;&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12104&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;1&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Vezetői Kultúra&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12105&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;2&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Legjobb Onboarding&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12106&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;4&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Tanulás és Fejlődés&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12107&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;8&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Rugalmas Munkavégzés&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12108&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;16&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Családbarát Munkahely&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12109&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;32&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Női Karrierút&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12110&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;64&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;AI Innováció HR-ben&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12111&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;128&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Munkahelyi Wellbeing&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12112&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;256&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Állatbarát Munkahely&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12113&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;512&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Kreatív Csapatépítő Program&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12114&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;1024&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Gen Z Pályakezdő Program&lt;/span&gt;&lt;/label&gt;
+     &lt;label class=&quot;smw-check-card&quot;&gt;&lt;input id=&quot;Project_Dijkategoriak_4249_12115&quot; type=&quot;checkbox&quot; class=&quot;smw-award-checkbox&quot; value=&quot;2048&quot; name=&quot;Project[4249][Dijkategoriak][]&quot;&gt;&lt;span&gt;Az Év Vidéki Munkahelye&lt;/span&gt;&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;smw-validation&quot; id=&quot;smwAwardValidation&quot;&gt;Legalább egy díjkategória kiválasztása kötelező.&lt;/div&gt;
+   &lt;/section&gt;
+
+   &lt;section class=&quot;smw-section&quot;&gt;
+    &lt;h3 class=&quot;smw-section-title&quot;&gt;HR-szakember jelölése&lt;/h3&gt;
+    &lt;div class=&quot;smw-field&quot;&gt;
+     &lt;label for=&quot;Project_JeloltHrszakemberNeve_4249&quot;&gt;Jelölt HR-szakember neve &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+     &lt;input data-field=&quot;JeloltHrszakemberNeve&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][JeloltHrszakemberNeve]&quot; id=&quot;Project_JeloltHrszakemberNeve_4249&quot; language=&quot;HU&quot; type=&quot;text&quot; placeholder=&quot;HR-szakember neve&quot; required&gt;
+     &lt;div class=&quot;smw-help&quot;&gt;&lt;p&gt;&lt;strong&gt;Nevezzetek meg egy HR-szakembert a szervezetetekből, aki munkájával meghatározó módon járul hozzá a vállalati kultúra, a csapatok és a munkatársak fejlődéséhez.&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;smw-field&quot;&gt;
+     &lt;label for=&quot;Project_HrszakemberBemutatasaEsAJelolesIndoklasa_4249&quot;&gt;HR-szakember bemutatása és a jelölés indoklása &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+     &lt;textarea data-field=&quot;HrszakemberBemutatasaEsAJelolesIndoklasa&quot; data-table=&quot;Project&quot; data-type name=&quot;Project[4249][HrszakemberBemutatasaEsAJelolesIndoklasa]&quot; id=&quot;Project_HrszakemberBemutatasaEsAJelolesIndoklasa_4249&quot; language=&quot;HU&quot; placeholder=&quot;Mutassátok be röviden a jelöltet, és írjátok le, miért őt jelölitek, milyen eredmények vagy kezdeményezések köthetők hozzá...&quot; required&gt;&lt;/textarea&gt;
+     &lt;div class=&quot;smw-help&quot;&gt;&lt;p&gt;&lt;strong&gt;Kérjük, röviden mutassátok be a jelöltet és indokoljátok a nevezést.&lt;/strong&gt;&lt;/p&gt;&lt;p class=&quot;smw-help-details&quot;&gt;(Miért őt jelölitek? Milyen kezdeményezések, eredmények vagy változások köthetők hozzá? Hogyan hat a munkája a kollégák mindennapjaira és a szervezeti kultúrára?)&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/section&gt;
+
+   &lt;section class=&quot;smw-section&quot;&gt;
+    &lt;h3 class=&quot;smw-section-title&quot;&gt;Adatkezelés&lt;/h3&gt;
+    &lt;div data-field=&quot;GDPR_Contribution&quot; data-table=&quot;Dummy&quot; data-type id=&quot;Dummy_GDPR_Contribution_&quot; language=&quot;HU&quot;&gt;
+     &lt;label class=&quot;smw-privacy&quot;&gt;&lt;input id=&quot;Dummy_GDPR_Contribution__0&quot; type=&quot;checkbox&quot; value=&quot;1&quot; name=&quot;Dummy[][GDPR_Contribution][]&quot; required&gt;&lt;span&gt;Elolvastam és elfogadom az &lt;a href=&quot;https://api.dreamjobs.hu/api/v2/dj-documents/latest/hu/privacy/hu&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Adatkezelési tájékoztatót&lt;/a&gt;. &lt;span class=&quot;smw-required&quot;&gt;*&lt;/span&gt;&lt;/span&gt;&lt;/label&gt;
+    &lt;/div&gt;
+   &lt;/section&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;Response_75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&quot; class=&quot;smw-response&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;smw-modal-footer&quot;&gt;
+   &lt;button type=&quot;button&quot; class=&quot;smw-cancel-btn&quot; id=&quot;smwCancelQuestionnaire&quot;&gt;Mégse&lt;/button&gt;
+   &lt;button type=&quot;submit&quot; class=&quot;smw-submit-btn&quot; id=&quot;smwSubmitQuestionnaire&quot; disabled&gt;Kérdőív elküldése&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;smw-success&quot; id=&quot;smwSuccess&quot; aria-live=&quot;polite&quot;&gt;
+   &lt;div class=&quot;smw-success-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;40&quot; height=&quot;40&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M5 12.5l4.2 4.2L19 7.5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+   &lt;div class=&quot;smw-success-kicker&quot;&gt;Sikeres beküldés&lt;/div&gt;
+   &lt;h3&gt;Köszönjük a kérdőív kitöltését!&lt;/h3&gt;
+   &lt;p&gt;A válaszaitokat sikeresen rögzítettük. Köszönjük, hogy neveztetek a Szerethető Munkahelyek Díjra!&lt;/p&gt;
+   &lt;button type=&quot;button&quot; class=&quot;smw-success-close&quot; id=&quot;smwCloseSuccess&quot;&gt;Bezárás&lt;/button&gt;
+  &lt;/div&gt;
+ &lt;/form&gt;
+ &lt;iframe name=&quot;smwMiniCRMFrame&quot; id=&quot;smwMiniCRMFrame&quot; class=&quot;smw-submit-frame&quot; title=&quot;MiniCRM beküldés&quot; aria-hidden=&quot;true&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;script&gt;
+
+(function(){
+ const modal=document.getElementById(&#x27;smwModal&#x27;);
+ const form=document.getElementById(&#x27;smwQuestionnaireForm&#x27;);
+ const openBtn=document.getElementById(&#x27;smwOpenQuestionnaire&#x27;);
+ const closeBtn=document.getElementById(&#x27;smwCloseModal&#x27;);
+ const cancelBtn=document.getElementById(&#x27;smwCancelQuestionnaire&#x27;);
+ const closeSuccess=document.getElementById(&#x27;smwCloseSuccess&#x27;);
+ const submitBtn=document.getElementById(&#x27;smwSubmitQuestionnaire&#x27;);
+ const privacy=document.getElementById(&#x27;Dummy_GDPR_Contribution__0&#x27;);
+ const awardBoxes=[...document.querySelectorAll(&#x27;.smw-award-checkbox&#x27;)];
+ const awardValidation=document.getElementById(&#x27;smwAwardValidation&#x27;);
+ const awardGrid=document.getElementById(&#x27;Project_Dijkategoriak_4249&#x27;);
+ const frame=document.getElementById(&#x27;smwMiniCRMFrame&#x27;);
+ let submitting=false;
+ function hasAward(){return awardBoxes.some(x=&gt;x.checked)}
+ function updateSubmit(){submitBtn.disabled=!(privacy.checked&amp;&amp;hasAward())}
+ function openModal(){form.classList.remove(&#x27;is-success&#x27;);submitting=false;submitBtn.textContent=&#x27;Kérdőív elküldése&#x27;;updateSubmit();modal.classList.add(&#x27;is-open&#x27;);modal.setAttribute(&#x27;aria-hidden&#x27;,&#x27;false&#x27;);document.body.classList.add(&#x27;smw-modal-open&#x27;)}
+ function closeModal(){submitting=false;modal.classList.remove(&#x27;is-open&#x27;);modal.setAttribute(&#x27;aria-hidden&#x27;,&#x27;true&#x27;);document.body.classList.remove(&#x27;smw-modal-open&#x27;)}
+ function ensureHashes(){[[&#x27;MiniCRM_FormHash&#x27;,&#x27;75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&#x27;],[&#x27;FormHash&#x27;,&#x27;75022-1bwhojhefc0ykatw5ceq0dn39wt2dp&#x27;]].forEach(([n,v])=&gt;{let i=form.querySelector(&#x27;input[name=&quot;&#x27;+n+&#x27;&quot;]&#x27;);if(!i){i=document.createElement(&#x27;input&#x27;);i.type=&#x27;hidden&#x27;;i.name=n;form.prepend(i)}i.value=v})}
+ openBtn.addEventListener(&#x27;click&#x27;,openModal);closeBtn.addEventListener(&#x27;click&#x27;,closeModal);cancelBtn.addEventListener(&#x27;click&#x27;,closeModal);closeSuccess.addEventListener(&#x27;click&#x27;,closeModal);
+ modal.addEventListener(&#x27;click&#x27;,e=&gt;{if(e.target===modal)closeModal()});document.addEventListener(&#x27;keydown&#x27;,e=&gt;{if(e.key===&#x27;Escape&#x27;&amp;&amp;modal.classList.contains(&#x27;is-open&#x27;))closeModal()});
+ privacy.addEventListener(&#x27;change&#x27;,updateSubmit);awardBoxes.forEach(x=&gt;x.addEventListener(&#x27;change&#x27;,()=&gt;{if(hasAward())awardValidation.classList.remove(&#x27;is-visible&#x27;);updateSubmit()}));
+ form.addEventListener(&#x27;submit&#x27;,e=&gt;{ensureHashes();if(!hasAward()){e.preventDefault();awardValidation.classList.add(&#x27;is-visible&#x27;);awardGrid.scrollIntoView({behavior:&#x27;smooth&#x27;,block:&#x27;center&#x27;});return}if(!privacy.checked){e.preventDefault();privacy.focus();return}submitting=true;submitBtn.disabled=true;submitBtn.textContent=&#x27;Küldés...&#x27;});
+ frame.addEventListener(&#x27;load&#x27;,()=&gt;{if(!submitting)return;submitting=false;setTimeout(()=&gt;{form.classList.add(&#x27;is-success&#x27;);form.scrollTop=0},120)});
+ updateSubmit();
+})();
+
+
+window.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+  const modal = document.getElementById(&quot;smwModal&quot;);
+  if (modal) {
+    modal.classList.add(&quot;is-open&quot;);
+    modal.setAttribute(&quot;aria-hidden&quot;, &quot;false&quot;);
+  }
+
+  const closeButton = document.querySelector(&quot;.smw-modal-close&quot;);
+  const cancelButton = document.querySelector(&quot;.smw-cancel-btn&quot;);
+
+  [closeButton, cancelButton].forEach(function (button) {
+    if (!button) return;
+    button.addEventListener(&quot;click&quot;, function (event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }, true);
+  });
+});
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+  </section>
+</main>
+
+<script>
+document.querySelectorAll("[data-copy]").forEach(button => {
+  button.addEventListener("click", async () => {
+    const id = button.dataset.copy;
+    const text = document.getElementById(id).textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      area.remove();
+    }
+    const label = button.querySelector("span");
+    label.textContent = "Copied!";
+    button.classList.add("copied");
+    setTimeout(() => {
+      label.textContent = "Copy";
+      button.classList.remove("copied");
+    }, 1400);
+  });
+});
+</script>
+</body>
+</html>
