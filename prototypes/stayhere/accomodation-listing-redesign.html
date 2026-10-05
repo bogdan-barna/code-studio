@@ -367,6 +367,17 @@ article:hover .readmoreLink::before {
  .sh-grid .property-card .addToWishlist .toggleFavorites i{font-size:17px}
 }
 </style>
+<style id=sh-grid-mobile-price>
+/* mobil rács: nagyobb ár, kis térközzel az értékelés alatt */
+@media (max-width:575.98px){
+ .sh-grid .property-card .property-info .price-conditions,.sh-grid .property-card .property-info .price-conditions .price-amount{font-size:19px!important}
+ .sh-grid .property-card .property-info .price-conditions{margin-top:.35rem!important}
+}
+@media (max-width:349.98px){
+ .sh-grid .property-card .property-info .price-conditions,.sh-grid .property-card .property-info .price-conditions .price-amount{font-size:17px!important}
+ .sh-grid .property-card .property-info .price-conditions,.sh-grid .property-card .property-info .price-display{white-space:normal!important}
+}
+</style>
 </head>
 <body data-aos-easing=ease-in-out data-aos-duration=1000 data-aos-delay=0>
  <section class="top-header d-none d-md-block">
