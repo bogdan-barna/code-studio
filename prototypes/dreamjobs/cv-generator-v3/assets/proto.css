@@ -1,0 +1,1400 @@
+/* DreamJobs prototípus – saját komponensek (a mentett DJ Tailwind CSS mellé). */
+:root {
+  --dj-red: #E1415A; --dj-red-dark: #B92841; --dj-red-soft: #FDECEF;
+  --dj-blue: #1E64E1; --dj-blue-dark: #0A4AB4; --dj-blue-soft: #EEF3FD;
+  --dj-black: #1E2328; --dj-gray: #969BA5; --dj-gray-dark: #50555F;
+  --dj-line: #CDD2E1; --dj-line-soft: #E5E8F0; --dj-bg: #F4F7FD; --dj-bg2: #F8F9FC;
+  --dj-green: #0E9F6E; --dj-green-soft: #E7F7EF; --dj-orange: #EA7D38; --dj-violet: #1E64E1;
+  --dj-ai: linear-gradient(135deg, #E1415A 0%, #EC6274 100%);
+}
+
+html, body { background: #fff; color-scheme: light; }
+
+/* a mentett oldalak nem működő widgetjei */
+#cookiescript_badge, #aichatbot_ra_div_id, .grecaptcha-badge, .rcw-widget-container { display: none !important; }
+
+@keyframes djpspin { to { transform: rotate(360deg); } }
+@keyframes djppulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@keyframes djpflash { 0% { background: #E6EEFC; } 100% { background: #fff; } }
+@keyframes djpin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes djpfade { from { opacity: 0; } to { opacity: 1; } }
+.djp-anim-in { animation: djpfade .18s ease-out; }
+.djp-anim-in > * { animation: djpin .2s ease-out; }
+
+.djp-muted { color: var(--dj-gray); }
+.djp-hint { font-size: 12px; color: var(--dj-gray); margin-top: 6px; }
+.djp-spinner { width: 16px; height: 16px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: djpspin .7s linear infinite; display: inline-block; flex: none; }
+[hidden] { display: none !important; }
+
+/* ---------- gombok ---------- */
+.djp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 10px; padding: 0 18px; min-height: 44px; font-size: 14px; font-weight: 500; transition: background .15s, border-color .15s, color .15s; cursor: pointer; white-space: nowrap; text-decoration: none; }
+.djp-btn svg { font-size: 18px; }
+.djp-btn-red { background: var(--dj-red); color: #fff; }
+.djp-btn-red:hover { background: var(--dj-red-dark); }
+.djp-btn-outline { border: 1px solid var(--dj-line); background: #fff; color: var(--dj-black); }
+.djp-btn-outline:hover { border-color: var(--dj-blue); color: var(--dj-blue); }
+.djp-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--dj-line); background: #fff; border-radius: 10px; padding: 9px 14px; font-size: 13px; color: var(--dj-black); cursor: pointer; }
+.djp-btn-ghost:hover { border-color: var(--dj-blue); color: var(--dj-blue); }
+.djp-btn-lg { min-height: 52px; padding: 0 28px; font-size: 15px; }
+.djp-btn-sm { min-height: 34px; padding: 0 12px; font-size: 13px; }
+.djp-btn:disabled, .djp-btn-ghost:disabled, .djp-btn-ai:disabled { opacity: .45; pointer-events: none; }
+.djp-btn-ai { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 500; color: #fff; background: var(--dj-ai); cursor: pointer; box-shadow: 0 4px 14px rgba(30, 100, 225, .18); transition: filter .15s, transform .15s; text-decoration: none; }
+.djp-btn-ai:hover { filter: brightness(1.07); transform: translateY(-1px); }
+.djp-btn-ai.djp-btn-sm { padding: 7px 12px; font-size: 12.5px; }
+.djp-btn-ai svg, .djp-btn-ghost svg { font-size: 16px; }
+.is-busy { animation: djppulse 1s ease-in-out infinite; pointer-events: none; }
+.djp-link { background: none; color: var(--dj-blue); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 4px; }
+.djp-link:hover { color: var(--dj-blue-dark); }
+.djp-icon-btn { width: 34px; height: 34px; display: inline-grid; place-items: center; border-radius: 8px; color: var(--dj-gray); font-size: 18px; flex: none; cursor: pointer; }
+.djp-icon-btn:hover { background: var(--dj-bg); color: var(--dj-red); }
+.djp-x { display: flex; color: var(--dj-gray); font-size: 24px; cursor: pointer; }
+.djp-x:hover { color: var(--dj-black); }
+.djp-select { border: 1px solid var(--dj-line); border-radius: 10px; padding: 8px 10px; font-size: 13px; background: #fff; color: var(--dj-black); }
+.djp-check { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+.djp-check input { width: 16px; height: 16px; accent-color: var(--dj-blue); }
+.djp-ai-badge { display: inline-flex; align-items: center; gap: 3px; font-style: normal; font-size: 10.5px; font-weight: 600; color: #fff; background: var(--dj-ai); border-radius: 999px; padding: 2px 8px; vertical-align: middle; margin-left: 6px; letter-spacing: .02em; }
+.djp-tag { font-size: 11px; font-weight: 500; color: var(--dj-green); background: var(--dj-green-soft); border-radius: 999px; padding: 2px 9px; margin-left: 8px; }
+.djp-seg { display: inline-flex; background: #EEF0F5; border-radius: 10px; padding: 3px; gap: 2px; }
+.djp-seg button { padding: 6px 12px; font-size: 12.5px; border-radius: 8px; color: var(--dj-gray-dark); cursor: pointer; }
+.djp-seg button.is-on { background: #fff; color: var(--dj-black); font-weight: 500; box-shadow: 0 1px 4px rgba(30, 35, 40, .12); }
+
+/* ---------- toast, demó panel, profil menü ---------- */
+
+.djp-demo { position: fixed; left: 16px; bottom: 16px; z-index: 1500; font-family: Poppins, system-ui, sans-serif; }
+.djp-demo-toggle { display: inline-flex; align-items: center; gap: 8px; background: var(--dj-black); color: #fff; border-radius: 999px; padding: 9px 16px; font-size: 13px; font-weight: 500; box-shadow: 0 8px 24px rgba(0, 0, 0, .25); cursor: pointer; }
+.djp-demo-toggle span { color: var(--dj-red); font-size: 11px; }
+.djp-demo-panel { display: none; position: absolute; bottom: 50px; left: 0; width: 300px; background: #fff; border-radius: 16px; box-shadow: 0 16px 48px rgba(0, 0, 0, .22); padding: 10px; }
+.djp-demo.is-open .djp-demo-panel { display: block; }
+.djp-demo-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--dj-gray); padding: 6px 10px 8px; }
+.djp-demo-panel button { display: flex; width: 100%; align-items: center; gap: 10px; text-align: left; padding: 9px 10px; border-radius: 10px; font-size: 13px; color: var(--dj-black); cursor: pointer; }
+.djp-demo-panel button:hover { background: var(--dj-bg); }
+.djp-demo-panel b { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--dj-red); color: #fff; font-size: 11px; flex: none; }
+.djp-demo-panel .djp-demo-reset { color: var(--dj-gray-dark); border-top: 1px solid var(--dj-line-soft); border-radius: 0 0 10px 10px; margin-top: 6px; padding-top: 12px; }
+
+.djp-usermenu { position: absolute; top: 62px; right: 0; width: 250px; background: #fff; border-radius: 14px; box-shadow: 0 12px 40px rgba(0, 0, 0, .16); padding: 8px; display: none; z-index: 80; }
+.djp-usermenu.is-open { display: block; }
+.djp-usermenu a, .djp-usermenu button { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 9px 12px; border-radius: 8px; font-size: 14px; color: var(--dj-black); cursor: pointer; }
+.djp-usermenu a:hover, .djp-usermenu button:hover { background: var(--dj-bg); color: var(--dj-red); }
+.djp-usermenu-head { padding: 8px 12px 12px; border-bottom: 1px solid var(--dj-line-soft); margin-bottom: 6px; }
+.djp-usermenu-head b { display: block; font-size: 14px; }
+.djp-usermenu-head span { font-size: 12px; color: var(--dj-gray); }
+.djp-new { font-style: normal; font-size: 10px; font-weight: 600; color: #fff; background: var(--dj-red); border-radius: 6px; padding: 1px 6px; }
+.djp-nav-active { color: var(--dj-red) !important; }
+.djp-nav-cvgen { position: relative; }
+.djp-nav-cvgen::after { content: 'ÚJ'; position: absolute; top: 2px; right: -4px; font-size: 9px; font-weight: 600; line-height: 1; color: #fff; background: var(--dj-red); border-radius: 5px; padding: 2px 4px; }
+
+/* ---------- jelentkezési modal ---------- */
+.djp-modal .dj-jobprofile-modal-box { max-height: 100%; }
+.djp-auth input { background: transparent; }
+.djp-cvblock { border: 1px solid var(--dj-line); border-radius: 20px; padding: 18px 16px; }
+@media (min-width: 768px) { .djp-cvblock { padding: 24px 30px; } }
+.djp-cvblock-head { display: flex; flex-direction: column; gap: 2px; }
+.djp-opts { display: grid; gap: 10px; margin-top: 14px; }
+.djp-opt { position: relative; display: flex; align-items: center; gap: 14px; border: 1.5px solid var(--dj-line); border-radius: 14px; padding: 14px 16px; cursor: pointer; transition: border-color .15s, background .15s; }
+.djp-opt:hover { border-color: var(--dj-gray); }
+.djp-opt.is-on { border-color: var(--dj-blue); background: #F6F9FF; }
+.djp-opt input { position: absolute; opacity: 0; pointer-events: none; }
+.djp-opt-ico { width: 44px; height: 44px; border-radius: 12px; background: var(--dj-bg); color: var(--dj-blue); display: grid; place-items: center; font-size: 22px; flex: none; transition: background .15s, color .15s; }
+.djp-opt.is-on .djp-opt-ico { background: var(--dj-blue); color: #fff; }
+.djp-opt-txt { display: flex; flex-direction: column; gap: 2px; }
+.djp-opt-txt b { font-size: 15px; font-weight: 500; }
+.djp-opt-txt span { font-size: 13px; color: var(--dj-gray-dark); }
+.djp-radio { width: 22px; height: 22px; border: 2px solid var(--dj-line); border-radius: 50%; margin-left: auto; flex: none; position: relative; }
+.djp-opt.is-on .djp-radio { border-color: var(--dj-blue); }
+.djp-opt.is-on .djp-radio::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--dj-blue); }
+.djp-panel { margin-top: 14px; padding: 16px; border-radius: 14px; background: var(--dj-bg2); }
+.djp-panel-cta p { font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
+.djp-steps { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; counter-reset: s; }
+.djp-steps li { counter-increment: s; font-size: 12px; color: var(--dj-gray-dark); background: #fff; border: 1px solid var(--dj-line-soft); border-radius: 999px; padding: 4px 10px 4px 4px; display: inline-flex; align-items: center; gap: 6px; }
+.djp-steps li::before { content: counter(s); display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--dj-red); color: #fff; font-size: 10px; font-weight: 600; }
+.djp-drop { display: flex; flex-direction: column; align-items: center; gap: 4px; border: 2px dashed var(--dj-line); border-radius: 16px; padding: 26px 18px; cursor: pointer; background: #fff; color: var(--dj-gray-dark); text-align: center; transition: border-color .15s, background .15s; }
+.djp-drop svg { font-size: 38px; color: var(--dj-blue); margin-bottom: 4px; }
+.djp-drop b { font-size: 14px; font-weight: 500; color: var(--dj-black); }
+.djp-drop span { font-size: 12px; }
+.djp-drop:hover, .djp-drop.is-over { border-color: var(--dj-blue); background: var(--dj-blue-soft); }
+.djp-file { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--dj-line); border-radius: 12px; padding: 12px 14px; text-align: left; }
+.djp-file > svg { font-size: 28px; color: var(--dj-red); flex: none; }
+.djp-file b { display: block; font-size: 14px; font-weight: 500; word-break: break-all; }
+.djp-file em { font-style: normal; font-size: 12px; color: var(--dj-gray); }
+.djp-file button { margin-left: auto; color: var(--dj-gray); font-size: 20px; display: flex; cursor: pointer; }
+.djp-file.is-static { justify-content: center; max-width: 420px; margin: 0 auto 6px; }
+.djp-saved { margin-top: 14px; text-align: left; }
+.djp-saved-title { font-size: 12.5px; color: var(--dj-gray); margin-bottom: 8px; text-align: center; }
+.djp-saved-row { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: 1px solid var(--dj-line-soft); border-radius: 10px; background: #fff; margin-bottom: 6px; cursor: pointer; text-align: left; transition: border-color .15s; }
+.djp-saved-row:hover, .djp-saved-row.is-on { border-color: var(--dj-blue); }
+.djp-saved-row.is-on { background: #F6F9FF; box-shadow: inset 0 0 0 1px var(--dj-blue); }
+.djp-saved-row input { position: absolute; opacity: 0; pointer-events: none; }
+.djp-saved-ico { font-size: 22px; color: var(--dj-blue); flex: none; }
+.djp-saved-row b { display: block; font-size: 13.5px; font-weight: 500; }
+.djp-saved-row em { font-style: normal; font-size: 11.5px; color: var(--dj-gray); }
+.djp-saved-row i { margin-left: auto; font-style: normal; font-size: 12px; color: var(--dj-blue); white-space: nowrap; }
+.djp-letterbox { margin-top: 16px; border-top: 1px solid var(--dj-line-soft); padding-top: 16px; }
+.djp-letterbox-head { display: flex; align-items: center; margin-bottom: 10px; }
+.djp-stat { display: flex; gap: 10px; align-items: flex-start; background: #FFF5F7; border: 1px solid #F8C9D2; border-radius: 12px; padding: 12px 14px; font-size: 13px; line-height: 1.55; text-align: left; color: var(--dj-black); margin-bottom: 12px; }
+.djp-stat svg { color: var(--dj-red); font-size: 18px; flex: none; margin-top: 1px; }
+.djp-stat.is-big { font-size: 14.5px; padding: 16px 18px; margin: 14px 0; }
+.djp-textarea { width: 100%; border: 1px solid var(--dj-line); border-radius: 12px; padding: 14px; font: 13.5px/1.65 Poppins, system-ui, sans-serif; margin-top: 12px; resize: vertical; color: var(--dj-black); }
+.djp-textarea:focus { outline: none; border-color: var(--dj-blue); }
+.djp-letter-tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px; }
+.djp-ai-loading { display: flex; align-items: center; gap: 10px; color: var(--dj-violet); font-size: 13px; font-weight: 500; }
+.djp-success { text-align: center; padding: 8px 0 4px; }
+.djp-success h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.djp-success p { color: var(--dj-gray-dark); font-size: 14px; max-width: 460px; margin: 0 auto; }
+.djp-success-ico { width: 72px; height: 72px; border-radius: 50%; background: var(--dj-green-soft); color: var(--dj-green); display: grid; place-items: center; font-size: 40px; margin: 0 auto 14px; }
+.djp-success-docs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 18px 0; }
+.djp-success-docs span { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; background: var(--dj-bg); border-radius: 8px; padding: 6px 10px; }
+.djp-success-docs svg { color: var(--dj-red); }
+.djp-success-actions { display: grid; gap: 10px; max-width: 380px; margin: 0 auto; }
+.djp-applied { background: var(--dj-green) !important; }
+
+/* ---------- CV-generátor ---------- */
+.djp-builder { background: var(--dj-bg); height: calc(100vh - 76px); display: flex; flex-direction: column; overflow: hidden; }
+.djp-b-top { display: flex; align-items: center; gap: 14px; padding: 10px 20px; background: #fff; border-bottom: 1px solid var(--dj-line-soft); flex-wrap: wrap; }
+.djp-b-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--dj-gray-dark); white-space: nowrap; }
+.djp-b-back:hover { color: var(--dj-red); }
+.djp-b-back svg { font-size: 18px; }
+.djp-b-title { border: 1px solid transparent; font-weight: 600; font-size: 15px; padding: 6px 10px; border-radius: 8px; min-width: 0; width: 280px; max-width: 100%; color: var(--dj-black); }
+.djp-b-title:hover { border-color: var(--dj-line); }
+.djp-b-title:focus { outline: none; border-color: var(--dj-blue); }
+.djp-stepper { display: flex; gap: 4px; margin: 0 auto; list-style: none; padding: 0; }
+.djp-stepper button { display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; font-size: 13px; color: var(--dj-gray); cursor: pointer; white-space: nowrap; }
+.djp-stepper button:disabled { cursor: default; }
+.djp-stepper span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--dj-line); font-size: 12px; font-weight: 600; }
+.djp-stepper li + li::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--dj-line); vertical-align: middle; margin-right: 4px; }
+.djp-stepper li { display: flex; align-items: center; }
+.djp-stepper .is-active button { background: var(--dj-red-soft); color: var(--dj-red); font-weight: 500; }
+.djp-stepper .is-active span { background: var(--dj-red); border-color: var(--dj-red); color: #fff; }
+.djp-stepper .is-done button { color: var(--dj-black); }
+.djp-stepper .is-done span { background: var(--dj-blue); border-color: var(--dj-blue); color: #fff; }
+.djp-b-top-actions { display: flex; gap: 8px; }
+.djp-b-job { display: flex; align-items: center; gap: 14px; padding: 10px 20px; background: #fff; border-bottom: 1px solid var(--dj-line-soft); font-size: 13px; }
+.djp-b-job img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; flex: none; }
+.djp-b-job > div:first-of-type { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
+.djp-b-job > div b { font-size: 14px; font-weight: 600; }
+.djp-b-job [data-meter] { margin-left: auto; }
+.djp-b-job.is-empty { color: var(--dj-gray-dark); flex-wrap: wrap; }
+.djp-b-job.is-empty svg { color: var(--dj-violet); }
+.djp-meter { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--dj-gray-dark); white-space: nowrap; }
+.djp-meter-bar { width: 140px; height: 8px; border-radius: 99px; background: var(--dj-line-soft); overflow: hidden; }
+.djp-meter-bar i { display: block; height: 100%; border-radius: 99px; transition: width .5s ease; }
+.djp-meter b { font-size: 15px; color: var(--dj-black); min-width: 38px; }
+.djp-meter.is-low i { background: var(--dj-red); }
+.djp-meter.is-mid i { background: var(--dj-orange); }
+.djp-meter.is-good i { background: var(--dj-green); }
+.djp-b-work { flex: 1; min-height: 0; overflow: auto; position: relative; }
+.djp-b-split { display: grid; grid-template-columns: minmax(380px, 46%) 1fr; height: 100%; }
+.djp-b-left { overflow-y: auto; display: flex; flex-direction: column; background: var(--dj-bg); border-right: 1px solid var(--dj-line-soft); }
+.djp-b-left-in { padding: 18px 20px 24px; flex: 1; }
+.djp-b-next { position: sticky; bottom: 0; background: #fff; border-top: 1px solid var(--dj-line-soft); padding: 12px 20px; display: flex; justify-content: flex-end; gap: 10px; z-index: 2; }
+.djp-b-right { display: flex; flex-direction: column; min-height: 0; background: #DFE4EE; }
+.djp-b-canvas { flex: 1; overflow: auto; padding: 24px; display: flex; justify-content: center; align-items: flex-start; }
+.djp-b-fit { position: relative; flex: none; }
+.djp-b-scale { transform-origin: 0 0; width: 794px; position: absolute; top: 0; left: 0; }
+.djp-b-scale .djp-sheet { box-shadow: 0 8px 30px rgba(30, 35, 40, .18); }
+.djp-b-toolbar { display: flex; gap: 14px; align-items: center; padding: 10px 18px; background: #fff; border-top: 1px solid var(--dj-line-soft); flex-wrap: wrap; font-size: 12px; color: var(--dj-gray-dark); }
+.djp-b-toolbar label { display: flex; align-items: center; gap: 6px; }
+.djp-b-toolbar select { border: 1px solid var(--dj-line); border-radius: 8px; padding: 5px 8px; font-size: 12.5px; color: var(--dj-black); background: #fff; }
+.djp-swatches { display: flex; align-items: center; gap: 6px; }
+.djp-swatches button { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .6); }
+.djp-swatches button.is-on { outline: 2px solid var(--dj-black); outline-offset: 2px; }
+
+/* akkordeon szakaszok */
+.djp-acc { background: #fff; border: 1px solid var(--dj-line-soft); border-radius: 14px; margin-bottom: 12px; transition: border-color .2s, box-shadow .2s; }
+.djp-acc.is-open { box-shadow: 0 4px 18px rgba(30, 35, 40, .05); }
+.djp-acc.is-ai { border-color: #EBB4C0; box-shadow: 0 0 0 3px rgba(225, 65, 90, .07); }
+.djp-acc.is-drop-target { box-shadow: 0 -3px 0 var(--dj-blue); }
+.djp-acc.is-dragging { opacity: .5; }
+.djp-acc-head { display: flex; align-items: center; gap: 4px; padding: 4px 8px 4px 4px; flex-wrap: wrap; }
+.djp-acc-toggle { flex: 1; display: flex; align-items: center; gap: 8px; padding: 10px 8px; text-align: left; font-size: 15px; cursor: pointer; min-width: 0; }
+.djp-acc-toggle b { font-weight: 600; }
+.djp-acc-toggle em { font-style: normal; font-size: 11px; color: var(--dj-gray-dark); background: var(--dj-bg); border-radius: 99px; padding: 1px 8px; }
+.djp-acc-static { padding: 14px 12px 6px; font-size: 15px; font-weight: 600; }
+.djp-chev { margin-left: auto; font-size: 22px; color: var(--dj-gray); transition: transform .2s; flex: none; }
+.djp-acc.is-open > .djp-acc-head .djp-chev { transform: rotate(180deg); }
+.djp-drag { display: grid; place-items: center; width: 22px; color: #B8BDC8; cursor: grab; font-size: 18px; }
+.djp-acc-body { padding: 4px 16px 18px; }
+.djp-sec-title { margin-bottom: 12px; }
+.djp-field { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--dj-gray-dark); min-width: 0; }
+.djp-field > span { display: flex; align-items: center; gap: 4px; font-weight: 500; }
+.djp-field input, .djp-field textarea, .djp-ta, .djp-skill-row input, .djp-skill-row select { width: 100%; border: 1px solid var(--dj-line-soft); border-radius: 10px; padding: 10px 12px; font: 14px/1.5 Poppins, system-ui, sans-serif; color: var(--dj-black); background: var(--dj-bg2); transition: border-color .15s, background .15s, box-shadow .15s; }
+.djp-field textarea, .djp-ta { resize: vertical; font-size: 13.5px; line-height: 1.6; }
+.djp-field input:focus, .djp-field textarea:focus, .djp-ta:focus, .djp-skill-row input:focus, .djp-skill-row select:focus { outline: none; border-color: var(--dj-blue); background: #fff; }
+.djp-ta-letter { min-height: 360px; }
+.is-ai-writing { border-color: #7FA6EE !important; box-shadow: 0 0 0 3px rgba(30, 100, 225, .15) !important; background: #fff !important; }
+.is-ai-flash { animation: djpflash .9s ease-out; }
+.djp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+.djp-grid .is-full { grid-column: 1 / -1; }
+.djp-x-sm { display: inline-flex; color: var(--dj-gray); margin-left: auto; font-size: 14px; cursor: pointer; }
+.djp-x-sm:hover { color: var(--dj-red); }
+.djp-photo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.djp-photo { width: 56px; height: 56px; border-radius: 50%; background: var(--dj-bg); border: 1.5px dashed var(--dj-line); display: grid; place-items: center; color: var(--dj-gray); overflow: hidden; font-size: 22px; }
+.djp-photo img { width: 100%; height: 100%; object-fit: cover; }
+.djp-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.djp-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--dj-line); border-radius: 999px; font-size: 13px; background: #fff; color: var(--dj-black); cursor: pointer; transition: all .15s; text-align: left; }
+.djp-chip svg { font-size: 14px; color: var(--dj-gray); flex: none; }
+.djp-chip:hover { border-color: var(--dj-blue); color: var(--dj-blue); }
+.djp-chip.is-on { background: var(--dj-blue); border-color: var(--dj-blue); color: #fff; }
+.djp-chip.is-on svg { color: #fff; }
+.djp-chip.is-ai { border-style: dashed; border-color: #A9C1F2; }
+.djp-chip button { display: inline-flex; color: inherit; margin: 0 -4px 0 2px; font-size: 14px; cursor: pointer; opacity: .8; }
+.djp-chip button:hover { opacity: 1; }
+.djp-tag-add { margin-top: 12px; }
+.djp-chip i { font-style: normal; font-size: 11px; color: inherit; opacity: .7; }
+.djp-item { border: 1px solid var(--dj-line-soft); border-radius: 12px; margin-bottom: 10px; background: #fff; }
+.djp-item.is-open { border-color: var(--dj-line); }
+.djp-item-head { display: flex; align-items: center; gap: 4px; padding-right: 6px; }
+.djp-item-toggle { flex: 1; display: flex; flex-direction: column; align-items: flex-start; padding: 10px 12px; text-align: left; cursor: pointer; min-width: 0; }
+.djp-item-toggle b { font-size: 14px; font-weight: 500; }
+.djp-item-toggle span { font-size: 12px; color: var(--dj-gray); }
+.djp-item-ctl { display: flex; }
+.djp-item-ctl button { width: 30px; height: 30px; display: grid; place-items: center; color: var(--dj-gray); border-radius: 8px; font-size: 18px; cursor: pointer; }
+.djp-item-ctl button:hover { background: var(--dj-bg); color: var(--dj-black); }
+.djp-item-ctl button:disabled { opacity: .3; }
+.djp-item.is-open > .djp-grid { padding: 4px 12px 4px; }
+.djp-item.is-open > .djp-ai-row { padding: 0 12px 12px; }
+.djp-ai-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+.djp-ai-row .djp-hint { margin: 0; }
+.djp-add { display: inline-flex; gap: 6px; align-items: center; color: var(--dj-blue); font-size: 13px; font-weight: 500; padding: 8px 4px; cursor: pointer; }
+.djp-add:hover { color: var(--dj-blue-dark); }
+.djp-ai-flag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--dj-red-dark); background: var(--dj-red-soft); border-radius: 999px; padding: 3px 4px 3px 10px; }
+.djp-ai-flag button { background: #fff; border-radius: 999px; padding: 2px 8px; font-size: 11px; color: var(--dj-black); cursor: pointer; }
+.djp-ai-flag button:hover { color: var(--dj-blue); }
+.djp-skill-row { display: grid; grid-template-columns: 1fr 130px 34px; gap: 8px; margin-bottom: 12px; align-items: center; }
+.djp-skill-row input, .djp-skill-row select { padding: 9px 10px; font-size: 13.5px; }
+.djp-skill-row .djp-skill-detail { grid-column: 1 / -1; font-size: 12.5px; margin-top: -4px; }
+.djp-suggest { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: #F2F6FE; border: 1px dashed #A9C1F2; font-size: 12.5px; color: var(--dj-gray-dark); }
+.djp-suggest > span { display: flex; align-items: center; gap: 6px; }
+.djp-suggest svg { color: var(--dj-violet); }
+.djp-suggest .djp-chips { margin-top: 8px; }
+.djp-addsec { background: #fff; border: 1px dashed var(--dj-line); border-radius: 14px; padding: 14px 16px; }
+.djp-addsec-title { font-size: 13px; font-weight: 600; }
+
+/* AI összefoglaló / kiolvasás */
+.djp-aisum { background: linear-gradient(135deg, #FFF5F7 0%, #EEF3FD 100%); border: 1px solid #F0C3CD; border-radius: 16px; padding: 16px 18px; margin-bottom: 14px; }
+.djp-aisum-head { display: flex; gap: 12px; align-items: flex-start; }
+.djp-aisum-head > svg { font-size: 26px; color: var(--dj-red); flex: none; }
+.djp-aisum-head b { display: block; font-size: 15px; font-weight: 600; }
+.djp-aisum-head span { display: block; font-size: 12px; color: var(--dj-gray-dark); }
+.djp-aisum-match { display: grid; grid-template-columns: auto auto auto 1fr; align-items: center; gap: 10px 12px; margin: 14px 0 10px; }
+.djp-arrow { color: var(--dj-gray); font-size: 18px; }
+.djp-ring { position: relative; width: 72px; text-align: center; }
+.djp-ring svg { width: 64px; height: 64px; transform: rotate(-90deg); display: block; margin: 0 auto; }
+.djp-ring circle { fill: none; stroke-width: 6; }
+.djp-ring .bg { stroke: rgba(30, 35, 40, .08); }
+.djp-ring .fg { stroke: var(--dj-gray); stroke-linecap: round; transition: stroke-dasharray .8s ease; }
+.djp-ring:nth-of-type(3) .fg, .djp-aisum-match > .djp-ring:last-of-type .fg { stroke: var(--dj-green); }
+.djp-ring b { position: absolute; top: 21px; left: 0; right: 0; font-size: 14px; font-weight: 600; }
+.djp-ring span { font-size: 11px; color: var(--dj-gray-dark); }
+.djp-reqs { list-style: none; padding: 0; margin: 0; display: grid; gap: 3px; font-size: 12px; }
+.djp-reqs li { display: flex; align-items: center; gap: 5px; }
+.djp-reqs i { font-style: normal; width: 16px; text-align: center; font-weight: 700; }
+.djp-reqs i.ok { color: var(--dj-green); }
+.djp-reqs i.mid { color: var(--dj-orange); }
+.djp-reqs i.no { color: var(--dj-red); }
+.djp-reqs em { font-style: normal; color: var(--dj-gray); }
+.djp-arrow-sm { color: var(--dj-gray); font-size: 10px; }
+.djp-changes { margin: 6px 0 12px; font-size: 13px; }
+.djp-changes summary { cursor: pointer; font-weight: 500; color: var(--dj-black); }
+.djp-changes ul { list-style: disc; padding-left: 20px; margin-top: 6px; color: var(--dj-gray-dark); font-size: 12.5px; display: grid; gap: 2px; }
+.djp-aisum-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.djp-parsed { background: #fff; border: 1px solid #BFE8D6; border-radius: 16px; padding: 16px 18px; margin-bottom: 14px; }
+.djp-parsed-head { display: flex; align-items: center; gap: 8px; color: var(--dj-green); }
+.djp-parsed-head b { color: var(--dj-black); font-size: 15px; font-weight: 600; }
+.djp-parsed-head svg { font-size: 20px; }
+.djp-parsed-stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.djp-parsed-stats span { font-size: 12px; background: var(--dj-green-soft); color: #0B7A55; border-radius: 8px; padding: 4px 9px; }
+.djp-parsed p { font-size: 13px; color: var(--dj-gray-dark); margin-bottom: 12px; line-height: 1.55; }
+
+/* középre igazított kártya-képernyők */
+.djp-center { display: flex; justify-content: center; padding: 40px 16px 60px; }
+.djp-card { background: #fff; border-radius: 22px; box-shadow: 0 12px 40px rgba(30, 35, 40, .08); padding: 34px 40px; max-width: 640px; width: 100%; text-align: center; }
+.djp-card h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.djp-card > p { color: var(--dj-gray-dark); font-size: 14px; line-height: 1.6; margin-bottom: 18px; }
+.djp-card-ico { width: 62px; height: 62px; border-radius: 18px; background: var(--dj-ai); color: #fff; display: grid; place-items: center; font-size: 30px; margin: 0 auto 16px; box-shadow: 0 10px 24px rgba(30, 100, 225, .25); }
+.djp-card-ico.is-spin svg { animation: djppulse 1.2s ease-in-out infinite; }
+.djp-flow { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 22px 0 0; font-size: 12px; color: var(--dj-gray-dark); list-style: none; padding: 0; }
+.djp-flow li { display: inline-flex; gap: 6px; align-items: center; }
+.djp-flow b { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--dj-bg); color: var(--dj-blue); font-size: 11px; }
+.djp-progress { list-style: none; text-align: left; margin: 20px auto 0; max-width: 440px; padding: 0; }
+.djp-progress li { display: flex; gap: 12px; align-items: center; padding: 8px 0; color: var(--dj-gray); font-size: 14px; }
+.djp-progress li > span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--dj-line); flex: none; font-size: 15px; }
+.djp-progress li.is-active { color: var(--dj-black); font-weight: 500; }
+.djp-progress li.is-active > span { border-color: var(--dj-violet); color: var(--dj-violet); }
+.djp-progress li.is-done { color: var(--dj-black); }
+.djp-progress li.is-done > span { background: var(--dj-green); border-color: var(--dj-green); color: #fff; }
+
+/* kérdés-varázsló */
+.djp-overlay { position: fixed; inset: 0; background: rgba(20, 24, 30, .55); z-index: 1200; display: grid; place-items: center; padding: 16px; }
+.djp-wizard { background: #fff; border-radius: 22px; max-width: 620px; width: 100%; padding: 24px 28px; max-height: 92vh; overflow: auto; box-shadow: 0 24px 60px rgba(0, 0, 0, .25); }
+.djp-wiz-head { display: flex; align-items: flex-start; gap: 12px; }
+.djp-wiz-head > svg { font-size: 26px; color: var(--dj-red); flex: none; }
+.djp-wiz-head b { display: block; font-size: 15px; font-weight: 600; }
+.djp-wiz-head span { font-size: 12px; color: var(--dj-gray); }
+.djp-wiz-head .djp-x { margin-left: auto; }
+.djp-wiz-prog { height: 6px; background: var(--dj-line-soft); border-radius: 99px; margin: 14px 0 6px; overflow: hidden; }
+.djp-wiz-prog i { display: block; height: 100%; background: var(--dj-ai); border-radius: 99px; transition: width .3s ease; }
+.djp-wizard h3 { font-size: 19px; font-weight: 600; margin: 16px 0 6px; line-height: 1.35; }
+.djp-wiz-hint { font-size: 13px; color: var(--dj-gray-dark); background: var(--dj-bg); border-radius: 10px; padding: 8px 12px; }
+.djp-wizard .djp-field { margin-top: 16px; }
+.djp-wiz-foot { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+.djp-wiz-foot .djp-link { margin-left: auto; }
+
+/* motivációs levél */
+.djp-letter-intro .djp-card-ico { background: var(--dj-red); box-shadow: 0 10px 24px rgba(225, 65, 90, .25); }
+.djp-intro-opts { display: flex; gap: 18px; justify-content: center; margin: 4px 0 20px; flex-wrap: wrap; }
+.djp-intro-opts > div > span { display: block; font-size: 12px; color: var(--dj-gray); margin-bottom: 6px; }
+.djp-intro-opts.is-inline { justify-content: flex-start; margin: 12px 0 0; }
+.djp-letter-intro .djp-link { display: block; margin: 12px auto 0; }
+.djp-src > div { display: flex; gap: 10px; align-items: center; padding: 6px 0; }
+.djp-src img { width: 32px; height: 32px; border-radius: 6px; }
+.djp-src svg { font-size: 30px; color: var(--dj-red); }
+.djp-src em { display: block; font-style: normal; font-size: 11px; color: var(--dj-gray); }
+.djp-src b { font-size: 13.5px; font-weight: 500; }
+
+/* összegzés / kész */
+.djp-summary { max-width: 1080px; margin: 0 auto; padding: 32px 24px 60px; }
+.djp-summary h2 { font-size: 26px; font-weight: 600; }
+.djp-summary > p { margin-top: 4px; font-size: 14px; }
+.djp-sum-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 24px 0; }
+.djp-sum-card { background: #fff; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; box-shadow: 0 4px 20px rgba(30, 35, 40, .06); }
+.djp-sum-card b { font-size: 14.5px; font-weight: 600; }
+.djp-sum-card .djp-thumb { aspect-ratio: 794 / 900; }
+.djp-sum-job { gap: 6px; }
+.djp-sum-job img { width: 64px; height: 64px; border-radius: 12px; margin-bottom: 6px; }
+.djp-sum-job span { font-size: 13px; }
+.djp-sum-job .djp-meter { margin-top: 10px; flex-wrap: wrap; white-space: normal; }
+.djp-consent { margin: 4px 0 18px; font-size: 14px; }
+.djp-sum-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.djp-done h2 { font-size: 26px; }
+.djp-done p { color: var(--dj-gray-dark); font-size: 14px; margin-top: 6px; }
+.djp-done-actions { display: flex; gap: 12px; justify-content: center; margin-top: 22px; flex-wrap: wrap; }
+.djp-thumb { width: 100%; aspect-ratio: 794 / 1123; overflow: hidden; border-radius: 10px; border: 1px solid var(--dj-line-soft); background: #fff; position: relative; }
+.djp-thumb-in { width: 794px; transform-origin: 0 0; position: absolute; top: 0; left: 0; pointer-events: none; }
+.djp-thumb.is-empty, .djp-thumb.is-file { display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; color: var(--dj-gray); font-size: 13px; background: var(--dj-bg2); }
+.djp-thumb.is-empty svg, .djp-thumb.is-file svg { font-size: 54px; }
+.djp-thumb.is-file svg { color: var(--dj-red); }
+.djp-thumb.is-file span { font-weight: 600; letter-spacing: .08em; color: var(--dj-red); }
+.djp-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--dj-blue-soft); color: var(--dj-blue); align-self: flex-start; }
+.djp-badge.is-boosted { background: #E9F0FD; color: var(--dj-violet); }
+.djp-badge.is-uploaded { background: #EEF0F5; color: var(--dj-gray-dark); }
+.djp-badge.is-ai-letter { background: var(--dj-red-soft); color: var(--dj-red-dark); }
+
+/* kijelölés AI-eszköztár */
+.djp-seltool { position: fixed; z-index: 1300; display: flex; align-items: center; gap: 2px; background: var(--dj-black); color: #fff; border-radius: 10px; padding: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, .3); animation: djpin .12s ease-out; }
+.djp-seltool > span { display: inline-flex; align-items: center; gap: 4px; padding: 0 8px; font-size: 12px; font-weight: 600; color: #F7A5B3; }
+.djp-seltool button { color: #fff; font-size: 12.5px; padding: 6px 10px; border-radius: 7px; cursor: pointer; }
+.djp-seltool button:hover { background: rgba(255, 255, 255, .14); }
+
+/* ---------- Dokumentumaim ---------- */
+.djp-docs { min-height: 70vh; }
+.djp-docs-wrap { padding: 0 20px; }
+.djp-docs-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+.djp-docs-head h1 { font-size: 30px; font-weight: 600; }
+.djp-docs-head p { color: var(--dj-gray-dark); max-width: 560px; font-size: 14px; }
+.djp-docs-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.djp-docs-cta .djp-btn-ai { min-height: 44px; }
+.djp-tabs { display: flex; gap: 4px; border-bottom: 1px solid #DDE2EC; margin-bottom: 18px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.djp-tabs button { padding: 12px 16px; font-size: 15px; color: var(--dj-gray-dark); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; cursor: pointer; }
+.djp-tabs button.is-on { color: var(--dj-black); border-color: var(--dj-red); font-weight: 500; }
+.djp-tabs i { font-style: normal; font-size: 11px; background: #E4E8F0; border-radius: 99px; padding: 1px 8px; margin-left: 4px; color: var(--dj-gray-dark); }
+.djp-docs-filter { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.djp-docs-filter .djp-chips { margin: 0; }
+.djp-search { border: 1px solid var(--dj-line); border-radius: 10px; padding: 9px 12px; font-size: 14px; width: 300px; max-width: 100%; background: #fff; }
+.djp-doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 18px; }
+.djp-doc { background: #fff; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 12px rgba(30, 35, 40, .05); transition: box-shadow .2s, transform .2s; }
+.djp-doc:hover { box-shadow: 0 10px 30px rgba(30, 35, 40, .1); transform: translateY(-2px); }
+.djp-doc-thumb { display: block; padding: 14px 14px 0; background: #EAEEF6; }
+.djp-doc .djp-thumb { aspect-ratio: 794 / 720; border-radius: 8px 8px 0 0; border-bottom: none; }
+.djp-doc-body { padding: 14px 16px 6px; display: flex; flex-direction: column; gap: 4px; }
+.djp-doc-body b { font-size: 15px; font-weight: 600; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; word-break: break-word; }
+.djp-doc-body em { font-style: normal; font-size: 12px; color: var(--dj-gray); }
+.djp-doc-job { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--dj-blue); }
+.djp-doc-actions { display: flex; align-items: center; gap: 2px; padding: 8px 12px 14px; margin-top: auto; }
+.djp-doc-actions > a { white-space: nowrap; }
+.djp-doc-actions > a { margin-right: auto; }
+.djp-doc-new { border: 2px dashed var(--dj-line); background: transparent; box-shadow: none; align-items: center; justify-content: center; text-align: center; min-height: 320px; gap: 6px; color: var(--dj-gray-dark); padding: 20px; }
+.djp-doc-new:hover { border-color: var(--dj-red); color: var(--dj-red); box-shadow: none; }
+.djp-doc-new span { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: #fff; color: var(--dj-red); font-size: 26px; box-shadow: 0 4px 14px rgba(30, 35, 40, .08); margin-bottom: 6px; }
+.djp-doc-new b { font-size: 15px; color: var(--dj-black); font-weight: 600; }
+.djp-doc-new em { font-style: normal; font-size: 12.5px; }
+.djp-noresult { margin-top: 16px; }
+.djp-empty { background: #fff; border-radius: 16px; padding: 48px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--dj-gray-dark); }
+.djp-empty svg { font-size: 42px; color: var(--dj-gray); }
+.djp-empty b { font-size: 17px; color: var(--dj-black); }
+.djp-apps { display: flex; flex-direction: column; gap: 12px; }
+.djp-app { display: flex; gap: 16px; align-items: center; background: #fff; border-radius: 16px; padding: 16px 20px; flex-wrap: wrap; }
+.djp-app > img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; }
+.djp-app-main { flex: 1; min-width: 220px; display: flex; flex-direction: column; }
+.djp-app-main b { font-size: 16px; font-weight: 600; }
+.djp-app-main > span { font-size: 13px; color: var(--dj-gray-dark); }
+.djp-app-docs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.djp-app-docs > * { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; background: var(--dj-bg); border-radius: 8px; padding: 5px 10px; cursor: pointer; }
+.djp-app-docs button:hover { color: var(--dj-blue); }
+.djp-app-docs svg { color: var(--dj-red); }
+.djp-app-side { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.djp-app-side em { font-style: normal; font-size: 12px; color: var(--dj-gray); }
+.djp-status { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; color: var(--dj-green); background: var(--dj-green-soft); border-radius: 999px; padding: 3px 10px; }
+
+/* ---------- CV / levél A4 lap (DreamJobs sablonok: A4-3, A4-4, A4-5 tervek alapján) ---------- */
+.djp-sheet { position: relative; width: 794px; min-height: 1123px; background: #fff; color: #1E2328; font-family: var(--cvfont, Poppins, sans-serif); font-size: 11.5px; line-height: 1.5; text-align: left; --gap: 18px; overflow: hidden; }
+.djp-sheet.sp-compact { --gap: 11px; }
+.djp-sheet.sp-airy { --gap: 26px; }
+.djp-sheet * { box-sizing: border-box; }
+.djp-sheet p { margin: 0 0 4px; }
+.djp-sheet ul { list-style: disc; padding-left: 16px; margin: 3px 0 4px; }
+.djp-sheet li { margin: 1px 0; }
+.djp-sheet h1, .djp-sheet h3 { margin: 0; }
+.djp-sheet.is-preview::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, transparent 0, transparent 1122px, rgba(30, 35, 40, .18) 1122px, rgba(30, 35, 40, .18) 1123px); }
+.cv-ph { color: #B9BEC9; }
+.cv-empty { border: 2px dashed #DDE1EA; border-radius: 12px; padding: 30px; color: #A0A6B2; text-align: center; font-size: 13px; margin-top: 8px; }
+.cv-sec { margin-bottom: var(--gap); position: relative; }
+.cv-entry { margin-bottom: calc(var(--gap) * .7); page-break-inside: avoid; }
+.cv-entry-title { font-weight: 600; font-size: 12.5px; }
+.cv-sub { font-size: 11px; color: #50555F; }
+.cv-dates { font-size: 10.5px; color: #7C828E; }
+.cv-desc { font-size: 11px; color: #2E343B; }
+.cv-desc b { font-weight: 600; color: #1E2328; }
+.cv-skill { margin-bottom: 8px; page-break-inside: avoid; }
+.cv-skill-name { font-weight: 600; font-size: 11.5px; }
+.cv-skill-name em { font-style: normal; font-weight: 400; color: #7C828E; font-size: 10.5px; }
+.cv-skill-detail { font-size: 10.5px; color: #50555F; }
+.cv-bar { display: block; height: 3px; border-radius: 3px; background: #E3E6EE; margin: 5px 0 3px; overflow: hidden; }
+.cv-bar i { display: block; height: 100%; background: var(--acc); }
+.cv-lang { margin-bottom: 4px; }
+.cv-inline span + span::before { content: '|'; margin: 0 9px; color: #B0B5C0; }
+.cv-inline-list > div { margin-bottom: 4px; }
+.cv-tags span { display: inline-block; border: 1px solid var(--acc); color: var(--acc); border-radius: 99px; padding: 2px 10px; margin: 0 5px 5px 0; font-size: 10.5px; font-weight: 500; }
+.cv-circles { display: flex; gap: 22px; flex-wrap: wrap; }
+.cv-circles span { width: 80px; height: 80px; border-radius: 50%; background: #E1415A; color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 9.5px; font-weight: 600; padding: 8px; line-height: 1.2; }
+.cv-photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; display: block; flex: none; }
+.cv-initials { display: flex; align-items: center; justify-content: center; background: var(--acc); color: #fff; font-size: 36px; font-weight: 600; }
+.cv-logo { height: 26px; width: auto; display: block; }
+.cv-ai { outline: 2px dashed var(--acc); outline-offset: 5px; border-radius: 4px; }
+.cv-ai::before { content: '✦ AI'; position: absolute; right: 0; top: -12px; background: var(--acc); color: #fff; font-size: 8.5px; font-weight: 700; padding: 1px 6px; border-radius: 6px; letter-spacing: .04em; z-index: 2; font-family: Poppins, sans-serif; }
+.tpl-blue .cv-side .cv-ai { outline-color: #fff; }
+.tpl-blue .cv-side .cv-ai::before { background: #fff; color: var(--acc); }
+
+/* A4-4: kék oldalsáv */
+.tpl-blue { display: flex; background: linear-gradient(90deg, var(--acc) 0, var(--acc) 31.5%, #fff 31.5%, #fff 100%); }
+.tpl-blue .cv-side { width: 31.5%; color: #fff; padding: 58px 26px 100px 44px; position: relative; }
+.tpl-blue .cv-photo { width: 78px; height: 78px; margin-bottom: 22px; }
+.tpl-blue .cv-initials { background: rgba(255, 255, 255, .22); font-size: 26px; }
+.tpl-blue .cv-side .cv-name { font-size: 20px; font-weight: 700; line-height: 1.2; color: #fff; }
+.tpl-blue .cv-side .cv-headline { font-size: 12px; color: rgba(255, 255, 255, .75); margin: 5px 0 32px; }
+.tpl-blue .cv-side h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.tpl-blue .cv-side .cv-sec { margin-bottom: calc(var(--gap) * 1.6); }
+.tpl-blue .cv-details > div { display: flex; flex-direction: column; margin-bottom: 11px; }
+.tpl-blue .cv-details b { font-size: 11.5px; font-weight: 700; }
+.tpl-blue .cv-details span { font-size: 10.5px; color: rgba(255, 255, 255, .78); word-break: break-word; }
+.tpl-blue .cv-links span { display: block; color: rgba(255, 255, 255, .82); font-size: 10.5px; margin-bottom: 9px; word-break: break-all; }
+.tpl-blue .cv-side .cv-skill-name { font-size: 11px; color: rgba(255, 255, 255, .9); font-weight: 500; }
+.tpl-blue .cv-side .cv-bar { background: rgba(255, 255, 255, .3); }
+.tpl-blue .cv-side .cv-bar i { background: #fff; }
+.tpl-blue .cv-side .cv-skill-detail, .tpl-blue .cv-side .cv-desc { color: rgba(255, 255, 255, .72); font-size: 9.5px; }
+.tpl-blue .cv-side .cv-tags span { border-color: rgba(255, 255, 255, .8); color: #fff; }
+.tpl-blue .cv-side-logo { position: absolute; left: 44px; bottom: 38px; }
+.tpl-blue .cv-side-logo .cv-logo { filter: brightness(0) invert(1); height: 24px; }
+.tpl-blue .cv-main { width: 68.5%; padding: 56px 46px 60px 50px; }
+.tpl-blue .cv-main h3 { font-size: 20px; font-weight: 700; color: #1E2328; margin-bottom: 12px; }
+.tpl-blue .cv-main .cv-sec { margin-bottom: calc(var(--gap) * 1.5); }
+.tpl-blue .cv-main .cv-entry-title { font-size: 12.5px; font-weight: 700; }
+.tpl-blue .cv-main .cv-sub { color: #1E2328; font-size: 11.5px; }
+.tpl-blue .cv-main .cv-dates { color: #50555F; font-size: 11px; margin: 2px 0 4px; }
+.tpl-blue .cv-main .cv-desc, .tpl-blue .cv-main .cv-lang, .tpl-blue .cv-main .cv-skill-detail { color: #50555F; }
+
+/* A4-5: piros – név fejléc, két oszlop, sarokdísz */
+.tpl-red { padding: 50px 50px 130px; }
+.tpl-red .cv-head { display: flex; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+.tpl-red .cv-last { display: block; font-size: 30px; font-weight: 700; color: var(--acc); text-transform: uppercase; line-height: 1.05; letter-spacing: .01em; }
+.tpl-red .cv-first { display: block; font-size: 27px; font-weight: 500; color: #1E2328; line-height: 1.2; }
+.tpl-red .cv-headline { font-size: 12.5px; margin-top: 8px; }
+.tpl-red .cv-contact { text-align: right; font-size: 12px; line-height: 1.7; max-width: 52%; }
+.tpl-red .cv-contact b { color: var(--acc); font-weight: 600; }
+.tpl-red .cv-cols { display: grid; grid-template-columns: 37% 1fr; }
+.tpl-red .cv-left { padding-right: 28px; min-width: 0; }
+.tpl-red .cv-right { border-left: 2.5px solid var(--acc); padding-left: 28px; min-width: 0; }
+.tpl-red .cv-photo { width: 150px; height: 150px; margin-bottom: 30px; }
+.tpl-red h3 { font-size: 16px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; color: #1E2328; }
+.tpl-red .cv-sec { margin-bottom: calc(var(--gap) * 1.3); }
+.tpl-red .cv-entry-title { font-size: 12.5px; font-weight: 700; text-transform: uppercase; }
+.tpl-red .cv-sub, .tpl-red .cv-dates { font-size: 11.5px; color: #1E2328; }
+.tpl-red .cv-desc { font-size: 11.5px; color: #1E2328; }
+.tpl-red .cv-right .cv-desc { text-align: justify; }
+.tpl-red .cv-lang { font-size: 12px; }
+.tpl-red .cv-skill-detail { font-size: 10.5px; }
+.tpl-red .cv-more { font-size: 10.5px; line-height: 1.55; word-break: break-word; }
+.tpl-red .cv-more b { color: var(--acc); font-weight: 600; }
+.cv-corner { position: absolute; left: 0; right: 0; bottom: 0; height: 90px; }
+.cv-corner .cv-logo { position: absolute; left: 50px; bottom: 26px; height: 34px; }
+.cv-corner i { position: absolute; right: 0; bottom: 0; width: 58%; height: 90px; background: var(--acc); clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%); }
+
+/* A4-3: gradiens háttér, címke-oszlop */
+.tpl-gradient { padding: 56px 56px 120px; background:
+  radial-gradient(ellipse 65% 42% at 100% 0%, rgba(225, 65, 90, .2), rgba(225, 65, 90, 0) 70%),
+  radial-gradient(ellipse 55% 38% at 50% 0%, rgba(118, 104, 230, .14), rgba(118, 104, 230, 0) 70%),
+  linear-gradient(180deg, #F3F4FB 0%, #FFFFFF 48%); }
+.tpl-gradient .cv-head { display: flex; gap: 52px; align-items: flex-start; margin-bottom: 40px; }
+.tpl-gradient .cv-photo { width: 146px; height: 146px; }
+.tpl-gradient .cv-meta { font-size: 11px; color: #50555F; margin: 6px 0 18px; line-height: 1.6; }
+.tpl-gradient .cv-name { font-size: 20px; font-weight: 400; color: var(--acc); line-height: 1.3; }
+.tpl-gradient .cv-name b { font-weight: 700; }
+.tpl-gradient .cv-headline { font-weight: 400; color: var(--acc); }
+.tpl-gradient .cv-intro { font-size: 14.5px; line-height: 1.5; color: #50555F; margin-top: 8px; position: relative; }
+.tpl-gradient .cv-body .cv-sec { display: grid; grid-template-columns: 210px 1fr; margin-bottom: calc(var(--gap) * 1.4); }
+.tpl-gradient .cv-sec h3 { font-size: 13px; font-weight: 400; color: #7C828E; }
+.tpl-gradient .cv-entry-title { color: var(--acc); font-weight: 700; font-size: 12.5px; }
+.tpl-gradient .cv-sub { color: #50555F; }
+.tpl-gradient .cv-dates { color: #50555F; font-size: 11px; margin: 3px 0 6px; }
+.tpl-gradient .cv-desc { color: #50555F; }
+.tpl-gradient .cv-inline { font-size: 11.5px; }
+.tpl-gradient .cv-inline-list { font-size: 11px; color: #50555F; }
+.tpl-gradient .cv-inline-list b { color: #1E2328; }
+.cv-bottom-logo { position: absolute; left: 56px; bottom: 40px; }
+.cv-bottom-logo .cv-logo { height: 28px; }
+
+/* Motivációs levél a három sablonban */
+.lt-body { font-size: 12.5px; line-height: 1.75; }
+.lt-rec { margin-bottom: 22px; font-weight: 500; }
+.lt-date { text-align: right; color: #50555F; margin-bottom: 18px; }
+.lt-subject { margin-bottom: 18px; }
+.lt-text p { margin: 0 0 12px; }
+.djp-letter.tpl-blue .cv-main.lt-body { padding: 70px 50px 60px; }
+.djp-letter.tpl-blue .cv-details > div { margin-bottom: 8px; }
+.djp-letter.tpl-red .cv-head { margin-bottom: 34px; }
+.djp-letter.tpl-red .lt-body { padding-top: 22px; border-top: 2.5px solid var(--acc); }
+.djp-letter.tpl-gradient .cv-head { margin-bottom: 30px; }
+
+/* profil oldal: átirányító sáv a CV-generátorra */
+.djp-profile-banner { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: linear-gradient(135deg, #FFF5F7 0%, #EEF3FD 100%); border-bottom: 1px solid #F0C3CD; padding: 12px 24px; font: 14px/1.5 Poppins, system-ui, sans-serif; color: var(--dj-black); }
+.djp-profile-banner svg { font-size: 22px; color: var(--dj-red); flex: none; }
+.djp-profile-banner span { flex: 1; min-width: 220px; }
+.djp-profile-banner .djp-btn-ai { min-height: 38px; }
+
+/* ---------- reszponzív ---------- */
+@media (max-width: 767px) {
+  header [data-header-actions] > .hidden { display: flex !important; }
+  header [data-header-actions] > .hidden > div { width: 52px; }
+}
+@media (max-width: 1100px) {
+  .djp-stepper { order: 5; width: 100%; justify-content: center; overflow-x: auto; }
+  .djp-b-top-actions { margin-left: auto; }
+}
+@media (max-width: 900px) {
+  .djp-builder { height: auto; min-height: calc(100vh - 76px); overflow: visible; }
+  .djp-b-work { overflow: visible; }
+  .djp-b-split { grid-template-columns: 1fr; height: auto; }
+  .djp-b-left { overflow: visible; border-right: none; }
+  .djp-b-right { min-height: 520px; }
+  .djp-b-canvas { padding: 16px; }
+  .djp-b-job { flex-wrap: wrap; }
+  .djp-b-job [data-meter] { margin-left: 0; width: 100%; }
+  .djp-aisum-match { grid-template-columns: auto auto auto; }
+  .djp-reqs { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .djp-b-top { padding: 10px 12px; gap: 8px; }
+  .djp-b-title { width: 100%; order: 2; }
+  .djp-b-back span { display: none; }
+  .djp-stepper button { font-size: 0; gap: 0; padding: 4px; }
+  .djp-stepper .is-active button { font-size: 12px; gap: 6px; padding-right: 10px; }
+  .djp-b-left-in { padding: 14px 12px; }
+  .djp-grid { grid-template-columns: 1fr; }
+  .djp-skill-row { grid-template-columns: 1fr 110px 34px; }
+  .djp-card { padding: 26px 18px; }
+  .djp-wizard { padding: 20px 16px; }
+  .djp-wiz-foot { flex-wrap: wrap; }
+  .djp-docs-head h1 { font-size: 24px; }
+  .djp-search { width: 100%; }
+  .djp-opt { padding: 12px; gap: 10px; }
+  .djp-opt-ico { width: 38px; height: 38px; font-size: 19px; }
+  .djp-app-side { align-items: flex-start; }
+  .djp-meter-bar { width: 90px; }
+  .djp-demo { left: 10px; bottom: 10px; }
+}
+
+/* ---------- Önéletrajzaim / Motivációs leveleim / Jelentkezéseim: gradiens fejléc ---------- */
+.djp-docs { background: var(--dj-bg); padding: 0 0 70px; }
+.djp-hero { position: relative; overflow: hidden; padding: 38px 0 0; margin-bottom: 26px;
+  background:
+    radial-gradient(ellipse 55% 90% at 100% 0%, rgba(225, 65, 90, .22), rgba(225, 65, 90, 0) 70%),
+    radial-gradient(ellipse 45% 80% at 55% 0%, rgba(30, 100, 225, .14), rgba(30, 100, 225, 0) 70%),
+    radial-gradient(ellipse 50% 90% at 0% 100%, rgba(30, 100, 225, .14), rgba(30, 100, 225, 0) 70%),
+    linear-gradient(180deg, #FFF7F9 0%, #F4F7FD 100%);
+  border-bottom: 1px solid #E3E8F5; }
+.djp-hero-in { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.djp-hero h1 { font-size: 34px; font-weight: 700; margin: 6px 0 6px; background: linear-gradient(90deg, #E1415A, #1E64E1 60%, #1E64E1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.djp-hero p { color: var(--dj-gray-dark); max-width: 600px; font-size: 14px; }
+.djp-hero-kicker { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--dj-red); background: rgba(255, 255, 255, .7); border: 1px solid #F3C4CD; border-radius: 999px; padding: 4px 12px; }
+.djp-subnav { display: flex; gap: 4px; margin-top: 26px; overflow-x: auto; scrollbar-width: none; }
+.djp-subnav a { padding: 12px 16px; font-size: 15px; color: var(--dj-gray-dark); border-bottom: 3px solid transparent; white-space: nowrap; }
+.djp-subnav a:hover { color: var(--dj-black); }
+.djp-subnav a.is-on { color: var(--dj-black); font-weight: 600; border-image: linear-gradient(90deg, #E1415A, #1E64E1) 1; border-bottom-width: 3px; border-bottom-style: solid; }
+.djp-subnav i { font-style: normal; font-size: 11px; background: rgba(255, 255, 255, .8); border-radius: 99px; padding: 1px 8px; margin-left: 4px; color: var(--dj-gray-dark); }
+.djp-docs-body { padding-top: 0; }
+.djp-docs-cta label.djp-btn { cursor: pointer; }
+
+/* profilmenü: kiemelt, gradienses CV-blokk */
+.djp-usermenu-cv { margin: 6px 0; padding: 6px; border-radius: 12px; background: linear-gradient(135deg, #FFF0F3 0%, #EEF3FD 55%, #EAF1FF 100%); border: 1px solid #E3E8F5; }
+.djp-usermenu-label { display: block; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--dj-violet); padding: 4px 8px 2px; }
+.djp-usermenu-cv a:hover { background: rgba(255, 255, 255, .7); }
+.djp-usermenu a em { font-style: normal; margin-left: auto; font-size: 11px; color: var(--dj-gray-dark); background: rgba(255, 255, 255, .85); border-radius: 99px; padding: 0 7px; }
+
+/* CV-generátor: feltöltés / LinkedIn / törlés sáv */
+.djp-import { background: #fff; border: 1px solid var(--dj-line-soft); border-radius: 14px; padding: 12px; margin-bottom: 12px; }
+.djp-import-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.djp-import-btn { display: flex; align-items: center; gap: 10px; text-align: left; padding: 10px 12px; border: 1.5px dashed var(--dj-line); border-radius: 12px; cursor: pointer; background: var(--dj-bg2); transition: border-color .15s, background .15s; }
+.djp-import-btn:hover, .djp-import-btn.is-on { border-color: var(--dj-blue); background: var(--dj-blue-soft); }
+.djp-import-btn > svg { font-size: 26px; color: var(--dj-blue); flex: none; }
+.djp-import-btn .djp-li { color: #0A66C2; }
+.djp-import-btn b { display: block; font-size: 13px; font-weight: 600; }
+.djp-import-btn em { font-style: normal; font-size: 11.5px; color: var(--dj-gray); }
+.djp-import-li { display: flex; gap: 8px; margin-top: 10px; }
+.djp-import-li input { flex: 1; border: 1px solid var(--dj-line); border-radius: 10px; padding: 8px 12px; font-size: 13.5px; }
+.djp-import-li input:focus { outline: none; border-color: #0A66C2; }
+.djp-btn-li { background: #0A66C2; color: #fff; }
+.djp-btn-li:hover { background: #084d93; }
+.djp-import-clear { display: inline-flex; align-items: center; gap: 4px; color: var(--dj-gray-dark); font-size: 12.5px; margin-top: 6px; }
+.djp-import-clear:hover { color: var(--dj-red); }
+.djp-parsed-head .djp-x-sm { margin-left: auto; font-size: 18px; }
+.djp-saved-wrap { display: flex; align-items: center; gap: 4px; }
+.djp-saved-wrap .djp-saved-row { margin-bottom: 6px; }
+.djp-saved-row .djp-saved-rm { margin-left: 6px; }
+
+
+/* ---------- korábbi (klasszikus) sablonok ---------- */
+.cv-foot { position: absolute; right: 36px; bottom: 16px; display: flex; align-items: center; gap: 6px; font-size: 8.5px; color: #9AA0AB; }
+.cv-foot img { height: 11px; width: auto; display: inline-block; }
+.tpl-classic h3, .tpl-modern h3 { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--acc); display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.tpl-classic h3::after, .tpl-modern h3::after { content: ''; flex: 1; height: 1px; background: #E3E6EE; }
+.tpl-classic { display: flex; background: linear-gradient(90deg, #1E2328 0, #1E2328 33%, #fff 33%, #fff 100%); }
+.tpl-classic .cv-side { width: 33%; color: #fff; padding: 40px 24px 40px 26px; }
+.tpl-classic .cv-photo { width: 104px; height: 104px; margin: 0 auto 16px; border: 4px solid var(--acc); }
+.tpl-classic .cv-side .cv-name { font-size: 22px; font-weight: 700; line-height: 1.2; text-align: center; color: #fff; }
+.tpl-classic .cv-side .cv-headline { text-align: center; color: var(--acc); font-size: 12px; font-weight: 500; margin: 6px 0 24px; filter: brightness(1.25); }
+.tpl-classic .cv-side h3 { color: #fff; }
+.tpl-classic .cv-side h3::after { background: var(--acc); height: 2px; flex: 0 0 26px; }
+.tpl-classic .cv-side .cv-bar { background: rgba(255, 255, 255, .16); }
+.tpl-classic .cv-side .cv-skill-detail, .tpl-classic .cv-side .cv-desc, .tpl-classic .cv-side .cv-lang { color: rgba(255, 255, 255, .75); }
+.tpl-classic .cv-side .cv-skill-detail { font-size: 9.5px; }
+.tpl-classic .cv-side .cv-tags span { border-color: #fff; color: #fff; }
+.tpl-classic .cv-details > div { display: flex; flex-direction: column; margin-bottom: 7px; font-size: 10.5px; word-break: break-word; }
+.tpl-classic .cv-details b { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: rgba(255, 255, 255, .5); }
+.tpl-classic .cv-main { width: 67%; padding: 40px 36px 64px 34px; position: relative; }
+.tpl-classic .cv-brand { display: flex; justify-content: flex-end; margin: -14px 0 14px; }
+.tpl-classic .cv-brand .cv-logo { height: 20px; }
+.tpl-modern .cv-head, .tpl-minimal .cv-head { display: flex; align-items: center; gap: 22px; }
+.tpl-modern .cv-head { background: var(--acc); color: #fff; padding: 36px 44px; }
+.tpl-modern .cv-photo { width: 92px; height: 92px; border: 3px solid rgba(255, 255, 255, .6); }
+.tpl-modern .cv-initials { background: rgba(255, 255, 255, .2); }
+.tpl-modern .cv-name { font-size: 28px; font-weight: 700; line-height: 1.15; }
+.tpl-modern .cv-headline { font-size: 13px; opacity: .9; margin-top: 2px; }
+.cv-contacts-inline { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 10.5px; margin-top: 10px; }
+.cv-head-txt { flex: 1; min-width: 0; }
+.cv-brand-img { height: 28px; width: auto; flex: none; align-self: flex-start; }
+.tpl-modern .cv-brand-img { background: #fff; padding: 6px 10px; border-radius: 8px; height: 34px; }
+.tpl-modern .cv-body { padding: 30px 44px 64px; }
+.tpl-modern .cv-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+.tpl-modern .cv-langs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 24px; }
+.tpl-minimal .cv-head { padding: 46px 0 22px; border-bottom: 3px solid var(--acc); margin: 0 52px; }
+.tpl-minimal .cv-name { font-family: "Zilla Slab", Georgia, serif; font-size: 34px; font-weight: 700; line-height: 1.1; }
+.tpl-minimal .cv-headline { color: var(--acc); font-size: 13.5px; font-weight: 500; margin-top: 4px; }
+.tpl-minimal .cv-contacts-inline { color: #50555F; }
+.tpl-minimal .cv-body { padding: 26px 52px 64px; }
+.tpl-minimal .cv-sec { display: grid; grid-template-columns: 140px 1fr; gap: 18px; }
+.tpl-minimal .cv-sec h3 { font-family: "Zilla Slab", Georgia, serif; font-size: 14px; color: #1E2328; }
+.djp-letter .lt-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; padding: 46px 60px 22px; border-bottom: 4px solid var(--acc); }
+.djp-letter .lt-head .cv-name { font-size: 26px; font-weight: 700; line-height: 1.15; }
+.djp-letter .lt-head .cv-headline { color: var(--acc); font-weight: 500; font-size: 12.5px; }
+.djp-letter.tpl-modern .lt-head { background: var(--acc); color: #fff; border-bottom: none; }
+.djp-letter.tpl-modern .lt-head .cv-headline, .djp-letter.tpl-modern .lt-contact { color: #fff; }
+.djp-letter.tpl-minimal .lt-head .cv-name { font-family: "Zilla Slab", Georgia, serif; }
+.lt-contact { font-size: 10.5px; color: #50555F; margin-top: 6px; }
+.djp-letter .lt-head + .lt-body { padding: 34px 60px 80px; }
+
+@media (max-width: 600px) {
+  .djp-import-row { grid-template-columns: 1fr; }
+  .djp-hero h1 { font-size: 26px; }
+  
+}
+
+/* ---------- toast (értesítés) ---------- */
+.djp-toast { position: fixed; bottom: 26px; left: 50%; transform: translate(-50%, 16px); opacity: 0; pointer-events: none; z-index: 2000;
+  display: flex; align-items: center; gap: 12px; max-width: min(520px, calc(100vw - 32px)); background: #fff; color: var(--dj-black);
+  padding: 12px 18px 12px 12px; border-radius: 14px; border: 1px solid var(--dj-line-soft); box-shadow: 0 14px 40px rgba(30, 35, 40, .18);
+  font: 500 14px/1.45 Poppins, system-ui, sans-serif; transition: opacity .2s, transform .2s; }
+.djp-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+.djp-toast-ico { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; flex: none; font-size: 18px; color: var(--dj-blue); background: var(--dj-blue-soft); }
+.djp-toast.is-ok .djp-toast-ico { color: #fff; background: var(--dj-green); }
+.djp-toast::after { content: ''; position: absolute; left: 14px; right: 14px; bottom: -1px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #E1415A, #1E64E1); opacity: .85; }
+
+/* ---------- emlékeztető kártya: Jelentkezés befejezése ---------- */
+.djp-remind { position: fixed; right: 20px; bottom: 20px; z-index: 1400; width: 360px; max-width: calc(100vw - 24px); font: 13px/1.45 Poppins, system-ui, sans-serif; color: var(--dj-black); }
+body[data-djp-page="builder"] .djp-remind { bottom: 66px; }
+.djp-remind-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 18px 50px rgba(30, 35, 40, .24); border: 1px solid var(--dj-line-soft); animation: djpin .25s ease-out; }
+.djp-remind-head { display: flex; align-items: flex-start; gap: 12px; padding: 14px 14px 12px; color: #fff; background: linear-gradient(120deg, #E1415A 0%, #C2357B 50%, #1E64E1 100%); }
+.djp-remind-ico { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: rgba(255, 255, 255, .2); font-size: 20px; flex: none; }
+.djp-remind-head > div { flex: 1; min-width: 0; }
+.djp-remind-head b { display: block; font-size: 14px; font-weight: 600; }
+.djp-remind-head span { font-size: 12px; opacity: .9; }
+.djp-remind-x { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; color: #fff; font-size: 18px; cursor: pointer; flex: none; }
+.djp-remind-x:hover { background: rgba(255, 255, 255, .18); }
+.djp-remind-job { display: flex; align-items: center; gap: 10px; margin: 12px 14px 0; padding: 10px; border-radius: 12px; background: var(--dj-bg); }
+.djp-remind-job img { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; flex: none; }
+.djp-remind-job b { display: block; font-size: 13px; font-weight: 600; line-height: 1.3; }
+.djp-remind-job span { font-size: 11.5px; color: var(--dj-gray-dark); }
+.djp-remind-steps { list-style: none; display: flex; align-items: center; gap: 6px; padding: 0; margin: 12px 14px; font-size: 11.5px; color: var(--dj-gray); }
+.djp-remind-steps li { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.djp-remind-steps li + li::before { content: ''; width: 12px; height: 1px; background: var(--dj-line); margin-right: 1px; }
+.djp-remind-steps span { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--dj-line); font-size: 10.5px; font-weight: 600; }
+.djp-remind-steps .is-done { color: var(--dj-black); }
+.djp-remind-steps .is-done span { background: var(--dj-green); border-color: var(--dj-green); color: #fff; font-size: 12px; }
+.djp-remind-steps .is-now { color: var(--dj-red); font-weight: 600; }
+.djp-remind-steps .is-now span { border-color: var(--dj-red); color: var(--dj-red); }
+.djp-remind-cta { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 14px 14px; min-height: 46px; border-radius: 12px; font-size: 14px; font-weight: 600; color: #fff; background: var(--dj-red); cursor: pointer; transition: background .15s, transform .15s; }
+.djp-remind-cta:hover { background: var(--dj-red-dark); transform: translateY(-1px); }
+.djp-remind-cta:disabled { opacity: .45; pointer-events: none; }
+.djp-remind-cta svg { font-size: 17px; }
+.djp-remind-note { margin: -8px 14px 12px; font-size: 11.5px; color: var(--dj-gray); text-align: center; }
+.djp-remind-pill { display: none; margin-left: auto; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; color: #fff; background: linear-gradient(120deg, #E1415A 0%, #C2357B 50%, #1E64E1 100%); box-shadow: 0 10px 28px rgba(225, 65, 90, .35); cursor: pointer; font-size: 13px; }
+.djp-remind-pill b { font-weight: 600; }
+.djp-remind-pill span { font-size: 11px; background: rgba(255, 255, 255, .22); border-radius: 99px; padding: 1px 7px; }
+.djp-remind-pill svg { font-size: 17px; }
+.djp-remind.is-min { width: auto; }
+.djp-remind.is-min .djp-remind-card { display: none; }
+.djp-remind.is-min .djp-remind-pill { display: inline-flex; }
+
+/* felső sáv: befejezetlen jelentkezés */
+.djp-pending { background: linear-gradient(90deg, #FDECEF 0%, #FFF5F7 45%, #EEF3FD 100%); border-bottom: 1px solid #F3C4CD; font: 13.5px/1.4 Poppins, system-ui, sans-serif; color: var(--dj-black); }
+.djp-pending-in { width: 100%; max-width: 1400px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+@media (min-width: 1160px) and (max-width: 1519px) { .djp-pending-in { max-width: calc(100% - 80px); padding: 10px 16px; } }
+.djp-pending-ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; color: #fff; background: var(--dj-red); font-size: 17px; flex: none; }
+.djp-pending-txt { flex: 1; min-width: 200px; }
+.djp-pending-txt b { color: var(--dj-red-dark); font-weight: 600; }
+.djp-pending-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 600; color: #fff; background: var(--dj-red); }
+.djp-pending-btn:hover { background: var(--dj-red-dark); }
+
+/* ---------- CV-generátor: a fejléc szélességéhez igazítva + finom gradiens fejléc ---------- */
+.djp-builder { --side: 12px; }
+@media (min-width: 1160px) { .djp-builder { --side: 40px; } }
+@media (min-width: 1520px) { .djp-builder { --side: calc((100% - 1400px) / 2); } }
+.djp-b-top, .djp-b-job { padding-left: calc(var(--side) + 16px); padding-right: calc(var(--side) + 16px); }
+.djp-b-work { padding: 0 var(--side); }
+.djp-b-split { border-left: 1px solid var(--dj-line-soft); border-right: 1px solid var(--dj-line-soft); background: #fff; }
+.djp-b-top { background: linear-gradient(90deg, #FFF3F5 0%, #FFFFFF 38%, #FFFFFF 62%, #EEF3FD 100%); }
+.djp-b-job { background: linear-gradient(90deg, #FFFAFB 0%, #FFFFFF 40%, #F6F9FE 100%); }
+.djp-stepper .is-active button { background: linear-gradient(90deg, #FDE3E8, #FCEEF2); box-shadow: inset 0 0 0 1px #F5C2CC; }
+.djp-stepper .is-active span { background: linear-gradient(135deg, #E1415A, #C2357B); border-color: transparent; }
+.djp-btn-finish { background: var(--dj-red); color: #fff; box-shadow: 0 6px 18px rgba(225, 65, 90, .3); }
+.djp-btn-finish:hover { background: var(--dj-red-dark); }
+.djp-btn-finish svg { font-size: 16px; }
+@media (max-width: 900px) {
+  .djp-builder { --side: 0px; }
+  .djp-b-split { border: none; }
+}
+@media (max-width: 600px) {
+  .djp-remind { right: 12px; left: 12px; width: auto; bottom: 70px; }
+  .djp-remind.is-min { left: auto; }
+  .djp-btn-finish { order: 3; width: 100%; }
+}
+
+/* Önéletrajzaim / Motivációs leveleim fejléc – DreamJobs színek */
+.djp-hero { background:
+    radial-gradient(ellipse 55% 95% at 100% 0%, rgba(225, 65, 90, .18), rgba(225, 65, 90, 0) 70%),
+    radial-gradient(ellipse 55% 95% at 0% 100%, rgba(30, 100, 225, .13), rgba(30, 100, 225, 0) 70%),
+    linear-gradient(180deg, #FFF8F9 0%, #F4F7FD 100%);
+  border-bottom: 1px solid #E3E8F5; }
+.djp-hero h1 { background: linear-gradient(90deg, #E1415A 0%, #C2357B 45%, #1E64E1 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.djp-hero-kicker { color: var(--dj-red); border-color: #F3C4CD; }
+.djp-subnav a.is-on { border-image: linear-gradient(90deg, #E1415A, #1E64E1) 1; }
+.djp-usermenu-cv { background: linear-gradient(135deg, #FFF0F3 0%, #FFF7F9 45%, #EEF3FD 100%); border-color: #F0D9E0; }
+.djp-usermenu-label { color: var(--dj-red); }
+.djp-remind-cta { width: calc(100% - 28px); }
+.djp-b-toolbar { gap: 8px 12px; padding: 8px 14px; }
+.djp-b-toolbar select { padding: 4px 6px; font-size: 12px; max-width: 150px; }
+.djp-swatches { gap: 5px; }
+.djp-swatches button { width: 18px; height: 18px; }
+
+/* ---------- DreamJobs-stílusú gradiensek (felülírja a korábbi többszínű átmeneteket) ---------- */
+.djp-btn-ai { box-shadow: 0 4px 14px rgba(225, 65, 90, .22); }
+.djp-card-ico { box-shadow: 0 10px 24px rgba(225, 65, 90, .22); }
+.djp-aisum { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-color: #F6D3DA; }
+.djp-profile-banner { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-bottom-color: #F6D3DA; }
+.djp-profile-banner .djp-btn-ai { box-shadow: none; }
+.djp-hero { background:
+    radial-gradient(ellipse 45% 90% at 100% 0%, rgba(225, 65, 90, .07), rgba(225, 65, 90, 0) 70%),
+    linear-gradient(180deg, #FFFFFF 0%, #F4F7FD 100%);
+  border-bottom: 1px solid var(--dj-line-soft); }
+.djp-hero h1 { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--dj-black); }
+.djp-hero-kicker { background: var(--dj-red-soft); border-color: #F6D3DA; }
+.djp-subnav a.is-on { border-image: none; border-bottom: 3px solid var(--dj-red); }
+.djp-subnav i { background: #fff; border: 1px solid var(--dj-line-soft); }
+.djp-usermenu-cv { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-color: #F6D3DA; }
+.djp-toast::after { background: var(--dj-red); opacity: 1; }
+.djp-remind-head { background: linear-gradient(135deg, #E1415A 0%, #EC6274 100%); }
+.djp-remind-pill { background: linear-gradient(135deg, #E1415A 0%, #EC6274 100%); box-shadow: 0 10px 28px rgba(225, 65, 90, .32); }
+.djp-pending { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-bottom-color: #F6D3DA; }
+.djp-b-top { background: linear-gradient(180deg, #FFFFFF 0%, #FFF6F8 100%); }
+.djp-b-job { background: #fff; }
+.djp-stepper .is-active button { background: var(--dj-red-soft); box-shadow: none; }
+.djp-stepper .is-active span { background: var(--dj-red); border-color: var(--dj-red); }
+
+
+/* ---------- CV-generátor: alsó sávok egyforma magasak ---------- */
+.djp-b-next, .djp-b-toolbar { height: 68px; box-sizing: border-box; padding-top: 0; padding-bottom: 0; align-items: center; }
+.djp-b-toolbar { flex-wrap: nowrap; gap: 8px; padding: 0 14px; position: relative; overflow: visible; }
+
+/* ---------- egyedi legördülők ---------- */
+.djp-dd { position: relative; min-width: 0; flex: 0 1 auto; }
+.djp-dd.is-wide { flex: 1 1 190px; max-width: 240px; }
+.djp-dd-btn { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; min-width: 0; height: 46px; padding: 4px 32px 4px 12px; border: 1px solid var(--dj-line); border-radius: 12px; background: #fff; text-align: left; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.djp-dd-btn:hover { border-color: var(--dj-gray); }
+.djp-dd.is-open .djp-dd-btn { border-color: var(--dj-red); box-shadow: 0 0 0 3px rgba(225, 65, 90, .12); }
+.djp-dd-lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--dj-gray); line-height: 1.2; }
+.djp-dd-val { display: flex; align-items: center; gap: 6px; max-width: 100%; font-size: 13px; font-weight: 500; color: var(--dj-black); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-dd-chev { position: absolute; right: 9px; top: 50%; font-size: 18px; color: var(--dj-gray); transform: translateY(-50%) rotate(180deg); transition: transform .2s; }
+.djp-dd.is-open .djp-dd-chev { transform: translateY(-50%) rotate(0deg); color: var(--dj-red); }
+.djp-dd-dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55), 0 0 0 1px var(--dj-line); }
+.djp-dd-pop { position: absolute; left: 0; bottom: calc(100% + 10px); z-index: 60; min-width: 250px; max-height: min(70vh, 540px); overflow: auto; padding: 10px; background: #fff; border: 1px solid var(--dj-line-soft); border-radius: 16px; box-shadow: 0 18px 48px rgba(30, 35, 40, .2); animation: djpin .15s ease-out; }
+.djp-dd.is-right .djp-dd-pop { left: auto; right: 0; }
+.djp-dd-pop-tpl { width: 540px; max-width: calc(100vw - 40px); }
+.djp-dd-title { padding: 6px 6px 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--dj-gray); }
+.djp-dd-list { display: flex; flex-direction: column; gap: 2px; }
+.djp-dd-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border-radius: 10px; text-align: left; font-size: 14px; color: var(--dj-black); cursor: pointer; }
+.djp-dd-item:hover { background: var(--dj-bg); }
+.djp-dd-item.is-on { background: var(--dj-red-soft); }
+.djp-dd-item b { display: block; font-size: 13.5px; font-weight: 600; }
+.djp-dd-item small { display: block; font-size: 11.5px; color: var(--dj-gray); }
+.djp-dd-item em { margin-left: auto; font-style: normal; font-size: 13px; color: var(--dj-gray); }
+.djp-dd-check { margin-left: auto; flex: none; font-size: 18px; color: var(--dj-red); }
+.djp-dd-item em + .djp-dd-check { margin-left: 8px; }
+.djp-dd-item .djp-ai-badge { margin-left: auto; }
+.djp-flag { font-size: 20px; line-height: 1; }
+.djp-space-ico { display: flex; flex-direction: column; justify-content: center; gap: 3px; width: 30px; height: 30px; padding: 6px; border-radius: 8px; background: var(--dj-bg); flex: none; }
+.djp-space-ico i { display: block; height: 2px; border-radius: 2px; background: var(--dj-gray-dark); }
+.djp-space-ico.is-compact { gap: 2px; }
+.djp-space-ico.is-airy { gap: 5px; }
+.djp-dd-swatches { display: grid; grid-template-columns: repeat(6, 30px); gap: 8px; padding: 4px 6px 12px; }
+.djp-dd-swatches button { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #fff; font-size: 16px; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5); }
+.djp-dd-swatches button.is-on { outline: 2px solid var(--dj-black); outline-offset: 2px; }
+.djp-dd-custom { display: flex; align-items: center; gap: 10px; padding: 10px 8px 4px; border-top: 1px solid var(--dj-line-soft); font-size: 13px; cursor: pointer; }
+.djp-dd-custom input { width: 30px; height: 30px; padding: 0; border: none; border-radius: 50%; background: none; cursor: pointer; }
+.djp-dd-action { display: flex; align-items: center; gap: 6px; width: 100%; margin-top: 8px; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 500; color: var(--dj-red-dark); background: var(--dj-red-soft); cursor: pointer; }
+.djp-dd-action:hover { background: #FBDCE2; }
+.djp-dd-note { padding: 8px 6px 2px; font-size: 11.5px; color: var(--dj-gray); }
+.djp-tpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 4px 12px; }
+.djp-tpl-card { display: flex; flex-direction: column; gap: 6px; padding: 6px; border: 1.5px solid var(--dj-line-soft); border-radius: 12px; background: #fff; text-align: left; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+.djp-tpl-card:hover { border-color: var(--dj-gray); }
+.djp-tpl-card.is-on { border-color: var(--dj-red); box-shadow: 0 0 0 3px rgba(225, 65, 90, .12); }
+.djp-tpl-thumb { position: relative; display: block; width: 100%; aspect-ratio: 794 / 920; overflow: hidden; border-radius: 8px; border: 1px solid var(--dj-line-soft); background: #fff; }
+.djp-tpl-thumb-in { position: absolute; top: 0; left: 0; width: 794px; transform-origin: 0 0; transform: scale(.19); pointer-events: none; }
+.djp-tpl-name { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; line-height: 1.3; }
+.djp-tpl-name .djp-dd-check { margin: 0; font-size: 15px; }
+
+/* ---------- kattintható előnézet: kijelölt rész szaggatott kerettel ---------- */
+.djp-sheet.is-preview [data-edit] { cursor: pointer; }
+.djp-sheet .cv-hover { outline: 1px dashed rgba(30, 100, 225, .6); outline-offset: 3px; border-radius: 3px; }
+.djp-sheet .cv-selected { outline: 2px dashed #1E64E1 !important; outline-offset: 4px; border-radius: 4px; background-color: rgba(30, 100, 225, .04); }
+@keyframes djpflashbox { 0% { box-shadow: 0 0 0 0 rgba(30, 100, 225, .45); } 100% { box-shadow: 0 0 0 12px rgba(30, 100, 225, 0); } }
+.is-flash { animation: djpflashbox 1.3s ease-out; border-radius: 12px; }
+
+/* ---------- Gradiens sablon: a háttér a választott színből ---------- */
+.tpl-gradient { background:
+  radial-gradient(ellipse 65% 42% at 100% 0%, rgba(var(--acc-rgb), .2), rgba(var(--acc-rgb), 0) 70%),
+  radial-gradient(ellipse 55% 38% at 45% 0%, rgba(var(--acc-rgb), .11), rgba(var(--acc-rgb), 0) 70%),
+  linear-gradient(180deg, rgba(var(--acc-rgb), .06) 0%, #FFFFFF 48%); }
+
+.djp-badge.is-lang { background: var(--dj-blue-soft); color: var(--dj-blue); }
+.djp-flagsvg { width: 20px; height: 14px; border-radius: 3px; flex: none; box-shadow: 0 0 0 1px rgba(30, 35, 40, .12); display: inline-block; vertical-align: middle; }
+.djp-flag { display: inline-flex; }
+
+/* ---------- alsó sávok: a bal oldali sáv se nyomódjon össze ---------- */
+.djp-b-next { flex: none; }
+
+/* ---------- nyíl a „Jelentkezés befejezése” után ---------- */
+.djp-btn-finish svg, .djp-remind-cta svg, .djp-pending-btn svg { font-size: 18px; transition: transform .15s; }
+.djp-btn-finish:hover svg, .djp-remind-cta:hover svg, .djp-pending-btn:hover svg { transform: translateX(3px); }
+
+/* ---------- DreamJobs kék (#1E64E1) a dizájnban – kevesebb piros ---------- */
+:root { --dj-ai: linear-gradient(135deg, #1E64E1 0%, #4A86F0 100%); }
+.djp-btn-ai { box-shadow: 0 4px 14px rgba(30, 100, 225, .22); }
+.djp-card-ico, .djp-letter-intro .djp-card-ico { background: var(--dj-ai); box-shadow: 0 10px 24px rgba(30, 100, 225, .22); }
+.djp-stat, .djp-stat.is-big { background: #F2F6FE; border-color: #CFDDF7; }
+.djp-stat svg { color: var(--dj-blue); }
+.djp-aisum { background: linear-gradient(180deg, #F2F6FE 0%, #FFFFFF 100%); border-color: #D5E1F8; }
+.djp-aisum-head > svg, .djp-wiz-head > svg { color: var(--dj-blue); }
+.djp-acc.is-ai { border-color: #C9D8F5; box-shadow: 0 0 0 3px rgba(30, 100, 225, .07); }
+.djp-ai-flag { background: var(--dj-blue-soft); color: var(--dj-blue-dark); }
+.djp-b-top { background: linear-gradient(180deg, #FFFFFF 0%, #F4F7FD 100%); }
+.djp-stepper .is-active button { background: var(--dj-blue-soft); color: var(--dj-blue); }
+.djp-stepper .is-active span { background: var(--dj-blue); border-color: var(--dj-blue); }
+.djp-stepper .is-done span { background: var(--dj-green); border-color: var(--dj-green); }
+.djp-dd.is-open .djp-dd-btn { border-color: var(--dj-blue); box-shadow: 0 0 0 3px rgba(30, 100, 225, .12); }
+.djp-dd.is-open .djp-dd-chev, .djp-dd-check, .djp-tpl-name .djp-dd-check { color: var(--dj-blue); }
+.djp-dd-item.is-on { background: var(--dj-blue-soft); }
+.djp-tpl-card.is-on { border-color: var(--dj-blue); box-shadow: 0 0 0 3px rgba(30, 100, 225, .12); }
+.djp-dd-action { background: var(--dj-blue-soft); color: var(--dj-blue-dark); }
+.djp-dd-action:hover { background: #E1EAFC; }
+.djp-remind-head { background: linear-gradient(135deg, #1E64E1 0%, #3D7CEB 100%); }
+.djp-remind-steps .is-now { color: var(--dj-blue); }
+.djp-remind-steps .is-now span { border-color: var(--dj-blue); color: var(--dj-blue); }
+.djp-remind-card { border-color: #D5E1F8; }
+.djp-remind-pill { background: linear-gradient(135deg, #1E64E1 0%, #3D7CEB 100%); box-shadow: 0 10px 28px rgba(30, 100, 225, .32); }
+.djp-pending { background: linear-gradient(180deg, #EEF3FD 0%, #FFFFFF 100%); border-bottom-color: #D5E1F8; }
+.djp-pending-ico { background: var(--dj-blue); }
+.djp-pending-txt b { color: var(--dj-blue-dark); }
+.djp-hero { background:
+    radial-gradient(ellipse 45% 90% at 100% 0%, rgba(30, 100, 225, .09), rgba(30, 100, 225, 0) 70%),
+    linear-gradient(180deg, #FFFFFF 0%, #F4F7FD 100%); }
+.djp-hero-kicker { color: var(--dj-blue); background: var(--dj-blue-soft); border-color: #D5E1F8; }
+.djp-subnav a.is-on { border-bottom-color: var(--dj-blue); }
+.djp-usermenu-cv { background: linear-gradient(180deg, #EEF3FD 0%, #FFFFFF 100%); border-color: #D5E1F8; }
+.djp-usermenu-label { color: var(--dj-blue); }
+.djp-profile-banner { background: linear-gradient(180deg, #EEF3FD 0%, #FFFFFF 100%); border-bottom-color: #D5E1F8; }
+.djp-profile-banner > svg { color: var(--dj-blue); }
+.djp-toast::after { background: var(--dj-blue); }
+
+/* emlékeztető kártya: egysoros cím, nagy háttér-óra, teljes szélességű leírás, kék gomb */
+.djp-remind { width: 384px; }
+.djp-remind-head { position: relative; display: block; overflow: hidden; padding: 14px 14px 14px 18px; }
+.djp-remind-bgico { position: absolute; right: -18px; top: -22px; font-size: 118px; line-height: 0; color: #fff; opacity: .14; pointer-events: none; }
+.djp-remind-headrow { position: relative; display: flex; align-items: center; gap: 8px; }
+.djp-remind-headrow b { flex: 1; min-width: 0; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-remind-desc { position: relative; margin: 4px 0 0; font-size: 12.5px; line-height: 1.45; color: rgba(255, 255, 255, .92); }
+.djp-remind-cta { background: var(--dj-blue); box-shadow: 0 6px 16px rgba(30, 100, 225, .25); }
+.djp-remind-cta:hover { background: var(--dj-blue-dark); }
+.djp-remind-cta:disabled { opacity: 1; background: #C9D8F5; color: #fff; box-shadow: none; }
+
+/* ---------- végleges színszabály: a gombok mindenhol pirosak, a folyamatjelzők kékek ---------- */
+:root { --dj-ai: linear-gradient(135deg, #E1415A 0%, #EC6274 100%); }
+.djp-btn-ai { box-shadow: 0 4px 14px rgba(225, 65, 90, .22); }
+.djp-dd-action { background: var(--dj-red-soft); color: var(--dj-red-dark); }
+.djp-dd-action:hover { background: #FBDCE2; }
+/* nem gomb jellegű AI-elemek kéken maradnak */
+.djp-ai-badge { background: linear-gradient(135deg, #1E64E1 0%, #4A86F0 100%); }
+.djp-card-ico, .djp-letter-intro .djp-card-ico { background: linear-gradient(135deg, #1E64E1 0%, #4A86F0 100%); box-shadow: 0 10px 24px rgba(30, 100, 225, .22); }
+.djp-wiz-prog i { background: linear-gradient(90deg, #1E64E1 0%, #4A86F0 100%); }
+/* emlékeztető: piros fejléc és gombok, kék lépésjelző */
+.djp-remind-head { background: linear-gradient(135deg, #E1415A 0%, #EC6274 100%); }
+.djp-remind-card { border-color: #F6D3DA; }
+.djp-remind-cta { background: var(--dj-red); box-shadow: 0 6px 16px rgba(225, 65, 90, .25); }
+.djp-remind-cta:hover { background: var(--dj-red-dark); }
+.djp-remind-cta:disabled { background: #F3B9C3; }
+.djp-remind-pill { background: linear-gradient(135deg, #E1415A 0%, #EC6274 100%); box-shadow: 0 10px 28px rgba(225, 65, 90, .32); }
+
+/* CV / levél letöltése gomb: kék háttér, hover állapottal */
+.djp-b-top [data-act="download"] { background: var(--dj-blue); border-color: var(--dj-blue); color: #fff; box-shadow: 0 4px 14px rgba(30, 100, 225, .22); transition: background .15s, box-shadow .15s, transform .15s; }
+.djp-b-top [data-act="download"]:hover { background: var(--dj-blue-dark); border-color: var(--dj-blue-dark); color: #fff; box-shadow: 0 8px 20px rgba(30, 100, 225, .3); transform: translateY(-1px); }
+.djp-b-top [data-act="download"]:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(30, 100, 225, .25); }
+.djp-b-top [data-act="download"]:hover svg { animation: djpdl .6s ease-in-out; }
+@keyframes djpdl { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2px); } }
+
+/* „Következő lépés” felirat a gomb előtt */
+.djp-b-next { gap: 12px; }
+.djp-next-lbl { font-size: 13px; font-weight: 500; color: var(--dj-gray-dark); white-space: nowrap; }
+.djp-next-back { margin-right: auto; }
+@media (max-width: 600px) { .djp-next-lbl { display: none; } }
+
+/* ---------- háttér-átmenetek: vissza a halvány DreamJobs-piros árnyalatra ---------- */
+.djp-b-top { background: linear-gradient(180deg, #FFFFFF 0%, #FFF6F8 100%); }
+.djp-hero { background:
+    radial-gradient(ellipse 45% 90% at 100% 0%, rgba(225, 65, 90, .07), rgba(225, 65, 90, 0) 70%),
+    linear-gradient(180deg, #FFFFFF 0%, #F4F7FD 100%); }
+.djp-hero-kicker { color: var(--dj-red); background: var(--dj-red-soft); border-color: #F6D3DA; }
+.djp-pending { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-bottom-color: #F6D3DA; }
+.djp-usermenu-cv { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-color: #F6D3DA; }
+.djp-usermenu-label { color: var(--dj-red); }
+.djp-profile-banner { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-bottom-color: #F6D3DA; }
+.djp-aisum { background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 100%); border-color: #F6D3DA; }
+
+/* állás sor: illeszkedés + Jelentkezés befejezése egy sorban */
+.djp-b-job { gap: 16px; }
+.djp-b-job .djp-btn-finish { flex: none; }
+.djp-b-top-actions:empty { display: none; }
+@media (max-width: 900px) { .djp-b-job .djp-btn-finish { width: 100%; } }
+
+/* ---------- felső sáv: lépésjelző mindig középen, alatta az illeszkedés ugyanakkora szélességben ---------- */
+.djp-b-top { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
+.djp-b-top-l { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.djp-b-top-l .djp-b-title { width: 100%; max-width: 300px; }
+.djp-b-top-c { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+.djp-b-top-c .djp-stepper { margin: 0; justify-content: center; width: auto; order: 0; }
+.djp-b-top-actions { justify-self: end; }
+.djp-b-meter { display: flex; }
+.djp-b-meter .djp-meter { width: 100%; gap: 8px; font-size: 11.5px; }
+.djp-b-meter .djp-meter-bar { flex: 1; width: auto; height: 6px; }
+.djp-b-meter .djp-meter b { font-size: 13px; min-width: 34px; text-align: right; }
+.djp-b-job .djp-btn-finish { margin-left: auto; }
+@media (max-width: 1100px) {
+  .djp-b-top { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l a" "c c"; }
+  .djp-b-top-l { grid-area: l; }
+  .djp-b-top-actions { grid-area: a; }
+  .djp-b-top-c { grid-area: c; justify-self: center; }
+}
+
+/* ---------- állás sor: info | illeszkedés (a lépésjelző alatt, azonos szélességben) | befejezés ---------- */
+.djp-b-top { grid-template-columns: minmax(0, 1fr) var(--stepw, auto) minmax(0, 1fr); }
+.djp-b-top-c { align-items: center; }
+.djp-b-job { display: grid; grid-template-columns: minmax(0, 1fr) var(--stepw, 520px) minmax(0, 1fr); align-items: center; gap: 16px; }
+.djp-b-job-info { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.djp-b-job-info > div { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
+.djp-b-job-info b { font-size: 14px; font-weight: 600; }
+.djp-b-job [data-meter] { margin-left: 0; width: 100%; }
+.djp-b-job .djp-btn-finish { justify-self: end; margin-left: 0; }
+@media (max-width: 1100px) {
+  .djp-b-top { grid-template-columns: minmax(0, 1fr) auto; }
+  .djp-b-job { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "i f" "m m"; }
+  .djp-b-job-info { grid-area: i; }
+  .djp-b-job [data-meter] { grid-area: m; }
+  .djp-b-job .djp-btn-finish { grid-area: f; width: auto; }
+}
+/* a felső sáv középső oszlopa a lépésjelző természetes szélessége; ezt méri le a JS az állás sorához */
+.djp-b-top { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+.djp-b-top .djp-stepper { width: max-content; }
+.djp-b-job > .djp-b-job-info { flex-direction: row; }
+/* állás sor – a régi „első div oszlopos” szabály felülírása, kompakt sor */
+.djp-b-job > div.djp-b-job-info { display: flex; flex-direction: row; align-items: center; gap: 12px; line-height: normal; }
+.djp-b-job-info img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; flex: none; }
+.djp-b-job-info > div { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
+.djp-b-job-info b, .djp-b-job-info span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-b-job { padding-top: 10px; padding-bottom: 10px; }
+.djp-b-job .djp-meter { font-size: 12px; }
+.djp-b-job .djp-meter-bar { flex: 1; width: auto; }
+
+/* kisebb gombok az alsó „Következő lépés” sávban */
+.djp-b-next .djp-btn { min-height: 38px; padding: 0 14px; font-size: 13px; border-radius: 9px; gap: 6px; }
+.djp-b-next .djp-btn svg { font-size: 15px; }
+.djp-next-lbl { font-size: 12.5px; }
+
+/* kék linkek aláhúzás nélkül */
+.djp-link, .djp-import-clear, .djp-muted a, .djp-auth a { text-decoration: none; }
+.djp-link:hover, .djp-import-clear:hover { text-decoration: none; color: var(--dj-blue-dark); }
+
+/* AI-összefoglaló kártya: halványkék átmenet */
+.djp-aisum { background: linear-gradient(180deg, #EEF3FD 0%, #FFFFFF 100%); border-color: #D5E1F8; }
+
+/* ---------- 3. lépés: egy képernyőn, görgetés nélkül ---------- */
+.djp-summary { height: 100%; display: flex; flex-direction: column; box-sizing: border-box; padding: 18px 24px 16px; max-width: 1180px; }
+.djp-summary h2 { font-size: 22px; line-height: 1.25; }
+.djp-summary > p { margin: 4px 0 0; font-size: 13px; }
+.djp-sum-grid { flex: 1; min-height: 0; margin: 14px 0; display: grid; grid-template-columns: 1fr 1fr .85fr; gap: 16px; }
+.djp-sum-card { min-height: 0; padding: 14px; gap: 6px; }
+.djp-sum-card .djp-thumb { flex: 1 1 auto; min-height: 120px; aspect-ratio: auto; height: auto; }
+.djp-sum-card b { font-size: 14px; }
+.djp-sum-card .djp-link { padding: 2px 0; }
+.djp-sum-job img { width: 56px; height: 56px; }
+.djp-sum-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.djp-sum-foot .djp-consent { margin: 0; font-size: 13.5px; flex: 1; min-width: 260px; }
+.djp-sum-foot .djp-sum-actions { flex: none; }
+@media (max-width: 900px) {
+  .djp-summary { height: auto; }
+  .djp-sum-grid { grid-template-columns: 1fr; }
+  .djp-sum-card .djp-thumb { height: 260px; flex: none; }
+}
+
+/* mentett CV sor: a kuka jobbra igazítva, a címmel egy sorban */
+.djp-saved-row { align-items: flex-start; }
+.djp-saved-row .djp-saved-ico { margin-top: 2px; }
+.djp-saved-row > span { flex: 1; min-width: 0; }
+.djp-saved-row > span b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-saved-row .djp-saved-rm { margin-left: auto; align-self: flex-start; width: 26px; height: 26px; margin-top: -2px; font-size: 17px; color: var(--dj-gray); border-radius: 7px; }
+.djp-saved-row .djp-saved-rm:hover { color: var(--dj-red); background: var(--dj-red-soft); }
+
+/* önéletrajz blokk kapcsolóval (mint a LinkedIn sor) */
+.djp-cvblock-head { flex-direction: row; align-items: center; gap: 12px; }
+.djp-cvblock-head > div { display: flex; flex-direction: column; gap: 2px; }
+.djp-cvblock.is-off { padding-top: 16px; padding-bottom: 16px; }
+@media (min-width: 768px) { .djp-cvblock.is-off { padding-top: 22px; padding-bottom: 22px; } }
+
+/* lépés-címkék számai kékkel */
+.djp-steps li::before { background: var(--dj-blue); }
+
+/* „Önéletrajz letöltése” és „Jelentkezés befejezése” azonos szélességben */
+.djp-b-top [data-act="download"], .djp-b-job .djp-btn-finish { min-width: 236px; justify-content: center; }
+
+/* letöltés az előnézet eszközsorában: másodlagos, keretes gomb a jobb szélen */
+.djp-tb-dl { flex: none; margin-left: auto; display: inline-flex; align-items: center; gap: 6px; height: 46px; padding: 0 16px; border: 1.5px solid var(--dj-blue); border-radius: 12px; background: #fff; color: var(--dj-blue); font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background .15s, color .15s, box-shadow .15s; }
+.djp-tb-dl svg { font-size: 18px; }
+.djp-tb-dl:hover { background: var(--dj-blue); color: #fff; box-shadow: 0 6px 16px rgba(30, 100, 225, .25); }
+.djp-tb-dl:hover svg { animation: djpdl .6s ease-in-out; }
+
+/* ---------- előnézet eszközsora – áttervezve ---------- */
+.djp-b-toolbar { gap: 10px; padding: 0 14px; background: #fff; }
+.djp-tb-group { display: flex; align-items: center; gap: 4px; flex: 1 1 auto; min-width: 0; padding: 4px; background: var(--dj-bg); border: 1px solid var(--dj-line-soft); border-radius: 14px; }
+.djp-tb-group .djp-dd { flex: 1 1 auto; min-width: 0; max-width: 170px; }
+.djp-tb-group .djp-dd.is-wide { max-width: 210px; }
+.djp-tb-group .djp-dd + .djp-dd::before { content: ''; position: absolute; left: -3px; top: 11px; bottom: 11px; width: 1px; background: var(--dj-line); }
+.djp-tb-group .djp-dd.is-open::before, .djp-tb-group .djp-dd.is-open + .djp-dd::before, .djp-tb-group .djp-dd:hover::before, .djp-tb-group .djp-dd:hover + .djp-dd::before { opacity: 0; }
+.djp-dd-btn { flex-direction: row; align-items: center; justify-content: flex-start; gap: 9px; height: 44px; padding: 0 26px 0 9px; border: none; border-radius: 10px; background: transparent; box-shadow: none; }
+.djp-dd-btn:hover { background: #fff; border: none; box-shadow: 0 1px 4px rgba(30, 35, 40, .08); }
+.djp-dd.is-open .djp-dd-btn { background: #fff; border: none; box-shadow: 0 0 0 1.5px var(--dj-blue), 0 4px 12px rgba(30, 100, 225, .12); }
+.djp-dd-ico { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 8px; background: #fff; color: var(--dj-blue); font-size: 16px; box-shadow: 0 0 0 1px var(--dj-line-soft); }
+.djp-dd-btn:hover .djp-dd-ico, .djp-dd.is-open .djp-dd-ico { background: var(--dj-blue-soft); box-shadow: none; }
+.djp-dd-ico .djp-dd-dot { width: 16px; height: 16px; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5); }
+.djp-dd-ico .djp-flagsvg { width: 18px; height: 13px; }
+.djp-dd-aa { font-size: 13px; font-weight: 700; color: var(--dj-blue); line-height: 1; }
+.djp-dd-txt { display: flex; flex-direction: column; min-width: 0; text-align: left; }
+.djp-dd-lbl { font-size: 10px; letter-spacing: .04em; color: var(--dj-gray); }
+.djp-dd-val { font-size: 13px; font-weight: 600; }
+.djp-dd-chev { right: 7px; font-size: 15px; }
+.djp-tb-dl { height: 46px; padding: 0 18px; border: none; border-radius: 12px; background: var(--dj-blue); color: #fff; box-shadow: 0 4px 14px rgba(30, 100, 225, .25); }
+.djp-tb-dl:hover { background: var(--dj-blue-dark); color: #fff; box-shadow: 0 8px 20px rgba(30, 100, 225, .32); transform: translateY(-1px); }
+@media (max-width: 1250px) {
+  .djp-tb-group .djp-dd .djp-dd-lbl { display: none; }
+  .djp-tb-dl span { display: none; }
+  .djp-tb-dl { padding: 0 14px; }
+}
+/* az eszközsor tartalma ne szélesítse a jobb oszlopot */
+.djp-b-split { grid-template-columns: minmax(380px, 46%) minmax(0, 1fr); }
+.djp-b-right, .djp-b-toolbar { min-width: 0; }
+/* kompakt eszközsor: tartalomszélességű választók, címkék csak széles képernyőn */
+.djp-tb-group { flex: 0 1 auto; }
+.djp-tb-group .djp-dd, .djp-tb-group .djp-dd.is-wide { flex: 0 1 auto; max-width: none; }
+.djp-dd-val { max-width: 120px; }
+.djp-dd.is-compact .djp-dd-txt { display: none; }
+.djp-dd.is-compact .djp-dd-btn { gap: 0; }
+.djp-dd-lbl { display: none; }
+@media (min-width: 1700px) { .djp-dd-lbl { display: block; } }
+@media (max-width: 1250px) { .djp-tb-dl span { display: inline; } .djp-tb-dl { padding: 0 16px; } }
+
+/* fájl ikonok kékkel */
+.djp-file > svg { color: var(--dj-blue); }
+
+/* Letöltés gomb: ikon és felirat pontosan középen */
+.djp-tb-dl { display: inline-flex; align-items: center; justify-content: center; gap: 7px; line-height: 1; }
+.djp-tb-dl svg { display: block; flex: none; }
+.djp-tb-dl span { display: block; line-height: 1; margin: 0; padding: 0; }
+
+/* ---------- jelentkezési ablak: regisztráció / belépés ---------- */
+.djp-auth-wrap { max-width: 460px; margin: 0 auto; }
+.djp-auth-job { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 14px; background: var(--dj-bg); border: 1px solid var(--dj-line-soft); }
+.djp-auth-job img { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }
+.djp-auth-job div { display: flex; flex-direction: column; min-width: 0; line-height: 1.35; }
+.djp-auth-job span { font-size: 11.5px; color: var(--dj-gray); }
+.djp-auth-job b { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-auth-job em { font-style: normal; font-size: 12px; color: var(--dj-gray-dark); }
+.djp-auth-steps { display: flex; align-items: center; gap: 8px; list-style: none; padding: 0; margin: 14px 0 16px; font-size: 12.5px; color: var(--dj-gray); }
+.djp-auth-steps li { display: flex; align-items: center; gap: 6px; }
+.djp-auth-steps li + li::before { content: ''; width: 28px; height: 1px; background: var(--dj-line); margin-right: 2px; }
+.djp-auth-steps span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--dj-line); font-size: 11px; font-weight: 600; }
+.djp-auth-steps .is-now { color: var(--dj-blue); font-weight: 600; }
+.djp-auth-steps .is-now span { background: var(--dj-blue); border-color: var(--dj-blue); color: #fff; }
+.djp-auth-tabs { display: flex; width: 100%; margin-bottom: 14px; }
+.djp-auth-tabs button { flex: 1; padding: 9px 12px; font-size: 13.5px; }
+.djp-auth-intro { margin: 0 0 14px; font-size: 13px; line-height: 1.5; color: var(--dj-gray-dark); }
+.djp-auth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.djp-af { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.djp-af > span { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; font-weight: 500; color: var(--dj-black); }
+.djp-af input { width: 100%; height: 46px; padding: 0 14px; border: 1px solid var(--dj-line); border-radius: 12px; background: #fff; font: 14px Poppins, system-ui, sans-serif; color: var(--dj-black); transition: border-color .15s, box-shadow .15s; }
+.djp-af input::placeholder { color: #A8AEB9; }
+.djp-af input:hover { border-color: var(--dj-gray); }
+.djp-af input:focus { outline: none; border-color: var(--dj-blue); box-shadow: 0 0 0 3px rgba(30, 100, 225, .12); }
+.djp-af-forgot { font-size: 12px; font-weight: 500; color: var(--dj-blue); }
+.djp-af-pw { position: relative; }
+.djp-af-pw input { padding-right: 46px; }
+.djp-af-pw button { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; color: var(--dj-gray); font-size: 18px; cursor: pointer; }
+.djp-af-pw button:hover, .djp-af-pw button.is-on { color: var(--dj-blue); background: var(--dj-blue-soft); }
+.djp-auth-terms { display: flex; align-items: flex-start; gap: 10px; margin: 4px 0 16px; font-size: 13px; line-height: 1.5; color: var(--dj-gray-dark); cursor: pointer; }
+.djp-auth-terms input { width: 18px; height: 18px; margin-top: 1px; flex: none; accent-color: var(--dj-blue); }
+.djp-auth-terms a, .djp-auth-alt a { color: var(--dj-blue); font-weight: 500; text-decoration: none; }
+.djp-auth-submit { width: 100%; min-height: 48px; font-size: 15px; font-weight: 600; box-shadow: 0 6px 16px rgba(225, 65, 90, .22); }
+.djp-auth-submit svg { font-size: 18px; transition: transform .15s; }
+.djp-auth-submit:hover svg { transform: translateX(3px); }
+.djp-auth-alt { margin: 14px 0 0; text-align: center; font-size: 13px; color: var(--dj-gray-dark); }
+@media (max-width: 480px) { .djp-auth-grid { grid-template-columns: 1fr; gap: 0; } }
+
+/* Gradiens sablon: világosabb, lágyabb háttér */
+.tpl-gradient { background:
+  radial-gradient(ellipse 65% 42% at 100% 0%, rgba(var(--acc-rgb), .10), rgba(var(--acc-rgb), 0) 70%),
+  radial-gradient(ellipse 55% 38% at 45% 0%, rgba(var(--acc-rgb), .05), rgba(var(--acc-rgb), 0) 70%),
+  linear-gradient(180deg, rgba(var(--acc-rgb), .03) 0%, #FFFFFF 45%); }
+
+/* kérdés-varázsló: piros folyamatjelző és ikon */
+.djp-wiz-head > svg { color: var(--dj-red); }
+.djp-wiz-prog i { background: linear-gradient(90deg, #E1415A 0%, #EC6274 100%); }
+
+/* Önéletrajzaim fejléc gombjai: egy fő piros, a többi visszafogott */
+.djp-btn-plain { background: transparent; border: 1px solid transparent; color: var(--dj-gray-dark); cursor: pointer; }
+.djp-btn-plain:hover { background: #fff; border-color: var(--dj-line); color: var(--dj-black); }
+.djp-btn-ai-outline { color: var(--dj-blue); border-color: #C9D8F5; }
+.djp-btn-ai-outline svg { color: var(--dj-blue); }
+.djp-btn-ai-outline:hover { border-color: var(--dj-blue); background: var(--dj-blue-soft); color: var(--dj-blue-dark); }
+.djp-docs-cta .djp-btn-red { box-shadow: 0 6px 16px rgba(225, 65, 90, .22); }
+
+/* lépés-fejléc: a halvány piros árnyalat balról indul és jobbra fehérbe fut */
+.djp-b-top { background: linear-gradient(90deg, #FFF1F4 0%, #FFF8F9 35%, #FFFFFF 70%); }
+
+/* ---------- CV-generátor fejléc – egy sorban: állás | lépésjelző + illeszkedés | fő gomb ---------- */
+.djp-b-top { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding-top: 12px; padding-bottom: 12px; min-height: 76px; }
+.djp-b-top-l { min-width: 0; }
+.djp-b-jobmini { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.djp-b-jobmini img { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; box-shadow: 0 0 0 1px var(--dj-line-soft); }
+.djp-b-jobmini > div { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+.djp-b-jobmini .djp-b-back { font-size: 11.5px; gap: 4px; color: var(--dj-gray); margin-bottom: 1px; }
+.djp-b-jobmini .djp-b-back svg { font-size: 14px; }
+.djp-b-jobmini .djp-b-back:hover { color: var(--dj-red); }
+.djp-b-jobmini b { font-size: 14.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-b-jobmini > div > span { font-size: 12px; color: var(--dj-gray-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-b-top-c { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+.djp-b-top-c .djp-stepper { margin: 0; justify-content: center; width: max-content; }
+.djp-b-top-c .djp-b-meter { display: flex; width: 100%; }
+.djp-b-top-c .djp-meter { width: 100%; gap: 8px; font-size: 11.5px; }
+.djp-b-top-c .djp-meter-bar { flex: 1; width: auto; height: 6px; }
+.djp-b-top-c .djp-meter b { font-size: 12.5px; min-width: 32px; text-align: right; }
+.djp-b-top-actions { justify-self: end; display: flex; gap: 8px; }
+.djp-b-top-actions .djp-btn-finish { min-width: 0; }
+
+/* dokumentum neve a szerkesztő tetején */
+.djp-docname { position: relative; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 4px 4px 4px 12px; background: #fff; border: 1px solid var(--dj-line-soft); border-radius: 14px; cursor: text; }
+.djp-docname > svg { font-size: 16px; color: var(--dj-gray); flex: none; }
+.djp-docname .djp-b-title { flex: 1; width: auto; max-width: none; min-width: 0; padding: 10px 8px; border: none; font-size: 15px; font-weight: 600; background: transparent; }
+.djp-docname > span { font-size: 11px; color: var(--dj-gray); padding-right: 10px; white-space: nowrap; }
+.djp-docname:focus-within { border-color: var(--dj-blue); box-shadow: 0 0 0 3px rgba(30, 100, 225, .1); }
+.djp-docname:focus-within > svg { color: var(--dj-blue); }
+
+@media (max-width: 1100px) {
+  .djp-b-top { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l a" "c c"; row-gap: 10px; }
+  .djp-b-top-l { grid-area: l; }
+  .djp-b-top-actions { grid-area: a; }
+  .djp-b-top-c { grid-area: c; justify-self: center; }
+}
+
+/* fejléc: a halvány piros árnyalat a jobb felső sarokból indul */
+.djp-b-top { background:
+  radial-gradient(ellipse 55% 140% at 100% 0%, rgba(225, 65, 90, .10) 0%, rgba(225, 65, 90, .04) 45%, rgba(225, 65, 90, 0) 75%),
+  #FFFFFF; }
+
+/* állás nélküli mentés: összegző kártya */
+.djp-sum-save { align-items: stretch; justify-content: center; text-align: center; padding: 22px; background: linear-gradient(180deg, #FFF5F7 0%, #FFFFFF 60%); border: 1px solid #F6D3DA; }
+.djp-sum-save-ico { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 6px; border-radius: 50%; background: var(--dj-green-soft); color: var(--dj-green); font-size: 26px; }
+.djp-sum-card b.djp-sum-save-title { font-size: 17px; }
+.djp-sum-save p { margin: 0 0 6px; font-size: 13px; line-height: 1.5; color: var(--dj-gray-dark); }
+.djp-sum-list { list-style: none; padding: 0; margin: 4px 0 12px; display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.djp-sum-list li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #fff; border: 1px solid var(--dj-line-soft); }
+.djp-sum-list li > svg { font-size: 20px; color: var(--dj-blue); flex: none; }
+.djp-sum-list li span { display: flex; flex-direction: column; min-width: 0; }
+.djp-sum-list li b { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.djp-sum-list li em { font-style: normal; font-size: 11.5px; color: var(--dj-gray); }
+.djp-sum-list li.is-off { opacity: .6; }
+.djp-sum-list li.is-off > svg { color: var(--dj-gray); }
+.djp-sum-save-btn { width: 100%; margin-top: auto; }
+
+/* HR-statisztikás üzenetdobozok: halvány piros háttér, piros ikon */
+.djp-stat, .djp-stat.is-big { background: #FFF3F5; border-color: #F6CAD3; }
+.djp-stat svg { color: var(--dj-red); }
+
+/* fejléc: hangsúlyosabb piros árnyalat a jobb felső sarokból */
+.djp-b-top { background:
+  radial-gradient(ellipse 60% 160% at 100% 0%, rgba(225, 65, 90, .18) 0%, rgba(225, 65, 90, .08) 40%, rgba(225, 65, 90, 0) 75%),
+  #FFFFFF; }
+
+/* ---------- összegző: nyíl a „Mentés és jelentkezés az állásra” gombon ---------- */
+.djp-btn-arrow svg { font-size: 18px; transition: transform .15s; }
+.djp-btn-arrow:hover svg { transform: translateX(3px); }
+
+/* nyitott modalnál az emlékeztető ne takarjon */
+body.djp-overlay-open .djp-remind { display: none; }
+
+/* ---------- új CV: kezdőképernyő ---------- */
+.djp-start { max-width: 720px; }
+.djp-start-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0 18px; text-align: left; }
+.djp-start-opt { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 18px; border: 1.5px solid var(--dj-line); border-radius: 16px; background: #fff; cursor: pointer; text-align: left; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.djp-start-opt:hover { border-color: var(--dj-red); box-shadow: 0 10px 28px rgba(225, 65, 90, .14); transform: translateY(-2px); }
+.djp-start-opt b { display: flex; align-items: center; gap: 4px; font-size: 16px; font-weight: 600; color: var(--dj-black); }
+.djp-start-opt > span:not(.djp-start-ico) { font-size: 13px; line-height: 1.5; color: var(--dj-gray-dark); }
+.djp-start-opt em { font-style: normal; font-size: 11.5px; font-weight: 500; color: var(--dj-gray); margin-top: auto; padding-top: 4px; }
+.djp-start-ico { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--dj-red-soft); color: var(--dj-red); font-size: 22px; margin-bottom: 4px; }
+.djp-start-ico.is-ai { background: var(--dj-ai); color: #fff; }
+.djp-start-more { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; font-size: 13px; color: var(--dj-gray-dark); }
+.djp-start-more i { font-style: normal; color: var(--dj-line); }
+.djp-start-more .djp-link { padding: 2px 0; cursor: pointer; }
+@media (max-width: 640px) { .djp-start-opts { grid-template-columns: 1fr; } }
+
+/* import sáv: vezetett kitöltés / AI-kérdések linkek */
+.djp-import-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 8px; }
+.djp-import-links .djp-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 500; padding: 2px 0; }
+.djp-import-links .djp-link svg { font-size: 15px; }
+.djp-import-links .djp-import-clear { margin-top: 0; margin-left: auto; }
+
+/* ---------- vezetett kitöltés modal ---------- */
+.djp-guide { display: flex; flex-direction: column; width: 100%; max-width: 1040px; max-height: 92vh; background: #fff; border-radius: 22px; box-shadow: 0 24px 60px rgba(0, 0, 0, .25); overflow: hidden; }
+.djp-guide-head { display: flex; align-items: flex-start; gap: 12px; padding: 20px 24px 12px; }
+.djp-guide-head > div { flex: 1; min-width: 0; }
+.djp-guide-kicker { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--dj-red); }
+.djp-guide-head h3 { margin: 4px 0 2px; font-size: 21px; font-weight: 600; }
+.djp-guide-head p { margin: 0; font-size: 13px; color: var(--dj-gray-dark); }
+.djp-guide-prog { height: 6px; margin: 0 24px; border-radius: 99px; background: var(--dj-line-soft); overflow: hidden; }
+.djp-guide-prog i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #E1415A 0%, #EC6274 100%); transition: width .3s ease; }
+.djp-guide-steps { display: flex; gap: 4px; list-style: none; padding: 10px 24px 0; margin: 0; overflow-x: auto; scrollbar-width: none; }
+.djp-guide-steps button { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px 5px 6px; border-radius: 999px; font-size: 12px; color: var(--dj-gray); white-space: nowrap; cursor: pointer; }
+.djp-guide-steps button:hover { background: var(--dj-bg); color: var(--dj-black); }
+.djp-guide-steps span, .djp-guide-steps svg { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--dj-line); font-size: 10.5px; font-weight: 600; flex: none; }
+.djp-guide-steps .is-now button { background: var(--dj-red-soft); color: var(--dj-red); font-weight: 600; }
+.djp-guide-steps .is-now span { background: var(--dj-red); border-color: var(--dj-red); color: #fff; }
+.djp-guide-steps .is-done button { color: var(--dj-black); }
+.djp-guide-steps .is-done svg { background: var(--dj-green); border-color: var(--dj-green); color: #fff; padding: 2px; }
+.djp-guide-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; padding: 14px 24px; overflow: hidden; }
+.djp-guide-form { min-height: 0; overflow-y: auto; padding: 4px 6px 8px 2px; }
+.djp-guide-preview { display: flex; flex-direction: column; gap: 6px; min-height: 0; padding: 12px; border-radius: 14px; background: #DFE4EE; }
+.djp-guide-preview > span { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--dj-gray-dark); }
+.djp-guide-fit { position: relative; flex: 1; min-height: 0; overflow: hidden; border-radius: 6px; }
+.djp-guide-scale { position: absolute; top: 0; left: 0; width: 794px; transform-origin: 0 0; transform: scale(.37); pointer-events: none; box-shadow: 0 6px 20px rgba(30, 35, 40, .18); }
+.djp-guide-foot { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-top: 1px solid var(--dj-line-soft); }
+.djp-guide-foot .djp-link { margin-left: auto; }
+.djp-guide-foot .djp-btn-red svg { font-size: 17px; }
+@media (max-width: 860px) {
+  .djp-guide-body { grid-template-columns: 1fr; overflow-y: auto; }
+  .djp-guide-preview { display: none; }
+}
+/* alacsony képernyőn a teljes modal görgessen, ne nyomódjon össze a kitöltő rész */
+@media (max-height: 760px) {
+  .djp-guide { overflow-y: auto; }
+  .djp-guide-body { flex: none; overflow: visible; }
+  .djp-guide-form { overflow: visible; }
+  .djp-guide-preview { height: 420px; }
+  .djp-guide-foot { position: sticky; bottom: 0; background: #fff; }
+}
+
+/* ---------- készségszint: kattintható pontok ---------- */
+.djp-skill-row { grid-template-columns: minmax(0, 1fr) auto 34px; }
+.djp-rate { display: flex; align-items: center; gap: 5px; padding: 0 4px; }
+.djp-rate button { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--dj-line); background: #fff; cursor: pointer; padding: 0; transition: background .12s, border-color .12s, transform .12s; }
+.djp-rate button.is-on { background: var(--dj-blue); border-color: var(--dj-blue); }
+.djp-rate:hover button { border-color: #A9C4F5; }
+.djp-rate button:hover { transform: scale(1.15); }
+/* rámutatáskor az adott pontig előre jelöl */
+.djp-rate:hover button { background: #fff; border-color: var(--dj-line); }
+.djp-rate button:hover, .djp-rate button:has(~ button:hover) { background: #A9C4F5; border-color: #A9C4F5; }
+.djp-rate-lbl { min-width: 64px; margin-left: 6px; font-size: 12px; font-weight: 500; color: var(--dj-gray-dark); white-space: nowrap; }
+@media (max-width: 600px) { .djp-skill-row { grid-template-columns: 1fr 34px; } .djp-rate { grid-column: 1 / -1; grid-row: 2; } .djp-skill-row .djp-skill-detail { grid-row: 3; } }
+
+/* a CV-n: kis pontok a készség mellett */
+.cv-dots { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
+.cv-dots i { width: 7px; height: 7px; border-radius: 50%; background: #E3E6EE; display: inline-block; }
+.cv-dots i.on { background: var(--acc); }
+.tpl-blue .cv-side .cv-dots i, .tpl-classic .cv-side .cv-dots i { background: rgba(255, 255, 255, .3); }
+.tpl-blue .cv-side .cv-dots i.on, .tpl-classic .cv-side .cv-dots i.on { background: #fff; }
+
+/* ---------- új CV: kezdő választó a generátor bal paneljében ---------- */
+.djp-b-left-in.djp-start { max-width: none; display: flex; flex-direction: column; gap: 14px; }
+.djp-start-head { display: flex; gap: 14px; align-items: flex-start; }
+.djp-start-head .djp-card-ico { flex: none; width: 48px; height: 48px; margin: 0; border-radius: 14px; font-size: 22px; }
+.djp-start-head h2 { font-size: 20px; font-weight: 600; color: var(--dj-black); margin: 2px 0 4px; }
+.djp-start-head p { font-size: 13px; line-height: 1.55; color: var(--dj-gray-dark); margin: 0; }
+.djp-b-left .djp-start-opts { grid-template-columns: 1fr; gap: 10px; margin: 0; }
+.djp-b-left .djp-start-opt { flex-direction: row; align-items: center; gap: 14px; padding: 16px; }
+.djp-b-left .djp-start-ico { flex: none; margin: 0; }
+.djp-start-txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.djp-start-txt b { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; color: var(--dj-black); }
+.djp-start-txt > span { font-size: 12.5px; line-height: 1.5; color: var(--dj-gray-dark); }
+.djp-start-txt em { font-style: normal; font-size: 11.5px; font-weight: 500; color: var(--dj-gray); }
+.djp-start-go { flex: none; font-size: 18px; color: var(--dj-gray); transition: color .15s, transform .15s; }
+.djp-start-opt:hover .djp-start-go { color: var(--dj-red); transform: translateX(3px); }
+.djp-start-sep { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 500; color: var(--dj-gray); margin-top: 4px; }
+.djp-start-sep::before, .djp-start-sep::after { content: ""; flex: 1; height: 1px; background: var(--dj-line); }
+.djp-b-left .djp-start .djp-import-row { margin: 0; }
+.djp-start-ico.is-plain { background: var(--dj-blue-soft); color: var(--dj-blue); }
+
+/* kiolvasási jelentés (valódi feltöltésnél) */
+.djp-parsed-warn { list-style: none; margin: 0 0 12px; padding: 10px 12px; background: #FFF8EC; border: 1px solid #F6DDB0; border-radius: 12px; display: flex; flex-direction: column; gap: 6px; }
+.djp-parsed-warn li { position: relative; padding-left: 18px; font-size: 12.5px; line-height: 1.5; color: #7A5410; }
+.djp-parsed-warn li::before { content: "!"; position: absolute; left: 0; top: 1px; width: 13px; height: 13px; border-radius: 50%; background: #E8A33A; color: #fff; font-size: 9px; font-weight: 700; display: grid; place-items: center; }
